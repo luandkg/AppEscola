@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".atividades.RealizarChamada">
+
+    <TextView
+        android:id="@+id/realizarChamada_titulo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:padding="7dp"
+        android:text="4º BIMESTRE"
+        android:textSize="32dp" />
+
+
+    <ListView
+        android:id="@+id/realizarChamada_lista"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints" />
+
+
+    <LinearLayout
+        android:id="@+id/realizarChamada_area2"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_margin="3dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/realizarChamada_salvar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:text="Salvar" />
+
+        <Button
+            android:id="@+id/realizarChamada_desempenhos"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="2dp"
+            android:text="Desempenhos" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_hoje">
+
+    <fragment
+        android:id="@+id/nav_hoje"
+        android:name="com.luandkg.czilda4.fragments.HojeFragment"
+        android:label="Hoje"
+        tools:layout="@layout/fragment_hoje" />
+
+    <fragment
+        android:id="@+id/nav_atualizacoes"
+        android:name="com.luandkg.czilda4.fragments.AtualizacoesFragment"
+        android:label="Fazer Chamada"
+        tools:layout="@layout/fragment_atualizacoes" />
+
+    <fragment
+        android:id="@+id/nav_segundobimestre"
+        android:name="com.luandkg.czilda4.fragments.SegundoBimestreFragment"
+        android:label="@string/menu_segundobimestre"
+        tools:layout="@layout/fragment_segundo_bimestre" />
+
+    <fragment
+        android:id="@+id/nav_bimestre"
+        android:name="com.luandkg.czilda4.fragments.BimestreFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_bimestre" />
+
+    <fragment
+        android:id="@+id/nav_avaliador_geral"
+        android:name="com.luandkg.czilda4.fragments.AvaliadorFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_avaliador" />
+
+    <fragment
+        android:id="@+id/nav_turmas"
+        android:name="com.luandkg.czilda4.fragments.HorarioFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_turma" />
+
+    <fragment
+        android:id="@+id/nav_boletins"
+        android:name="com.luandkg.czilda4.fragments.AvisadorFragment"
+        android:label="Avisos"
+        tools:layout="@layout/fragment_avisador" />
+
+    <fragment
+        android:id="@+id/nav_chamads_visualizador_geral"
+        android:name="com.luandkg.czilda4.fragments.ChamadasVisualizadorGeral"
+        android:label="Chamadas"
+        tools:layout="@layout/fragment_chamadas_visualizador_geral" />
+
+    <fragment
+        android:id="@+id/nav_resultador"
+        android:name="com.luandkg.czilda4.fragments.DesempenhadorFragment"
+        android:label="Desempenho"
+        tools:layout="@layout/fragment_resultador" />
+
+
+</navigation>

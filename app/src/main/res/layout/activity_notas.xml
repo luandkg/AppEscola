@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context=".atividades.NotasActivity">
+
+    <LinearLayout
+        android:id="@+id/notas_area1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/notas_ii"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="ÔMEGA" />
+
+        <Button
+            android:id="@+id/notas_mi"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="ZETA" />
+
+        <Button
+            android:id="@+id/notas_ms"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="DELTA" />
+
+        <Button
+            android:id="@+id/notas_ss"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="ALFA" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/notas_desempenho"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+    <TextView
+        android:id="@+id/notas_contador"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="."
+        android:textSize="30dp" />
+
+    <ListView
+        android:id="@+id/notas_lista"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_margin="5dp"
+        android:orientation="vertical" />
+
+</LinearLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context=".fragments.DesempenhadorFragment">
+
+    <TextView
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:text="Sem Recuperação"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/iv_pre"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <TextView
+        android:textSize="10dp"
+        android:textAlignment="center"
+        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+
+    <TextView
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:text="Com Recuperação"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
+    <ImageView
+        android:id="@+id/iv_pos"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <Button
+        android:id="@+id/resultador_btn_notas"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:text="Notas">
+    </Button>
+
+    <LinearLayout
+        android:id="@+id/resultador_notas_area1"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_margin="3dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/resultador_notas_ii"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="ÔMEGA" />
+
+        <Button
+            android:id="@+id/resultador_notas_mi"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="ZETA" />
+
+        <Button
+            android:id="@+id/resultador_notas_ms"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="DELTA" />
+
+        <Button
+            android:id="@+id/resultador_notas_ss"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="ALFA" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/resultador_aprovados"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="2dp"
+        android:text="APROVADOS" />
+
+</LinearLayout>

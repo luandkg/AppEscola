@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context=".atividades.ListadorDeAtividadesActivity">
+
+    <TextView
+        android:id="@+id/listador_atividades_nome"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="."
+        android:textSize="30dp" />
+
+    <ImageView
+        android:id="@+id/listador_fluxoDeAtividades"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp" />
+
+    <ListView
+        android:id="@+id/listador_atividades_lista"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_margin="5dp"
+        android:orientation="vertical" />
+
+</LinearLayout>

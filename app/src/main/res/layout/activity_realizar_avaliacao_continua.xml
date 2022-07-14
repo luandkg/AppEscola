@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".atividades.RealizarAvaliacaoContinua">
+
+    <LinearLayout
+        android:id="@+id/avaliador_continuo_area0"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="2dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/avaliador_continuo_titulo"
+            android:layout_width="270dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:gravity="center_horizontal"
+            android:text="AVALIADOR CONTINUO"
+            android:textAlignment="center"
+            android:textSize="26dp" />
+
+        <Button
+            android:id="@+id/avaliador_continuo_atividades"
+            android:layout_width="80dp"
+            android:gravity="center_horizontal"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:textAlignment="center"
+            android:padding="5dp"
+            android:text="ATV" />
+
+    </LinearLayout>
+
+
+
+    <com.luandkg.czilda4.escola.widgets.CaixaDeAtividade
+        android:id="@+id/avaliador_continuo_caixa"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/avaliador_continuo_area1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+
+
+        <Button
+            android:id="@+id/avaliador_continuo_avaliar"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="AVALIAR" />
+
+        <Button
+            android:id="@+id/avaliador_continuo_recuperacao"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="RECUPERAR" />
+
+        <Button
+            android:id="@+id/avaliador_continuo_notafinal"
+            android:layout_width="0px"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="FINAL" />
+
+    </LinearLayout>
+
+
+
+    <ListView
+        android:id="@+id/avaliador_continuo_lista"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_margin="5dp"
+        android:orientation="vertical" />
+
+
+    <LinearLayout
+        android:id="@+id/avaliador_continuo_area2"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/avaliador_continuo_salvar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="2dp"
+            android:text="Salvar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/avaliador_continuo_area4"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/avaliador_continuo_nao"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:textColor="#f4511e"
+            android:text="0"
+            android:textSize="32dp" />
+
+        <TextView
+            android:id="@+id/avaliador_continuo_sim"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:textColor="#43a047"
+            android:textAlignment="center"
+            android:text="0"
+            android:textSize="32dp" />
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

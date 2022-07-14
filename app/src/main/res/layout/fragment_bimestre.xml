@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:orientation="vertical"
+    tools:context=".fragments.BimestreFragment">
+
+
+    <ImageView
+        android:id="@+id/contagem_tempo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:id="@+id/contagemLabel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="HOJE"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_bimestreInicio"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:text="..."
+            android:textAlignment="center" />
+
+
+        <TextView
+            android:id="@+id/tv_bimestreFim"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:text="..."
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bimestre_btn_sincronizar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="15dp"
+        android:text="Sincronizar">
+    </Button>
+
+
+    <ImageView
+        android:id="@+id/bimestre_fluxoDeAtividades"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp" />
+
+</LinearLayout>

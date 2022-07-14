@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_hoje"
+            android:icon="@drawable/ic_atualizacoes"
+            android:title="Hoje" />
+
+        <item
+            android:id="@+id/nav_atualizacoes"
+            android:icon="@drawable/ic_realizar_chamada"
+            android:title="Fazer Chamada" />
+        <item
+            android:id="@+id/nav_segundobimestre"
+            android:icon="@drawable/ic_atualizacoes"
+            android:title="Avaliar" />
+
+        <item
+            android:id="@+id/nav_chamads_visualizador_geral"
+            android:icon="@drawable/ic_chamadas"
+            android:title="Chamadas" />
+        <item
+            android:id="@+id/nav_bimestre"
+            android:icon="@drawable/ic_bimestre"
+            android:title="Bimestre" />
+        <item
+            android:id="@+id/nav_avaliador_geral"
+            android:icon="@drawable/ic_avaliador"
+            android:title="Avaliações" />
+        <item
+            android:id="@+id/nav_resultador"
+            android:icon="@drawable/ic_avaliador"
+            android:title="Desempenho" />
+
+        <item
+            android:id="@+id/nav_boletins"
+            android:icon="@drawable/ic_aviso"
+            android:title="Avisos" />
+
+        <item
+            android:id="@+id/nav_turmas"
+            android:icon="@drawable/ic_turmas"
+            android:title="Horários" />
+    </group>
+</menu>

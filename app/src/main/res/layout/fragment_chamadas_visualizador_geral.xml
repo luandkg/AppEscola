@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.ChamadasVisualizadorGeral">
+
+    <ImageView
+        android:id="@+id/chamadas_contagem_tempo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_margin="5dp" />
+
+    <TextView
+        android:id="@+id/chamadas_contagemLabel"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="HOJE"
+        android:textAlignment="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/chamadas_tv_bimestreInicio"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:text="..."
+            android:textAlignment="center" />
+
+
+        <TextView
+            android:id="@+id/chamadas_tv_bimestreFim"
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:text="..."
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/chamadas_bimestre_btn_aulas"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Aulas"></Button>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/chamadas_bimestre_lab_seg"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="SEG"></Button>
+
+        <Button
+            android:id="@+id/chamadas_bimestre_lab_ter"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="TER"></Button>
+
+        <Button
+            android:id="@+id/chamadas_bimestre_lab_qua"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="QUA"></Button>
+
+        <Button
+            android:id="@+id/chamadas_bimestre_lab_qui"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="QUI"></Button>
+
+        <Button
+            android:id="@+id/chamadas_bimestre_lab_sex"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="SEX"></Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/chamadas_bimestre_btn_seg"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="SEG"></Button>
+
+        <Button
+            android:id="@+id/chamadas_bimestre_btn_ter"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="TER"></Button>
+
+        <Button
+            android:id="@+id/chamadas_bimestre_btn_qua"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="QUA"></Button>
+
+        <Button
+            android:id="@+id/chamadas_bimestre_btn_qui"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="QUI"></Button>
+
+        <Button
+            android:id="@+id/chamadas_bimestre_btn_sex"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_margin="3dp"
+            android:text="SEX"></Button>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/chamadas_iv_bimestre_atividades"
+        android:layout_width="400dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_margin="10dp" />
+
+
+</LinearLayout>

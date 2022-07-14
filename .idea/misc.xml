@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/ca.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/drawable/cc.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/drawable/circulo.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/drawable/ic_atualizacoes.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/drawable/ic_avaliador.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/drawable/ic_aviso.xml" value="0.2595" />
+        <entry key="app/src/main/res/drawable/ic_bimestre.xml" value="0.2595" />
+        <entry key="app/src/main/res/drawable/ic_chamada.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/drawable/ic_chamadas.xml" value="0.2475" />
+        <entry key="app/src/main/res/drawable/ic_menu_camera.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/drawable/ic_turmas.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/drawable/side_nav_bar.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/layout/activity_aluno_desempenho.xml" value="0.28986746472851643" />
+        <entry key="app/src/main/res/layout/activity_aluno_frequencia.xml" value="0.266304347826087" />
+        <entry key="app/src/main/res/layout/activity_aluno_relatorio.xml" value="0.28986746472851643" />
+        <entry key="app/src/main/res/layout/activity_aprovador.xml" value="0.4893939393939394" />
+        <entry key="app/src/main/res/layout/activity_chamadas_visualizador.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/layout/activity_criar_aviso.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_drawler.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/activity_listador_de_atividades.xml" value="0.43567251461988304" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/activity_momento_de_avaliacao.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_notas.xml" value="0.2774690038477982" />
+        <entry key="app/src/main/res/layout/activity_passador_de_desempenhos_da_turma.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_realizar_avaliacao.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_realizar_avaliacao_continua.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_realizar_avaliacao_continua_atrasada.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_realizar_chamada.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/activity_sobre.xml" value="0.3148148148148148" />
+        <entry key="app/src/main/res/layout/activity_tempo.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/activity_vivencia.xml" value="0.43567251461988304" />
+        <entry key="app/src/main/res/layout/app_bar_activity_drawler.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/content_activity_drawler.xml" value="0.31666666666666665" />
+        <entry key="app/src/main/res/layout/fragment_atualizacoes.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/fragment_avaliador.xml" value="0.2359375" />
+        <entry key="app/src/main/res/layout/fragment_avisador.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_bimestre.xml" value="0.32472826086956524" />
+        <entry key="app/src/main/res/layout/fragment_boletim.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/fragment_chamada_geral.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/fragment_chamadas_visualizador_geral.xml" value="0.225" />
+        <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/fragment_hoje.xml" value="0.28986746472851643" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/fragment_on.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/fragment_resultador.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_segundo_bimestre.xml" value="0.27276613937580163" />
+        <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/fragment_turma.xml" value="0.16160081053698075" />
+        <entry key="app/src/main/res/layout/item_aluno_boletim.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/layout/item_aluno_chamada.xml" value="0.19791666666666666" />
+        <entry key="app/src/main/res/layout/item_aluno_desempenho.xml" value="0.5126984126984127" />
+        <entry key="app/src/main/res/layout/item_aluno_editar.xml" value="0.19067028985507245" />
+        <entry key="app/src/main/res/layout/item_aluno_frequencia.xml" value="0.2359375" />
+        <entry key="app/src/main/res/layout/item_aluno_nota.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/item_aluno_nota_final.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/layout/item_atualizacao.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/layout/item_aviso.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/item_chamadas_aluno_visualizador.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/layout/item_chamadas_chamada.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/layout/item_frequencia.xml" value="0.266304347826087" />
+        <entry key="app/src/main/res/layout/item_momento_avaliativo.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_semana_avaliacao.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/item_turma.xml" value="0.17255434782608695" />
+        <entry key="app/src/main/res/layout/item_turma_gg.xml" value="0.28986746472851643" />
+        <entry key="app/src/main/res/layout/menu.xml" value="0.31666666666666665" />
+        <entry key="app/src/main/res/layout/nav_header_activity_drawler.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/resumo.xml" value="0.2864583333333333" />
+        <entry key="app/src/main/res/menu/activity_drawler.xml" value="0.33177083333333335" />
+        <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.33177083333333335" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
