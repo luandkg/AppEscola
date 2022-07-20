@@ -2,9 +2,9 @@ package com.luandkg.czilda4.escola;
 
 import com.luandkg.czilda4.escola.avaliacao_continua.SemanaContinua;
 import com.luandkg.czilda4.escola.tempo.Bimestre;
-import com.luandkg.czilda4.utils.tempo.Calendario;
-import com.luandkg.czilda4.utils.tempo.Data;
-import com.luandkg.czilda4.utils.tempo.DiaSemanal;
+import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.DiaSemanal;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,7 @@
 package com.luandkg.czilda4;
 
-import com.luandkg.czilda4.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.utils.FS;
-import com.luandkg.czilda4.utils.Texto;
 
 import java.io.File;
 

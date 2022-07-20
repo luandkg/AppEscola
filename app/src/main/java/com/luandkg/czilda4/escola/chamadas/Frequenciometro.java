@@ -1,13 +1,13 @@
 package com.luandkg.czilda4.escola.chamadas;
 
 import com.luandkg.czilda4.Local;
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.utils.ContadorSN;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.utils.Texto;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Data;
 
 import java.io.File;
 import java.util.ArrayList;

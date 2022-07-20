@@ -7,8 +7,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.AlunoComNota;
 import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.avaliacao_quantitativa.M3;

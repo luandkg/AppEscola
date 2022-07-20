@@ -1,6 +1,6 @@
 package com.luandkg.czilda4.escola.avaliacao_continua;
 
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Data;
 
 public class AtividadeDaTurma {
 

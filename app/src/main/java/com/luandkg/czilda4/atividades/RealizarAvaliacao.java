@@ -23,11 +23,11 @@ import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.alunos.OrdenarAlunos;
 import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.R;
-import com.luandkg.czilda4.listas.Itenizador;
-import com.luandkg.czilda4.listas.ListaGenerica;
+import com.luandkg.czilda4.utils.Itenizador;
+import com.luandkg.czilda4.utils.ListaGenerica;
 import com.luandkg.czilda4.utils.Armazem;
 import com.luandkg.czilda4.utils.FS;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.utils.Widget;
 import com.luandkg.czilda4.escola.widgets.CaixaDeAtividade;
 

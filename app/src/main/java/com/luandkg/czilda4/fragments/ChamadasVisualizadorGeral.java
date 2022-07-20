@@ -21,8 +21,8 @@ import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.chamadas.FluxoDeChamadas;
 import com.luandkg.czilda4.escola.tempo.BimestreTemporal;
 import com.luandkg.czilda4.utils.ActivityStarter;
-import com.luandkg.czilda4.utils.tempo.Calendario;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Data;
 import com.luandkg.czilda4.databinding.FragmentChamadasVisualizadorGeralBinding;
 import com.luandkg.czilda4.zilda2020.exportadores.FluxoDeAtividades;
 

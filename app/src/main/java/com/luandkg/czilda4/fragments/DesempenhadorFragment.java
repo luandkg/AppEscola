@@ -16,7 +16,7 @@ import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.atividades.AprovadorActivity;
 import com.luandkg.czilda4.atividades.NotasActivity;
 import com.luandkg.czilda4.databinding.FragmentResultadorBinding;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.avaliacao.Mensoes;
 import com.luandkg.czilda4.escola.avaliacao_continua.Perfilometro;
 import com.luandkg.czilda4.escola.tempo.Bimestre;
@@ -31,7 +31,7 @@ import com.luandkg.czilda4.escola.avaliacao_continua.AlunoContinuo;
 import com.luandkg.czilda4.escola.tempo.Semanador;
 import com.luandkg.czilda4.utils.ActivityStarter;
 import com.luandkg.czilda4.utils.FS;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 
 import java.util.ArrayList;
 

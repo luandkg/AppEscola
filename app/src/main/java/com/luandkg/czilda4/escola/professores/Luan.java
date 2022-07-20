@@ -4,11 +4,11 @@ import com.luandkg.czilda4.escola.CED1_Calendario;
 import com.luandkg.czilda4.escola.horario.AtividadeEspecial;
 import com.luandkg.czilda4.escola.horario.Horario;
 import com.luandkg.czilda4.escola.organizacao.Professor;
-import com.luandkg.czilda4.utils.tempo.Calendario;
-import com.luandkg.czilda4.utils.tempo.Data;
-import com.luandkg.czilda4.utils.tempo.DiaSemanal;
-import com.luandkg.czilda4.utils.tempo.TempoEstampa;
-import com.luandkg.czilda4.utils.tempo.TempoEstampaDuracao;
+import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.DiaSemanal;
+import com.luandkg.czilda4.libs.tempo.TempoEstampa;
+import com.luandkg.czilda4.libs.tempo.TempoEstampaDuracao;
 
 
 public class Luan {

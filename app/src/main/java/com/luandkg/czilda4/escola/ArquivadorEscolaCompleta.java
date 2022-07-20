@@ -1,16 +1,11 @@
 package com.luandkg.czilda4.escola;
 
-import com.luandkg.czilda4.Local;
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
-import com.luandkg.czilda4.escola.alunos.AlunoChamadas;
-import com.luandkg.czilda4.escola.chamadas.DataChamada;
-import com.luandkg.czilda4.escola.chamadas.TurmaChamadas;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.utils.FS;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class ArquivadorEscolaCompleta {
 

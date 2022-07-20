@@ -1,7 +1,7 @@
 package com.luandkg.czilda4.escola.tempo;
 
 import com.luandkg.czilda4.escola.avaliacao_continua.SemanaContinua;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Data;
 
 import java.util.ArrayList;
 

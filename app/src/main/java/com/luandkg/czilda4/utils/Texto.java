@@ -59,17 +59,6 @@ public class Texto {
         return ret;
     }
 
-    public static String anexar(String eConteudo, String eLinha) {
-
-        if (eConteudo.contentEquals("")) {
-            return eLinha;
-
-        } else {
-            return eConteudo + "\n" + eLinha;
-
-        }
-    }
-
     public static boolean is_igual(String a, String b) {
         return a.contentEquals(b);
     }

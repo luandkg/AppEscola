@@ -1,16 +1,22 @@
 package com.luandkg.czilda4;
 
-import com.luandkg.czilda4.verkuz.Verkuz;
+import com.luandkg.czilda4.libs.verkuz.Verkuz;
 
 public class Versionador extends Verkuz {
 
+
     public Versionador() {
+
+
+        setEstagio(Verkuz.RELEASE);
+
+
 
         // FASE 4
         DEV("2022_07_13", "Criptografia LLCripto - Luan Criptografia Simples 1.0");
         DEV("2022_07_13", "Arquivo Escola_Completa");
         DEV("2022_07_13", "Arquivo de Preferencias REDIZZ");
-        DEV("2022_07_13", "Sincronização de notas direta com DROPBOX");
+        DEV("2022_07_13", "Sincronização de notas com DROPBOX");
         DEV("2022_07_13", "Integração com DROPBOX");
 
 
@@ -84,7 +90,18 @@ public class Versionador extends Verkuz {
 
         setAutor("Luan Freitas ( luandkg@gmail.com )");
 
+        setModo(Verkuz.COMPLEXO);
+
     }
 
+    public static boolean isTeste() {
+        Versionador eVersionador = new Versionador();
+        return eVersionador.getEstagio() == Verkuz.TESTE;
+    }
+
+    public static boolean isRelease() {
+        Versionador eVersionador = new Versionador();
+        return eVersionador.getEstagio() == Verkuz.RELEASE;
+    }
 
 }

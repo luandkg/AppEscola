@@ -15,7 +15,6 @@ import com.luandkg.czilda4.atividades.RealizarAvaliacaoContinuaAtrasadaActivity;
 import com.luandkg.czilda4.escola.avaliacao_continua.AtividadeDaTurma;
 import com.luandkg.czilda4.escola.avaliacao_continua.FluxoFormativoContinuado;
 import com.luandkg.czilda4.utils.Widget;
-import com.luandkg.czilda4.utils.tempo.Data;
 
 import java.util.ArrayList;
 

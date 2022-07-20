@@ -1,22 +1,21 @@
 package com.luandkg.czilda4.escola.avaliacao_continua;
 
 import com.luandkg.czilda4.Local;
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.alunos.AlunoComNota;
 import com.luandkg.czilda4.escola.alunos.OrdenarAlunos;
 import com.luandkg.czilda4.escola.avaliacao.Atividade;
-import com.luandkg.czilda4.escola.tempo.BimestreCorrente;
 import com.luandkg.czilda4.utils.FS;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Data;
 
 import java.util.ArrayList;
 
 public class SuperCache {
 
-    private DKGObjeto eCONTAGEM;
+    private DKGObjeto mRaizAvaliacaoContinuaFormativa;
 
     public SuperCache(String eArquivo) {
 
@@ -26,18 +25,18 @@ public class SuperCache {
             fluxo_entrega.abrir(FS.getArquivoLocal(eArquivo));
         }
 
-        eCONTAGEM = fluxo_entrega.unicoObjeto("AVALIACAO_CONTINUA_FORMATIVA");
+        mRaizAvaliacaoContinuaFormativa = fluxo_entrega.unicoObjeto("AVALIACAO_CONTINUA_FORMATIVA");
 
 
     }
 
 
-    public  int contagem(ArrayList<AlunoContinuo> alunos, String qual_turma) {
+    public int contagem(ArrayList<AlunoContinuo> alunos, String qual_turma) {
 
         int contando = 0;
 
 
-        for (DKGObjeto aluno_objeto : eCONTAGEM.getObjetos()) {
+        for (DKGObjeto aluno_objeto : mRaizAvaliacaoContinuaFormativa.getObjetos()) {
 
             int i_id = aluno_objeto.identifique("ID").getInteiro(0);
 
@@ -81,7 +80,7 @@ public class SuperCache {
             if (esta) {
 
 
-                for (DKGObjeto proc : eCONTAGEM.getObjetos()) {
+                for (DKGObjeto proc : mRaizAvaliacaoContinuaFormativa.getObjetos()) {
 
 
                     for (DKGObjeto em_data : proc.getObjetos()) {
@@ -117,7 +116,7 @@ public class SuperCache {
 
     }
 
-    public  ArrayList<Aluno> getAtividadesDaSemana(ArrayList<Data> quais_datas , ArrayList<Data> atividade_datas) {
+    public ArrayList<Aluno> getAtividadesDaSemana(ArrayList<Data> quais_datas, ArrayList<Data> atividade_datas) {
 
         ArrayList<Aluno> ret = new ArrayList<Aluno>();
 
@@ -135,7 +134,7 @@ public class SuperCache {
             if (esta) {
 
 
-                for (DKGObjeto proc : eCONTAGEM.getObjetos()) {
+                for (DKGObjeto proc : mRaizAvaliacaoContinuaFormativa.getObjetos()) {
 
 
                     for (DKGObjeto em_data : proc.getObjetos()) {
@@ -170,7 +169,7 @@ public class SuperCache {
     }
 
 
-    public ArrayList<Aluno> getAlunosDaSemanaToda(ArrayList<Data> quais_datas , ArrayList<Data> atividade_datas) {
+    public ArrayList<Aluno> getAlunosDaSemanaToda(ArrayList<Data> quais_datas, ArrayList<Data> atividade_datas) {
 
         ArrayList<Aluno> ret = new ArrayList<Aluno>();
 
@@ -194,15 +193,15 @@ public class SuperCache {
             if (esta) {
 
 
-                for (DKGObjeto proc : eCONTAGEM.getObjetos()) {
+                for (DKGObjeto aluno_passando : mRaizAvaliacaoContinuaFormativa.getObjetos()) {
 
+                    String id = aluno_passando.identifique("ID").getValor();
+                    String nome = aluno_passando.identifique("Nome").getValor();
 
-                    for (DKGObjeto em_data : proc.getObjetos()) {
+                    for (DKGObjeto em_data : aluno_passando.unicoObjeto("Momentos").getObjetos()) {
 
                         if (em_data.identifique("Data").getValor().contentEquals(data.getTempo())) {
 
-                            String id = proc.identifique("ID").getValor();
-                            String nome = proc.identifique("Nome").getValor();
 
                             String atividades = em_data.identifique("Valor").getValor();
 
@@ -232,7 +231,32 @@ public class SuperCache {
 
     }
 
-    public ArrayList<Aluno> getAlunosDeRecuperacao(int eBimestreID){
+    public ArrayList<Aluno> getAlunosDaRecuperacao() {
+
+        ArrayList<Aluno> ret = new ArrayList<Aluno>();
+
+        for (DKGObjeto aluno_passando : mRaizAvaliacaoContinuaFormativa.getObjetos()) {
+
+            String id = aluno_passando.identifique("ID").getValor();
+
+            if (aluno_passando.identifique("RecuperacaoRealizada").isValor("SIM")) {
+
+                String rec_valor = aluno_passando.identifique("RecuperacaoValor").getValor();
+                String rec_data = aluno_passando.identifique("RecuperacaoData").getValor();
+
+                ret.add(new Aluno(id, Data.toData(rec_data).getFluxoSemAno(), rec_valor, "", ""));
+
+            }
+
+        }
+
+
+        return ret;
+
+    }
+
+
+    public ArrayList<Aluno> getAlunosDeRecuperacaoAntiga(int eBimestreID) {
 
         ArrayList<AlunoComNota> mAlunos = OrdenarAlunos.ordendarComNotas(Escola.filtarVisiveis(Escola.carregarAlunosComNota()));
         Atividade.organizarNota(FS.getArquivoLocal(Local.ARQUIVO_RECUPERACAO(eBimestreID)), "RECUPERACAO", mAlunos);

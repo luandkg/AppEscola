@@ -1,15 +1,15 @@
 package com.luandkg.czilda4.escola.avaliacao_continua;
 
 import com.luandkg.czilda4.Local;
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.tempo.BimestreCorrente;
 import com.luandkg.czilda4.utils.Chaveador;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.utils.Opcional;
-import com.luandkg.czilda4.utils.tempo.Calendario;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Data;
 import com.luandkg.czilda4.utils.Texto;
 
 import java.util.ArrayList;

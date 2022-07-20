@@ -2,10 +2,10 @@ package com.luandkg.czilda4.zilda2020;
 
 import java.util.ArrayList;
 
-import com.luandkg.czilda4.utils.tempo.Calendario;
-import com.luandkg.czilda4.utils.tempo.Data;
-import com.luandkg.czilda4.utils.tempo.DiaSemanal;
-import com.luandkg.czilda4.utils.tempo.HorarioTurma;
+import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.DiaSemanal;
+import com.luandkg.czilda4.libs.tempo.HorarioTurma;
 
 
 public class SEDF {

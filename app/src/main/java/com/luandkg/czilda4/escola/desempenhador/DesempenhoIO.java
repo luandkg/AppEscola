@@ -1,7 +1,7 @@
 package com.luandkg.czilda4.escola.desempenhador;
 
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.avaliacao_continua.AlunoContinuo;
 import com.luandkg.czilda4.utils.FS;
 

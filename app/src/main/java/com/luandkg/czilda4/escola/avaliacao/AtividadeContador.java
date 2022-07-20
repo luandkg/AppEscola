@@ -1,12 +1,11 @@
 package com.luandkg.czilda4.escola.avaliacao;
 
 import com.luandkg.czilda4.Local;
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.avaliacao_continua.AlunoContinuo;
 import com.luandkg.czilda4.escola.utils.ContadorSN;
 import com.luandkg.czilda4.escola.alunos.AlunoComNota;
-import com.luandkg.czilda4.utils.FS;
 
 import java.io.File;
 import java.util.ArrayList;

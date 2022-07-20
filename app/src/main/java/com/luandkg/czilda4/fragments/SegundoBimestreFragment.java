@@ -19,10 +19,10 @@ import com.luandkg.czilda4.escola.atualizador.Atualizacao;
 import com.luandkg.czilda4.escola.atualizador.Atualizador;
 import com.luandkg.czilda4.escola.utils.Emblemador;
 import com.luandkg.czilda4.R;
-import com.luandkg.czilda4.listas.Itenizador;
-import com.luandkg.czilda4.listas.ListaGenerica;
-import com.luandkg.czilda4.utils.Acao;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.utils.Itenizador;
+import com.luandkg.czilda4.utils.ListaGenerica;
+import com.luandkg.czilda4.libs.meta.Acao;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.utils.Widget;
 import com.luandkg.czilda4.databinding.FragmentSegundoBimestreBinding;
 

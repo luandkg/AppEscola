@@ -5,8 +5,8 @@ import android.os.Handler;
 
 import com.luandkg.czilda4.escola.organizacao.Professor;
 import com.luandkg.czilda4.escola.organizacao.TurmaItem;
-import com.luandkg.czilda4.utils.tempo.Calendario;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Data;
 
 import java.util.ArrayList;
 import java.util.Timer;

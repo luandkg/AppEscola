@@ -6,7 +6,7 @@ import android.widget.Toast;
 import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.zilda2020.SEDF;
 import com.luandkg.czilda4.escola.organizacao.TurmaData;
-import com.luandkg.czilda4.utils.tempo.HorarioTurma;
+import com.luandkg.czilda4.libs.tempo.HorarioTurma;
 import com.luandkg.czilda4.utils.FS;
 
 import java.util.ArrayList;

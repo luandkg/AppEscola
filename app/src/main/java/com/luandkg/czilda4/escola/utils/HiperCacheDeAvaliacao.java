@@ -1,8 +1,8 @@
 package com.luandkg.czilda4.escola.utils;
 
 import com.luandkg.czilda4.Local;
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.tempo.BimestreCorrente;
 import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.avaliacao_continua.AlunoContinuo;

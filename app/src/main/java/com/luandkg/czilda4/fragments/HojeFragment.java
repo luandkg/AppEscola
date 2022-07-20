@@ -1,6 +1,5 @@
 package com.luandkg.czilda4.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.luandkg.czilda4.Versionador;
-import com.luandkg.czilda4.atividades.AprovadorActivity;
 import com.luandkg.czilda4.atividades.VivenciaActivity;
 import com.luandkg.czilda4.databinding.FragmentHojeBinding;
 import com.luandkg.czilda4.escola.CED1_Calendario;
@@ -23,7 +21,7 @@ import com.luandkg.czilda4.escola.utils.EmblemadorHoje;
 import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.tempo.Hoje;
 import com.luandkg.czilda4.escola.organizacao.TurmaComHorario;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.zilda2020.exportadores.FluxoDeAtividades;
 
 import java.util.ArrayList;

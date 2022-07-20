@@ -13,7 +13,7 @@ import com.luandkg.czilda4.escola.avaliacao.Mensionador;
 import com.luandkg.czilda4.escola.avaliacao.CoresDeAvaliacao;
 import com.luandkg.czilda4.utils.PaletaDeCores;
 import com.luandkg.czilda4.utils.Pincelador;
-import com.luandkg.czilda4.utils.geometria.Ponto;
+import com.luandkg.czilda4.libs.geometria.Ponto;
 
 import java.util.ArrayList;
 

@@ -3,9 +3,9 @@ package com.luandkg.czilda4.escola.organizacao;
 import com.luandkg.czilda4.escola.horario.AtividadeEspecial;
 import com.luandkg.czilda4.escola.horario.CargaDeTrabalho;
 import com.luandkg.czilda4.escola.horario.Reposicao;
-import com.luandkg.czilda4.utils.tempo.Data;
-import com.luandkg.czilda4.utils.tempo.TempoEstampa;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.TempoEstampa;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 
 import java.util.ArrayList;
 

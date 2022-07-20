@@ -2,17 +2,14 @@ package com.luandkg.czilda4.escola;
 
 
 import com.luandkg.czilda4.IColecionattor;
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.alunos.AlunoComNota;
 import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.escola.alunos.OrdenarAlunos;
 import com.luandkg.czilda4.escola.avaliacao_continua.AlunoContinuo;
-import com.luandkg.czilda4.escola.avaliacao.Atividade;
-import com.luandkg.czilda4.escola.tempo.BimestreCorrente;
 import com.luandkg.czilda4.utils.FS;
-import com.luandkg.czilda4.utils.tempo.Data;
 import com.luandkg.czilda4.utils.Texto;
 
 import java.io.File;

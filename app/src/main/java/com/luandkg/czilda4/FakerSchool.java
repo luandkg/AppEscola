@@ -1,7 +1,7 @@
 package com.luandkg.czilda4;
 
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.alunos.AlunoComNota;
@@ -9,7 +9,7 @@ import com.luandkg.czilda4.escola.alunos.OrdenarAlunos;
 import com.luandkg.czilda4.escola.avaliacao.Atividade;
 import com.luandkg.czilda4.escola.chamadas.Chamada;
 import com.luandkg.czilda4.utils.FS;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -16,8 +16,8 @@ import com.luandkg.czilda4.escola.chamadas.CarregadorDeFrequencia;
 import com.luandkg.czilda4.escola.utils.Emblemador;
 import com.luandkg.czilda4.escola.chamadas.TurmaChamadas;
 import com.luandkg.czilda4.escola.professores.Luan;
-import com.luandkg.czilda4.listas.Itenizador;
-import com.luandkg.czilda4.listas.ListaGenerica;
+import com.luandkg.czilda4.utils.Itenizador;
+import com.luandkg.czilda4.utils.ListaGenerica;
 import com.luandkg.czilda4.utils.Widget;
 
 import java.util.ArrayList;

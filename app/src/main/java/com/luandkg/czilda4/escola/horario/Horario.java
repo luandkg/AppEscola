@@ -1,8 +1,8 @@
 package com.luandkg.czilda4.escola.horario;
 
 
-import com.luandkg.czilda4.utils.tempo.TempoEstampa;
-import com.luandkg.czilda4.utils.tempo.TempoEstampaDuracao;
+import com.luandkg.czilda4.libs.tempo.TempoEstampa;
+import com.luandkg.czilda4.libs.tempo.TempoEstampaDuracao;
 
 public class Horario {
 

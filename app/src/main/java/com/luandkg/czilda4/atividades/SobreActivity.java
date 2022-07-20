@@ -7,14 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.dropbox.core.android.Auth;
 import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.R;
 import com.luandkg.czilda4.utils.Redizz;
 import com.luandkg.czilda4.Versionador;
 import com.luandkg.czilda4.dropbox.Dropbox;
-import com.luandkg.czilda4.utils.Texto;
-import com.luandkg.czilda4.utils.tempo.Calendario;
 
 public class SobreActivity extends AppCompatActivity {
 

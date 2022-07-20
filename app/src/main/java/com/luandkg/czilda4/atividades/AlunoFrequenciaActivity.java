@@ -15,8 +15,8 @@ import com.luandkg.czilda4.escola.alunos.AlunoChamadas;
 import com.luandkg.czilda4.escola.chamadas.DataChamada;
 import com.luandkg.czilda4.escola.chamadas.CarregadorDeFrequencia;
 import com.luandkg.czilda4.R;
-import com.luandkg.czilda4.listas.Itenizador;
-import com.luandkg.czilda4.listas.ListaGenerica;
+import com.luandkg.czilda4.utils.Itenizador;
+import com.luandkg.czilda4.utils.ListaGenerica;
 import com.luandkg.czilda4.utils.PaletaDeCores;
 import com.luandkg.czilda4.utils.Widget;
 

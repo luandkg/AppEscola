@@ -10,12 +10,11 @@ import com.dropbox.core.v2.files.ListFolderResult;
 import com.dropbox.core.v2.files.Metadata;
 import com.dropbox.core.v2.files.WriteMode;
 import com.dropbox.core.v2.users.FullAccount;
-import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.utils.Redizz;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.utils.Texto;
-import com.luandkg.czilda4.utils.profile.KhronosDebug;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.profile.KhronosDebug;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

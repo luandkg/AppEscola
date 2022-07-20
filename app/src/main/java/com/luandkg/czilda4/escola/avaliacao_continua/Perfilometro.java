@@ -1,13 +1,12 @@
 package com.luandkg.czilda4.escola.avaliacao_continua;
 
 import com.luandkg.czilda4.Local;
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
-import com.luandkg.czilda4.escola.Escola;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.avaliacao.Recuperacao;
 import com.luandkg.czilda4.escola.tempo.Semanador;
 import com.luandkg.czilda4.utils.FS;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Data;
 import com.luandkg.czilda4.utils.Texto;
 
 import java.util.ArrayList;
@@ -56,7 +55,7 @@ public class Perfilometro {
                 SemanaContinuaValores anterior = null;
 
 
-                for (DKGObjeto momento : aluno_objeto.getObjetos()) {
+                for (DKGObjeto momento : aluno_objeto.unicoObjeto("Momentos").getObjetos()) {
 
                     String data = momento.identifique("Data").getValor();
                     String valor = momento.identifique("Valor").getValor();
@@ -213,7 +212,7 @@ public class Perfilometro {
             SemanaContinuaValores anterior = null;
 
 
-            for (DKGObjeto momento : aluno_objeto.getObjetos()) {
+            for (DKGObjeto momento : aluno_objeto.unicoObjeto("Momentos").getObjetos()) {
 
                 String data = momento.identifique("Data").getValor();
                 String valor = momento.identifique("Valor").getValor();

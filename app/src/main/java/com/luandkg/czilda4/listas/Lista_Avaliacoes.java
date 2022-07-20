@@ -17,7 +17,7 @@ import com.luandkg.czilda4.escola.avaliacao_continua.SemanaContinua;
 import com.luandkg.czilda4.escola.avaliacao_continua.SemanaContinuaCarregada;
 import com.luandkg.czilda4.escola.avaliacao_continua.FluxoFormativoContinuado;
 import com.luandkg.czilda4.escola.avaliacao.CoresDeAvaliacao;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.utils.Widget;
 
 import java.util.ArrayList;

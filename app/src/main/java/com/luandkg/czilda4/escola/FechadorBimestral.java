@@ -30,9 +30,9 @@ import com.luandkg.czilda4.escola.utils.HiperCacheDeAvaliacao;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.utils.ImagemCriador;
 import com.luandkg.czilda4.utils.Redizz;
-import com.luandkg.czilda4.utils.profile.KhronosProfiler;
-import com.luandkg.czilda4.utils.profile.ProfileStamp;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.profile.KhronosProfiler;
+import com.luandkg.czilda4.libs.profile.ProfileStamp;
+import com.luandkg.czilda4.libs.tempo.Data;
 import com.luandkg.czilda4.utils.Threader;
 
 import java.util.ArrayList;

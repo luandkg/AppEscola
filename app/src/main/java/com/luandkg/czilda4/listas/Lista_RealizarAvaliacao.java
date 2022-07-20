@@ -13,7 +13,7 @@ import com.luandkg.czilda4.R;
 import com.luandkg.czilda4.atividades.AlunoDesempenhoActivity;
 import com.luandkg.czilda4.escola.alunos.AlunoComNota;
 import com.luandkg.czilda4.escola.widgets.Organizadores;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.utils.Widget;
 
 import java.util.ArrayList;

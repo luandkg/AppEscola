@@ -1,6 +1,6 @@
 package com.luandkg.czilda4.escola.organizacao;
 
-import com.luandkg.czilda4.utils.tempo.TempoEstampa;
+import com.luandkg.czilda4.libs.tempo.TempoEstampa;
 
 import java.util.ArrayList;
 

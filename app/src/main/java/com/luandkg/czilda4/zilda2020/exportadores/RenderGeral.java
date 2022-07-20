@@ -6,14 +6,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.alunos.AlunoFrequencia;
 import com.luandkg.czilda4.zilda2020.SEDF;
 import com.luandkg.czilda4.escola.organizacao.TurmaData;
-import com.luandkg.czilda4.utils.tempo.Data;
-import com.luandkg.czilda4.utils.tempo.HorarioTurma;
+import com.luandkg.czilda4.libs.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.HorarioTurma;
 import com.luandkg.czilda4.utils.FS;
 
 import java.io.File;

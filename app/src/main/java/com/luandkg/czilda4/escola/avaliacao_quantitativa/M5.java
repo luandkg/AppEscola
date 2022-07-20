@@ -6,8 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.luandkg.czilda4.Local;
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.CED1_Calendario;
 import com.luandkg.czilda4.escola.alunos.AlunoComNota;
 import com.luandkg.czilda4.escola.Escola;
@@ -15,7 +15,7 @@ import com.luandkg.czilda4.escola.avaliacao.Atividade;
 import com.luandkg.czilda4.escola.avaliacao.AtividadeContador;
 import com.luandkg.czilda4.utils.Armazem;
 import com.luandkg.czilda4.utils.FS;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Data;
 
 import java.util.ArrayList;
 

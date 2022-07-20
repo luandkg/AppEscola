@@ -10,7 +10,7 @@ import android.graphics.RectF;
 import com.luandkg.czilda4.escola.horario.AtividadeEspecial;
 import com.luandkg.czilda4.escola.organizacao.Professor;
 import com.luandkg.czilda4.utils.PaletaDeCores;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 
 
 import java.util.ArrayList;

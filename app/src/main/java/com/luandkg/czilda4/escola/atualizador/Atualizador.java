@@ -1,11 +1,11 @@
 package com.luandkg.czilda4.escola.atualizador;
 
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.escola.avaliacao.AtividadeContador;
 import com.luandkg.czilda4.utils.Armazem;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.utils.FS;
 
 import java.util.ArrayList;

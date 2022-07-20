@@ -7,8 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import com.luandkg.czilda4.dkg.DKG;
-import com.luandkg.czilda4.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.tempo.Bimestre;
 import com.luandkg.czilda4.escola.tempo.Hoje;
 import com.luandkg.czilda4.escola.alunos.Aluno;
@@ -17,8 +17,8 @@ import com.luandkg.czilda4.escola.avaliacao.CoresDeAvaliacao;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.utils.ImagemCriador;
 import com.luandkg.czilda4.utils.Matematica;
-import com.luandkg.czilda4.utils.tempo.Calendario;
-import com.luandkg.czilda4.utils.tempo.Data;
+import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Data;
 
 import java.util.ArrayList;
 

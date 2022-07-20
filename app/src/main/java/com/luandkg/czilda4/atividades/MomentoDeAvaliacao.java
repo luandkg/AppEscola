@@ -12,26 +12,18 @@ import android.widget.TextView;
 
 import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.R;
-import com.luandkg.czilda4.escola.alunos.AlunoComNota;
-import com.luandkg.czilda4.escola.alunos.OrdenarAlunos;
 import com.luandkg.czilda4.escola.avaliacao.Atividade;
 import com.luandkg.czilda4.escola.avaliacao.Mensoes;
-import com.luandkg.czilda4.escola.avaliacao_continua.MetodoContinuo;
 import com.luandkg.czilda4.escola.tempo.Bimestre;
 import com.luandkg.czilda4.escola.tempo.BimestreCorrente;
-import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.avaliacao_continua.FluxoFormativoContinuado;
-import com.luandkg.czilda4.escola.avaliacao_continua.SemanaContinuaCarregada;
-import com.luandkg.czilda4.escola.avaliacao_continua.SemanasDeAtividades;
 import com.luandkg.czilda4.escola.avaliacao_continua.SuperCache;
-import com.luandkg.czilda4.listas.Itenizador;
-import com.luandkg.czilda4.listas.ListaGenerica;
-import com.luandkg.czilda4.utils.FS;
+import com.luandkg.czilda4.utils.Itenizador;
+import com.luandkg.czilda4.utils.ListaGenerica;
 import com.luandkg.czilda4.utils.PaletaDeCores;
-import com.luandkg.czilda4.utils.tempo.Calendario;
+import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.utils.Widget;
-import com.luandkg.czilda4.utils.tempo.Data;
 
 import java.util.ArrayList;
 
@@ -71,47 +63,41 @@ public class MomentoDeAvaliacao extends AppCompatActivity {
         Bimestre eBimestre = BimestreCorrente.GET();
 
         ArrayList<Aluno> avaliados = new ArrayList<Aluno>();
+        SuperCache eSuperCache = new SuperCache(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS);
 
         if (mSemana.contentEquals("RECUPERACAO_BIMESTRAL")) {
 
             mTitulo.setText("RECUPERAÇÃO BIMESTRAL");
+            mDatas.setText("");
 
-            SuperCache eSuperCache = new SuperCache(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS);
-
-            avaliados = eSuperCache.getAlunosDeRecuperacao(eBimestre.getID());
-
+            //  avaliados = eSuperCache.getAlunosDeRecuperacaoAntiga(eBimestre.getID());
+            avaliados = eSuperCache.getAlunosDaRecuperacao();
 
         } else {
 
+            if (eBimestre.isSemanaValida(mSemana)) {
 
-            int index = 0;
+                int semana_id = eBimestre.getSemanaID(mSemana);
 
-            if (mSemana.length() > 0) {
-                index = Integer.parseInt(mSemana);
-            }
+                mTitulo.setText("SEMANA DE ATIVIDADES " + eBimestre.getSemanas().get(semana_id).getNome());
+                mDatas.setText(eBimestre.getSemanas().get(semana_id).getStatus());
 
-            if (eBimestre.getSemanas().size() >= index && eBimestre.getSemanas().size() >= index) {
-
-                mTitulo.setText("SEMANA DE ATIVIDADES " + eBimestre.getSemanas().get(index).getNome());
-                mDatas.setText(eBimestre.getSemanas().get(index).getStatus());
-
-                SuperCache eSuperCache = new SuperCache(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS);
-
-                avaliados = eSuperCache.getAlunosDaSemanaToda(eBimestre.getDatas(), eBimestre.getSemanas().get(index).getDatas());
+                avaliados = eSuperCache.getAlunosDaSemanaToda(eBimestre.getDatas(), eBimestre.getSemanas().get(semana_id).getDatas());
 
             }
+
 
         }
 
 
         IMG_VISUALIZADOR.setImageBitmap(FluxoFormativoContinuado.onSemanaFluxo(avaliados));
 
-        Mensoes mensoes = Atividade.contarMensoes(avaliados);
+        Mensoes quatro_mensoes = Atividade.contarMensoes(avaliados);
 
 
-        TX_ZETA.setText(String.valueOf(mensoes.zeta()));
-        TX_DELTA.setText(String.valueOf(mensoes.delta()));
-        TX_ALFA.setText(String.valueOf(mensoes.alfa()));
+        TX_ZETA.setText(String.valueOf(quatro_mensoes.zeta()));
+        TX_DELTA.setText(String.valueOf(quatro_mensoes.delta()));
+        TX_ALFA.setText(String.valueOf(quatro_mensoes.alfa()));
 
 
         LISTA.setAdapter(new ListaGenerica(getBaseContext(), avaliados.size(), onItem(avaliados)));

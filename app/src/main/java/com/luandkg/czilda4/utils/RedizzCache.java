@@ -1,6 +1,6 @@
 package com.luandkg.czilda4.utils;
 
-import com.luandkg.czilda4.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKG;
 
 public class RedizzCache {
 
