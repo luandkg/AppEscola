@@ -43,7 +43,7 @@ public class ActivityDrawler extends AppCompatActivity {
         Internet.pedirPermissoes(this);
 
         // DEFINIR BIMESTRE ATUAL
-        BimestreCorrente.SET(CED1_Calendario.SEGUNDO_BIMESTRE());
+        BimestreCorrente.SET(CED1_Calendario.TERCEIRO_BIMESTRE());
 
 
         binding = ActivityDrawlerBinding.inflate(getLayoutInflater());
@@ -78,7 +78,7 @@ public class ActivityDrawler extends AppCompatActivity {
         Inicializador.init(Professores.getProfessorCorrente().getQuaisTurmas());
 
         if (Versionador.isTeste()) {
-            FakerSchool.init();
+            //    FakerSchool.init();
         }
 
         Notificar.criarCanal(getBaseContext(), "AVISOS", "SISTEMA DE AVISOS");
@@ -112,13 +112,7 @@ public class ActivityDrawler extends AppCompatActivity {
         mAvisador = new Avisador(this.getBaseContext(), Professores.getProfessorCorrente());
         mAvisador.run();
 
-        SigmaCollection.organizar("@ESCOLA::ALUNOS");
-        SigmaCollection.organizar("@ESCOLA->CACHE::NOTAS");
 
-
-        //System.out.println("REDIZZ TO : " + Redizz.to("LUAN ALVES FREITAS"));
-        //String voltando = Redizz.to("LUAN ALVES FREITAS");
-        //  System.out.println("REDIZZ FROM : " + Redizz.from(voltando));
 
     }
 

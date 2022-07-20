@@ -8,7 +8,7 @@ public class Versionador extends Verkuz {
     public Versionador() {
 
 
-        setEstagio(Verkuz.TESTE);
+        setEstagio(Verkuz.RELEASE);
 
 
         // FASE 4
