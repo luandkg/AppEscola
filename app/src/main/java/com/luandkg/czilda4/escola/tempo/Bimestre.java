@@ -38,6 +38,7 @@ public class Bimestre {
             index = Integer.parseInt(eSemanaID);
         }
 
+
         if (getSemanas().size() >= index && getSemanas().size() >= index) {
             ret = true;
         }
@@ -54,9 +55,6 @@ public class Bimestre {
             index = Integer.parseInt(eSemanaID);
         }
 
-        if (getSemanas().size() >= index && getSemanas().size() >= index) {
-            index -= 1;
-        }
 
         return index;
     }

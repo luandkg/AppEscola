@@ -6,6 +6,7 @@ import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.avaliacao.Recuperacao;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.libs.tempo.Data;
 
@@ -13,25 +14,18 @@ import java.util.ArrayList;
 
 public class SemanasDeAtividades {
 
-    public static void organizar(ArrayList<SemanaContinua> semanas_continuas, String eArquivo, String eArquivo_fluxo) {
+    public static void organizar(ArrayList<SemanaContinua> semanas_continuas, String colecao_notas, String colecao_fluxo) {
 
 
-        DKG fluxo_entrega = new DKG();
+        DKG dkg_notas = SigmaCollection.REQUIRED_COLLECTION(colecao_notas);
 
-        if (FS.arquivoExiste(eArquivo)) {
-            fluxo_entrega.abrir(FS.getArquivoLocal(eArquivo));
-        }
 
-        DKGObjeto contagem = fluxo_entrega.unicoObjeto("AVALIACAO_CONTINUA_FORMATIVA");
-        DKGObjeto semanas = fluxo_entrega.unicoObjeto("SEMANAS");
+        DKGObjeto contagem = dkg_notas.unicoObjeto("AVALIACAO_CONTINUA_FORMATIVA");
+        DKGObjeto semanas = dkg_notas.unicoObjeto("SEMANAS");
 
         semanas.getObjetos().clear();
 
-        DKG fluxo_saida = new DKG();
-
-        if (FS.arquivoExiste(eArquivo_fluxo)) {
-            fluxo_saida.abrir(FS.getArquivoLocal(eArquivo_fluxo));
-        }
+        DKG fluxo_saida = SigmaCollection.REQUIRED_COLLECTION(colecao_fluxo);
 
 
         ArrayList<String> fez = new ArrayList<String>();
@@ -75,20 +69,19 @@ public class SemanasDeAtividades {
 
         }
 
-
-        fluxo_saida.salvar(FS.getArquivoLocal(eArquivo_fluxo));
+        SigmaCollection.WRITE_COLLECTION(colecao_fluxo, fluxo_saida);
 
 
     }
 
-    public static void guardar(ArrayList<Aluno> mAlunos, ArrayList<SemanaContinua> mSemanas, String eArquivoSemanas) {
+    public static void guardar(ArrayList<Aluno> mAlunos, ArrayList<SemanaContinua> mSemanas, String colecao_semanas) {
 
         int todos = Escola.filtrarAlunosVisiveis(mAlunos).size();
 
         DKG arquivo_semanas = new DKG();
         DKGObjeto obj_semanas = arquivo_semanas.unicoObjeto("Semanas");
 
-        SuperCache eSuperCache = new SuperCache(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS);
+        SuperCache eSuperCache = new SuperCache(Local.COLECAO_NOTAS);
 
         for (SemanaContinua eSemanaContinua : mSemanas) {
 
@@ -118,19 +111,15 @@ public class SemanasDeAtividades {
         obj_recuperacao.identifique("Status", Recuperacao.getRecuperacaoStatus());
 
 
-        arquivo_semanas.salvar(FS.getArquivoLocal(eArquivoSemanas));
+        SigmaCollection.WRITE_COLLECTION(colecao_semanas, arquivo_semanas);
 
     }
 
-    public static ArrayList<SemanaContinuaCarregada> carregarSemanas(String eArquivoSemanas) {
+    public static ArrayList<SemanaContinuaCarregada> carregarSemanas(String colecao_semanas) {
         ArrayList<SemanaContinuaCarregada> ret = new ArrayList<SemanaContinuaCarregada>();
 
 
-        DKG arquivo_semanas = new DKG();
-
-        if (FS.arquivoExiste(eArquivoSemanas)) {
-            arquivo_semanas.abrir(FS.getArquivoLocal(eArquivoSemanas));
-        }
+        DKG arquivo_semanas = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(colecao_semanas);
 
         DKGObjeto obj_semanas = arquivo_semanas.unicoObjeto("Semanas");
 
@@ -144,15 +133,11 @@ public class SemanasDeAtividades {
         return ret;
     }
 
-    public static int getAtividades(String eArquivoSemanas) {
+    public static int getAtividades(String colecao_semanas) {
 
         int total = 0;
 
-        DKG arquivo_semanas = new DKG();
-
-        if (FS.arquivoExiste(eArquivoSemanas)) {
-            arquivo_semanas.abrir(FS.getArquivoLocal(eArquivoSemanas));
-        }
+        DKG arquivo_semanas = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(colecao_semanas);
 
         DKGObjeto obj_semanas = arquivo_semanas.unicoObjeto("Semanas");
 

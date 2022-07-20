@@ -20,13 +20,13 @@ import com.luandkg.czilda4.escola.CED1_Calendario;
 import com.luandkg.czilda4.escola.atualizador.Inicializador;
 import com.luandkg.czilda4.escola.horario.Avisador;
 import com.luandkg.czilda4.escola.Professores;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.databinding.ActivityDrawlerBinding;
 import com.luandkg.czilda4.utils.Internet;
 import com.luandkg.czilda4.utils.Notificar;
 
 import java.util.HashSet;
-import java.util.Set;
 
 public class ActivityDrawler extends AppCompatActivity {
 
@@ -43,7 +43,7 @@ public class ActivityDrawler extends AppCompatActivity {
         Internet.pedirPermissoes(this);
 
         // DEFINIR BIMESTRE ATUAL
-        BimestreCorrente.SET(CED1_Calendario.TERCEIRO_BIMESTRE());
+        BimestreCorrente.SET(CED1_Calendario.SEGUNDO_BIMESTRE());
 
 
         binding = ActivityDrawlerBinding.inflate(getLayoutInflater());
@@ -112,8 +112,8 @@ public class ActivityDrawler extends AppCompatActivity {
         mAvisador = new Avisador(this.getBaseContext(), Professores.getProfessorCorrente());
         mAvisador.run();
 
-        IColecionattor.organizar("@ESCOLA::ALUNOS");
-        IColecionattor.organizar("@ESCOLA->CACHE::NOTAS");
+        SigmaCollection.organizar("@ESCOLA::ALUNOS");
+        SigmaCollection.organizar("@ESCOLA->CACHE::NOTAS");
 
 
         //System.out.println("REDIZZ TO : " + Redizz.to("LUAN ALVES FREITAS"));

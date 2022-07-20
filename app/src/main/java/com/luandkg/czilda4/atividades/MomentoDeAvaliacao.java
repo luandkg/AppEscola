@@ -14,6 +14,7 @@ import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.R;
 import com.luandkg.czilda4.escola.avaliacao.Atividade;
 import com.luandkg.czilda4.escola.avaliacao.Mensoes;
+import com.luandkg.czilda4.escola.avaliacao.Recuperacao;
 import com.luandkg.czilda4.escola.tempo.Bimestre;
 import com.luandkg.czilda4.escola.tempo.BimestreCorrente;
 import com.luandkg.czilda4.escola.alunos.Aluno;
@@ -63,14 +64,13 @@ public class MomentoDeAvaliacao extends AppCompatActivity {
         Bimestre eBimestre = BimestreCorrente.GET();
 
         ArrayList<Aluno> avaliados = new ArrayList<Aluno>();
-        SuperCache eSuperCache = new SuperCache(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS);
+        SuperCache eSuperCache = new SuperCache(Local.COLECAO_NOTAS);
 
         if (mSemana.contentEquals("RECUPERACAO_BIMESTRAL")) {
 
             mTitulo.setText("RECUPERAÇÃO BIMESTRAL");
-            mDatas.setText("");
+            mDatas.setText(Recuperacao.getRecuperacaoStatus());
 
-            //  avaliados = eSuperCache.getAlunosDeRecuperacaoAntiga(eBimestre.getID());
             avaliados = eSuperCache.getAlunosDaRecuperacao();
 
         } else {
@@ -78,6 +78,8 @@ public class MomentoDeAvaliacao extends AppCompatActivity {
             if (eBimestre.isSemanaValida(mSemana)) {
 
                 int semana_id = eBimestre.getSemanaID(mSemana);
+
+                System.out.println("SEMANA ID :: " + semana_id);
 
                 mTitulo.setText("SEMANA DE ATIVIDADES " + eBimestre.getSemanas().get(semana_id).getNome());
                 mDatas.setText(eBimestre.getSemanas().get(semana_id).getStatus());

@@ -5,6 +5,7 @@ import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.Local;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.utils.FS;
 
@@ -17,10 +18,8 @@ public class Chamada {
 
     public static void organizar(ArrayList<Aluno> mAlunos) {
 
+        Local.organizarPastas();
 
-
-        FS.dirCriar(Local.LOCAL);
-        FS.dirCriar(Local.LOCAL_REALIZAR_CHAMADA);
 
         String eArquivoLocal = FS.getArquivoLocal(Local.LOCAL_REALIZAR_CHAMADA + "/" + Calendario.getADMComTracoInferior() + ".dkg");
 
@@ -55,8 +54,7 @@ public class Chamada {
     public static void salvarChamada(ArrayList<Aluno> mAlunos) {
 
 
-        FS.dirCriar(Local.LOCAL);
-        FS.dirCriar(Local.LOCAL_REALIZAR_CHAMADA);
+        Local.organizarPastas();
 
         String eArquivoLocal = FS.getArquivoLocal(Local.LOCAL_REALIZAR_CHAMADA+ "/" + Calendario.getADMComTracoInferior() + ".dkg");
 
@@ -102,8 +100,7 @@ public class Chamada {
     public static void salvarChamadaNoDia(String data,ArrayList<Aluno> mAlunos) {
 
 
-        FS.dirCriar(Local.LOCAL);
-        FS.dirCriar(Local.LOCAL_REALIZAR_CHAMADA);
+        Local.organizarPastas();
 
         String eArquivoLocal = FS.getArquivoLocal(Local.LOCAL_REALIZAR_CHAMADA + "/" + data + ".dkg");
 
@@ -144,12 +141,11 @@ public class Chamada {
 
     public static int getPresentesPorcentagem() {
 
-        FS.dirCriar(Local.LOCAL);
-        FS.dirCriar(Local.LOCAL_REALIZAR_CHAMADA);
+        Local.organizarPastas();
 
 
-        DKG eArquivoChamadas = new DKG();
-        eArquivoChamadas.abrir(FS.getArquivoLocal(Local.ARQUIVO_CACHE_FREQUENCIA));
+        DKG eArquivoChamadas = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_FREQUENCIAS);
+
         DKGObjeto eContagem = eArquivoChamadas.unicoObjeto("FREQUENCIA");
 
         int todos = 0;

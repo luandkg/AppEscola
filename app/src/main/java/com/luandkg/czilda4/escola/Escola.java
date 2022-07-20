@@ -1,7 +1,7 @@
 package com.luandkg.czilda4.escola;
 
 
-import com.luandkg.czilda4.IColecionattor;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.Aluno;
@@ -24,24 +24,19 @@ public class Escola {
         Local.organizarPastas();
 
 
-        if (IColecionattor.EXISTS_COLLECTION(Local.COLECAO_ALUNOS)) {
-
-            DKG eDocumento = IColecionattor.REQUIRED_COLLECTION(Local.COLECAO_ALUNOS);
+        if (SigmaCollection.EXISTS_COLLECTION(Local.COLECAO_ALUNOS)) {
 
             //  System.out.println("Carregar :: Alunos Existe " + eDocumento.getObjetos().size());
-
-            DKGObjeto eAlunos = eDocumento.unicoObjeto("Alunos");
-
             // System.out.println("Carregar :: Alunos Existe " + eAlunos.getObjetos().size());
 
-            for (DKGObjeto ePacote : eAlunos.getObjetos()) {
+            for (DKGObjeto aluno_objeto : SigmaCollection.REQUIRED_COLLECTION(Local.COLECAO_ALUNOS, "Alunos")) {
 
-                String eID = ePacote.identifique("ID").getValor();
+                String eID = aluno_objeto.id_string("ID");
 
-                String eTurma = ePacote.identifique("Turma").getValor();
-                String eNome = ePacote.identifique("Nome").getValor();
-                String eStatus = ePacote.identifique("Status").getValor();
-                String eVisibilidade = ePacote.identifique("Visibilidade").getValor();
+                String eTurma = aluno_objeto.id_string("Turma");
+                String eNome = aluno_objeto.id_string("Nome");
+                String eStatus = aluno_objeto.id_string("Status");
+                String eVisibilidade = aluno_objeto.id_string("Visibilidade");
 
                 if (eStatus.length() == 0) {
                     eStatus = "PRESENTE";
@@ -54,8 +49,8 @@ public class Escola {
 
                 Aluno AlunoCorrente = new Aluno(eID, eTurma, eNome, eStatus, eVisibilidade);
 
-                if (Texto.is_igual(ePacote.identifique("Vivencia").getValor(), "SIM")) {
-                    AlunoCorrente.setVivencia(ePacote.identifique("Origem").getValor());
+                if (aluno_objeto.id_is("Vivencia","SIM")) {
+                    AlunoCorrente.setVivencia(aluno_objeto.identifique("Origem").getValor());
                 }
 
                 mAlunos.add(AlunoCorrente);
@@ -64,7 +59,7 @@ public class Escola {
 
 
         } else {
-            IColecionattor.BUILD_COLLECTION(Local.COLECAO_ALUNOS);
+            SigmaCollection.BUILD_COLLECTION(Local.COLECAO_ALUNOS);
         }
 
         //  System.out.println("Carregar :: Alunos " + mAlunos.size());
@@ -86,7 +81,7 @@ public class Escola {
 
     }
 
-    public static ArrayList<Aluno> getAlunosVisiveis( ) {
+    public static ArrayList<Aluno> getAlunosVisiveis() {
         return filtrarAlunosVisiveis(Escola.carregarAlunos());
     }
 
@@ -96,30 +91,21 @@ public class Escola {
 
         Local.organizarPastas();
 
-        String eArquivoLocal = FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos);
-
-        File eArquivo = new File(eArquivoLocal);
-
-        DKG eDocumento = new DKG();
 
         //System.out.println("Carregar :: Alunos");
 
-        if (eArquivo.exists()) {
-            eDocumento.abrir(eArquivoLocal);
+        if (SigmaCollection.EXISTS_COLLECTION(Local.COLECAO_ALUNOS)) {
 
             //  System.out.println("Carregar :: Alunos Existe " + eDocumento.getObjetos().size());
-
-            DKGObjeto eAlunos = eDocumento.unicoObjeto("Alunos");
-
             //   System.out.println("Carregar :: Alunos Existe " + eAlunos.getObjetos().size());
 
-            for (DKGObjeto ePacote : eAlunos.getObjetos()) {
+            for (DKGObjeto aluno_objeto : SigmaCollection.REQUIRED_COLLECTION(Local.COLECAO_ALUNOS, "Alunos")) {
 
-                String eID = ePacote.identifique("ID").getValor();
+                String eID = aluno_objeto.identifique("ID").getValor();
 
-                String eTurma = ePacote.identifique("Turma").getValor();
-                String eNome = ePacote.identifique("Nome").getValor();
-                String eVisibilidade = ePacote.identifique("Visibilidade").getValor();
+                String eTurma = aluno_objeto.identifique("Turma").getValor();
+                String eNome = aluno_objeto.identifique("Nome").getValor();
+                String eVisibilidade = aluno_objeto.identifique("Visibilidade").getValor();
 
                 if (eVisibilidade.length() == 0) {
                     eVisibilidade = "SIM";
@@ -132,11 +118,8 @@ public class Escola {
 
         } else {
 
-            DKGObjeto eAlunos = eDocumento.unicoObjeto("Alunos");
-            eDocumento.salvar(FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
-
+            SigmaCollection.BUILD_COLLECTION(Local.COLECAO_ALUNOS, "Alunos");
             // System.out.println("---->> SALVANDO :: " + FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
-
 
         }
 
@@ -152,29 +135,16 @@ public class Escola {
         Local.organizarPastas();
 
 
-        String eArquivoLocal = FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos);
-
-        File eArquivo = new File(eArquivoLocal);
-
-        DKG eDocumento = new DKG();
-
         System.out.println("Carregar :: Alunos");
 
-        if (eArquivo.exists()) {
-            eDocumento.abrir(eArquivoLocal);
+        if (SigmaCollection.EXISTS_COLLECTION(Local.COLECAO_ALUNOS)) {
 
-            System.out.println("Carregar :: Alunos Existe " + eDocumento.getObjetos().size());
+            for (DKGObjeto aluno_objeto : SigmaCollection.REQUIRED_COLLECTION(Local.COLECAO_ALUNOS, "Alunos")) {
 
-            DKGObjeto eAlunos = eDocumento.unicoObjeto("Alunos");
-
-            System.out.println("Carregar :: Alunos Existe " + eAlunos.getObjetos().size());
-
-            for (DKGObjeto ePacote : eAlunos.getObjetos()) {
-
-                String eID = ePacote.identifique("ID").getValor();
-                String eTurma = ePacote.identifique("Turma").getValor();
-                String eNome = ePacote.identifique("Nome").getValor();
-                String eVisibilidade = ePacote.identifique("Visibilidade").getValor();
+                String eID = aluno_objeto.identifique("ID").getValor();
+                String eTurma = aluno_objeto.identifique("Turma").getValor();
+                String eNome = aluno_objeto.identifique("Nome").getValor();
+                String eVisibilidade = aluno_objeto.identifique("Visibilidade").getValor();
 
 
                 if (eVisibilidade.length() == 0) {
@@ -190,11 +160,9 @@ public class Escola {
 
         } else {
 
-            DKGObjeto eAlunos = eDocumento.unicoObjeto("Alunos");
-            eDocumento.salvar(FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
+            SigmaCollection.BUILD_COLLECTION(Local.COLECAO_ALUNOS, "Alunos");
 
-            System.out.println("---->> SALVANDO :: " + FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
-
+            //System.out.println("---->> SALVANDO :: " + FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
 
         }
 
@@ -209,29 +177,17 @@ public class Escola {
 
         Local.organizarPastas();
 
-        String eArquivoLocal = FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos);
-
-        File eArquivo = new File(eArquivoLocal);
-
-        DKG eDocumento = new DKG();
-
         System.out.println("Carregar :: Alunos");
 
-        if (eArquivo.exists()) {
-            eDocumento.abrir(eArquivoLocal);
+        if (SigmaCollection.EXISTS_COLLECTION(Local.COLECAO_ALUNOS)) {
 
-            System.out.println("Carregar :: Alunos Existe " + eDocumento.getObjetos().size());
 
-            DKGObjeto eAlunos = eDocumento.unicoObjeto("Alunos");
+            for (DKGObjeto aluno_objeto : SigmaCollection.REQUIRED_COLLECTION(Local.COLECAO_ALUNOS, "Alunos")) {
 
-            System.out.println("Carregar :: Alunos Existe " + eAlunos.getObjetos().size());
-
-            for (DKGObjeto ePacote : eAlunos.getObjetos()) {
-
-                String eID = ePacote.identifique("ID").getValor();
-                String eTurma = ePacote.identifique("Turma").getValor();
-                String eNome = ePacote.identifique("Nome").getValor();
-                String eVisibilidade = ePacote.identifique("Visibilidade").getValor();
+                String eID = aluno_objeto.identifique("ID").getValor();
+                String eTurma = aluno_objeto.identifique("Turma").getValor();
+                String eNome = aluno_objeto.identifique("Nome").getValor();
+                String eVisibilidade = aluno_objeto.identifique("Visibilidade").getValor();
 
 
                 if (eVisibilidade.length() == 0) {
@@ -246,10 +202,9 @@ public class Escola {
 
         } else {
 
-            DKGObjeto eAlunos = eDocumento.unicoObjeto("Alunos");
-            eDocumento.salvar(FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
+            SigmaCollection.BUILD_COLLECTION(Local.COLECAO_ALUNOS, "Alunos");
 
-            System.out.println("---->> SALVANDO :: " + FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
+          //  System.out.println("---->> SALVANDO :: " + FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
 
 
         }
@@ -263,7 +218,7 @@ public class Escola {
 
         ArrayList<Aluno> alunos_continuos = new ArrayList<Aluno>();
 
-        for (Aluno eAluno :  getAlunosVisiveis()) {
+        for (Aluno eAluno : getAlunosVisiveis()) {
             alunos_continuos.add(new Aluno(eAluno.getID(), eAluno.getTurma(), eAluno.getNome(), "", eAluno.getVisibilidade()));
 
         }

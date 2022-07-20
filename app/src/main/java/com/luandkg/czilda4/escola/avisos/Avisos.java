@@ -3,6 +3,7 @@ package com.luandkg.czilda4.escola.avisos;
 import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.Local;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 
 import java.io.File;
@@ -10,107 +11,68 @@ import java.util.ArrayList;
 
 public class Avisos {
 
-    public static ArrayList<Aviso> getAvisosOrdenados(){
-       return ordenar(Avisos.getAvisos());
-    }
-
-    public static ArrayList<Aviso> getAvisos() {
-
-        ArrayList<Aviso> mAvisos = new ArrayList<Aviso>();
-
-        FS.dirCriar(Local.LOCAL);
-        FS.dirCriar(Local.LOCAL_REALIZAR_CHAMADA);
-
-        String eArquivoLocal = FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAvisos);
-
-        File eArquivo = new File(eArquivoLocal);
-
-        DKG eDocumento = new DKG();
-
-
-        if (eArquivo.exists()) {
-            eDocumento.abrir(eArquivoLocal);
-
-
-            DKGObjeto avisos = eDocumento.unicoObjeto("Avisos");
-
-
-            for (DKGObjeto ePacote : avisos.getObjetos()) {
-
-                String eID = ePacote.identifique("ID").getValor();
-                String mensagem = ePacote.identifique("Mensagem").getValor();
-
-                mAvisos.add(new Aviso(eID, mensagem));
-
-            }
-
-
-        }
-
-
-        return mAvisos;
-    }
-
-    public static void aviso_criar(String eMensagem) {
-
-
-        FS.dirCriar(Local.LOCAL);
-        FS.dirCriar(Local.LOCAL_REALIZAR_CHAMADA);
-
-        String eArquivoLocal = FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAvisos);
-
-        File eArquivo = new File(eArquivoLocal);
-
-        DKG eDocumento = new DKG();
-
-
-        if (eArquivo.exists()) {
-            eDocumento.abrir(eArquivoLocal);
-        }
-
-
-        DKGObjeto avisos = eDocumento.unicoObjeto("Avisos");
-
-        int idGeral = avisos.identifique("ID").getInteiro(0);
-        avisos.identifique("ID").setInteiro(idGeral + 1);
-
-        DKGObjeto aviso = avisos.criarObjeto("Aviso");
-        aviso.identifique("ID").setValor(String.valueOf(idGeral));
-        aviso.identifique("Mensagem").setValor(eMensagem);
-
-
-        eDocumento.salvar(eArquivoLocal);
-
-    }
-
-    public static void aviso_remover(String removerID) {
+    public static ArrayList<Aviso> listar() {
 
         Local.organizarPastas();
 
-        String eArquivoLocal = FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAvisos);
+        ArrayList<Aviso> mAvisos = new ArrayList<Aviso>();
 
+        DKG eDocumento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_AVISOS);
 
-        DKG existente = DKG.GET(eArquivoLocal);
+        for (DKGObjeto ePacote : eDocumento.unicoObjeto("Avisos").getObjetos()) {
 
+            String eID = ePacote.id_string("ID");
+            String mensagem = ePacote.id_string("Mensagem");
 
-        DKG eNovo = new DKG();
-        DKGObjeto avisos_novos = eNovo.unicoObjeto("Avisos");
-
-        avisos_novos.identifique("ID").setValor(existente.unicoObjeto("Avisos").identifique("ID").getValor());
-
-
-        for (DKGObjeto ePacote : existente.unicoObjeto("Avisos").getObjetos()) {
-            String eID = ePacote.identifique("ID").getValor();
-
-            if (!eID.contentEquals(removerID)) {
-                avisos_novos.getObjetos().add(ePacote);
-            }
+            mAvisos.add(new Aviso(eID, mensagem));
 
         }
 
 
-        eNovo.salvar(eArquivoLocal);
+
+
+        return ordenar(mAvisos);
     }
+
+    public static void criar(String eMensagem) {
+
+
+        Local.organizarPastas();
+
+        DKG eDocumento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_AVISOS);
+
+        DKGObjeto avisos = eDocumento.unicoObjeto("Avisos");
+
+
+        DKGObjeto aviso = avisos.criarObjeto("Aviso");
+        aviso.identifique("ID").setInteiro(SigmaCollection.INDEX(avisos, "ID"));
+        aviso.identifique("Mensagem").setValor(eMensagem);
+
+
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_AVISOS, eDocumento);
+
+    }
+
+    public static void remover(String removerID) {
+
+        Local.organizarPastas();
+
+        DKG eDocumento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_AVISOS);
+
+        ArrayList<DKGObjeto> objetos = eDocumento.unicoObjeto("Avisos").getObjetos();
+
+        for (DKGObjeto ePacote : objetos) {
+            if (ePacote.identifique("ID").isValor(removerID)) {
+                objetos.remove(ePacote);
+                break;
+            }
+        }
+
+
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_AVISOS, eDocumento);
+    }
+
+    // UTILITARIO
 
     public static ArrayList<Aviso> ordenar(ArrayList<Aviso> entrada) {
 

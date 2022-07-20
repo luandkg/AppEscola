@@ -95,7 +95,7 @@ public class BimestreFragment extends Fragment {
 
         int alunos_total = Escola.getAlunosVisiveisEOrdenadosDaEscola().size();
 
-        Bitmap imagem = FluxoFormativoContinuado.criarFluxoDeEntrega(alunos_total, eBimestre, Local.LOCAL_CACHE + "/" + Local.ARQUIVO_FLUXO);
+        Bitmap imagem = FluxoFormativoContinuado.criarFluxoDeEntrega(alunos_total, eBimestre, Local.COLECAO_FLUXO);
 
         IV_VISUALIZADOR.setImageBitmap(imagem);
 

@@ -10,6 +10,7 @@ import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.AlunoChamadas;
 import com.luandkg.czilda4.escola.tempo.Bimestre;
 import com.luandkg.czilda4.escola.avaliacao_continua.SemanaContinua;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.libs.tempo.Data;
@@ -18,11 +19,10 @@ import java.util.ArrayList;
 
 public class FluxoDeChamadas {
 
-    public static Bitmap criarFluxoDePresenca(int quantidade_alunos,Bimestre eBimestre, String eArquivo) {
+    public static Bitmap criarFluxoDePresenca(int quantidade_alunos, Bimestre eBimestre, String colecao_estatisticas) {
 
         int w = 400;
         int h = 250;
-
 
 
         Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
@@ -40,13 +40,10 @@ public class FluxoDeChamadas {
         Paint paint2 = new Paint();
         paint2.setColor(Color.WHITE);
 
-        ArrayList<Data> quais_datas=eBimestre.getDatas();
+        ArrayList<Data> quais_datas = eBimestre.getDatas();
 
-        DKG fluxo_entrega = new DKG();
+        DKG fluxo_entrega = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(colecao_estatisticas);
 
-        if (FS.arquivoExiste(eArquivo)) {
-            fluxo_entrega.abrir(FS.getArquivoLocal(eArquivo));
-        }
 
         System.out.println(fluxo_entrega.toString());
 
@@ -54,8 +51,8 @@ public class FluxoDeChamadas {
 
         int entre_semanas = 5;
 
-        int coluna_largura = (w - ((eBimestre.getSemanas().size()+1) * entre_semanas)) / quais_datas.size();
-        int tamanho_completo = (coluna_largura * quais_datas.size()) + ((eBimestre.getSemanas().size()+1) * entre_semanas);
+        int coluna_largura = (w - ((eBimestre.getSemanas().size() + 1) * entre_semanas)) / quais_datas.size();
+        int tamanho_completo = (coluna_largura * quais_datas.size()) + ((eBimestre.getSemanas().size() + 1) * entre_semanas);
 
         int sobrou = w - tamanho_completo;
         int afastar = 0;
@@ -92,7 +89,7 @@ public class FluxoDeChamadas {
                         presente = proc.identifique("Presente").getInteiro(0);
                         break;
                     }
-                    System.out.println("\t -->> " +proc.identifique("Data").getValor());
+                    System.out.println("\t -->> " + proc.identifique("Data").getValor());
                 }
 
 
@@ -157,7 +154,7 @@ public class FluxoDeChamadas {
         int metade = quantidade_alunos / 2;
         int quarta = (quantidade_alunos / 2) + (quantidade_alunos / 4);
 
-        canvas.drawRect(afastar, h - 20, tamanho_completo+afastar, h, pintor_preto);
+        canvas.drawRect(afastar, h - 20, tamanho_completo + afastar, h, pintor_preto);
 
         int come = afastar + 5;
 
@@ -199,30 +196,24 @@ public class FluxoDeChamadas {
 
     }
 
-    public static int getFluxoDePresenca(String retornarData, String eArquivo) {
+    public static int getFluxoDePresenca(String retornarData, String colecao_estatisticas) {
 
         int Presente = 0;
 
-        DKG fluxo_entrega = new DKG();
+        DKG fluxo_entrega = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(colecao_estatisticas);
 
-        System.out.println(eArquivo+" -->> " + FS.arquivoExiste(eArquivo));
+        // System.out.println(eArquivo+" -->> " + FS.arquivoExiste(eArquivo));
 
-        if (FS.arquivoExiste(eArquivo)) {
+        System.out.println(fluxo_entrega.toString());
 
-            fluxo_entrega.abrir(FS.getArquivoLocal(eArquivo));
+        for (DKGObjeto proc : fluxo_entrega.unicoObjeto("ESTATISTICAS").getObjetos()) {
 
-            System.out.println(fluxo_entrega.toString());
+            System.out.println("dt :: " + proc.identifique("Data").getValor());
 
-            for (DKGObjeto proc : fluxo_entrega.unicoObjeto("ESTATISTICAS").getObjetos()) {
-
-                System.out.println("dt :: " + proc.identifique("Data").getValor());
-
-                if (proc.identifique("Data").getValor().contentEquals(retornarData)) {
-                    Presente = proc.identifique("Presente").getInteiro(0);
-                    break;
-                }
+            if (proc.identifique("Data").getValor().contentEquals(retornarData)) {
+                Presente = proc.identifique("Presente").getInteiro(0);
+                break;
             }
-
         }
 
 
@@ -230,7 +221,7 @@ public class FluxoDeChamadas {
 
     }
 
-    public static Bitmap criarFluxoDePresencaDaTurma(TurmaChamadas turma,  Bimestre eBimestre ) {
+    public static Bitmap criarFluxoDePresencaDaTurma(TurmaChamadas turma, Bimestre eBimestre) {
 
         int w = 450;
         int h = 250;
@@ -250,12 +241,12 @@ public class FluxoDeChamadas {
         Paint paint2 = new Paint();
         paint2.setColor(Color.WHITE);
 
-        ArrayList<Data> quais_datas=eBimestre.getDatas();
+        ArrayList<Data> quais_datas = eBimestre.getDatas();
 
         int entre_semanas = 5;
 
-        int coluna_largura = (w - ((eBimestre.getSemanas().size()+1) * entre_semanas)) / quais_datas.size();
-        int tamanho_completo = (coluna_largura * quais_datas.size()) + ((eBimestre.getSemanas().size()+1) * entre_semanas);
+        int coluna_largura = (w - ((eBimestre.getSemanas().size() + 1) * entre_semanas)) / quais_datas.size();
+        int tamanho_completo = (coluna_largura * quais_datas.size()) + ((eBimestre.getSemanas().size() + 1) * entre_semanas);
 
         int sobrou = w - tamanho_completo;
         int afastar = 0;
@@ -285,14 +276,14 @@ public class FluxoDeChamadas {
 
             for (Data data : eSemana.getDatas()) {
 
-                int presente=0;
+                int presente = 0;
 
-                for(AlunoChamadas a : turma.getAlunos()){
-                    for(DataChamada d : a.getDatas()){
-                       // System.out.println(d.getDataSemDia() + " :: " + data.getTempoLegivel());
-                        if (d.getDataSemDia().contentEquals(data.getTempoLegivel())){
-                            if (d.getStatus()){
-                                presente+=1;
+                for (AlunoChamadas a : turma.getAlunos()) {
+                    for (DataChamada d : a.getDatas()) {
+                        // System.out.println(d.getDataSemDia() + " :: " + data.getTempoLegivel());
+                        if (d.getDataSemDia().contentEquals(data.getTempoLegivel())) {
+                            if (d.getStatus()) {
+                                presente += 1;
                             }
                         }
                     }
@@ -360,7 +351,7 @@ public class FluxoDeChamadas {
         int metade = turma.getAlunos().size() / 2;
         int quarta = (turma.getAlunos().size() / 2) + (turma.getAlunos().size() / 4);
 
-        canvas.drawRect(afastar, h - 20, tamanho_completo+afastar, h, pintor_preto);
+        canvas.drawRect(afastar, h - 20, tamanho_completo + afastar, h, pintor_preto);
 
         int come = afastar + 5;
 
@@ -371,11 +362,11 @@ public class FluxoDeChamadas {
 
             for (Data data : eSemana.getDatas()) {
 
-                for(AlunoChamadas a : turma.getAlunos()){
-                    for(DataChamada d : a.getDatas()){
-                        if (d.getDataSemDia().contentEquals(data.getTempoLegivel())){
-                            if (d.getStatus()){
-                                presencas+=1;
+                for (AlunoChamadas a : turma.getAlunos()) {
+                    for (DataChamada d : a.getDatas()) {
+                        if (d.getDataSemDia().contentEquals(data.getTempoLegivel())) {
+                            if (d.getStatus()) {
+                                presencas += 1;
                             }
                         }
                     }

@@ -120,7 +120,7 @@ public class ChamadasVisualizadorGeral extends Fragment {
 
         int alunos_quantidade =  Escola.getAlunosVisiveis().size();
 
-        IV_VISUALIZADOR.setImageBitmap(FluxoDeChamadas.criarFluxoDePresenca(alunos_quantidade, eBimestre, Local.ARQUIVO_CACHE_FREQUENCIA_ESTATISTICAS));
+        IV_VISUALIZADOR.setImageBitmap(FluxoDeChamadas.criarFluxoDePresenca(alunos_quantidade, eBimestre, Local.COLECAO_ESTATISTICAS));
 
         ActivityStarter.iniciar(this.getContext(), BTN_AULAS, VisualizarChamadasActivity.class);
 
@@ -259,27 +259,27 @@ public class ChamadasVisualizadorGeral extends Fragment {
         }
 
         if (BimestreTemporal.isDataValida(vSeg, datas)) {
-            BTN_SEG.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vSeg).getTempo(), Local.ARQUIVO_CACHE_FREQUENCIA_ESTATISTICAS)));
+            BTN_SEG.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vSeg).getTempo(), Local.COLECAO_ESTATISTICAS)));
         }
 
         if (BimestreTemporal.isDataValida(vTer, datas)) {
 
             System.out.println("TERCA :; " + datas.get(vTer).getTempo());
-            System.out.println("TERCA :: " + FluxoDeChamadas.getFluxoDePresenca(datas.get(vTer).getTempo(), Local.ARQUIVO_CACHE_FREQUENCIA_ESTATISTICAS));
+            System.out.println("TERCA :: " + FluxoDeChamadas.getFluxoDePresenca(datas.get(vTer).getTempo(), Local.COLECAO_ESTATISTICAS));
 
-            BTN_TER.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vTer).getTempo(), Local.ARQUIVO_CACHE_FREQUENCIA_ESTATISTICAS)));
+            BTN_TER.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vTer).getTempo(), Local.COLECAO_ESTATISTICAS)));
         }
 
         if (BimestreTemporal.isDataValida(vQua, datas)) {
-            BTN_QUA.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vQua).getTempo(), Local.ARQUIVO_CACHE_FREQUENCIA_ESTATISTICAS)));
+            BTN_QUA.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vQua).getTempo(), Local.COLECAO_ESTATISTICAS)));
         }
 
         if (BimestreTemporal.isDataValida(vQui, datas)) {
-            BTN_QUI.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vQui).getTempo(), Local.ARQUIVO_CACHE_FREQUENCIA_ESTATISTICAS)));
+            BTN_QUI.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vQui).getTempo(), Local.COLECAO_ESTATISTICAS)));
         }
 
         if (BimestreTemporal.isDataValida(vSex, datas)) {
-            BTN_SEX.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vSex).getTempo(), Local.ARQUIVO_CACHE_FREQUENCIA_ESTATISTICAS)));
+            BTN_SEX.setText(String.valueOf(FluxoDeChamadas.getFluxoDePresenca(datas.get(vSex).getTempo(), Local.COLECAO_ESTATISTICAS)));
         }
 
 

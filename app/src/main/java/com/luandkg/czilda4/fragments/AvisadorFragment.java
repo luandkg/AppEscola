@@ -71,8 +71,10 @@ public class AvisadorFragment extends Fragment {
 
         mContexto = this.getContext();
 
+        ArrayList<Aviso> avisos = Avisos.listar();
+
         RECARREGAR_LISTA = getRecarregar();
-        LISTA_AVISOS.setAdapter(new ListaGenerica(mContexto, Avisos.getAvisosOrdenados().size(), onItem(Avisos.getAvisosOrdenados())));
+        LISTA_AVISOS.setAdapter(new ListaGenerica(mContexto, avisos.size(), onItem(avisos)));
 
         iniciar(getRecarregar());
 
@@ -94,7 +96,10 @@ public class AvisadorFragment extends Fragment {
         return new Acao() {
             @Override
             public void fazer() {
-                LISTA_AVISOS.setAdapter(new ListaGenerica(mContexto, Avisos.getAvisosOrdenados().size(), onItem(Avisos.getAvisosOrdenados())));
+
+                ArrayList<Aviso> avisos = Avisos.listar();
+
+                LISTA_AVISOS.setAdapter(new ListaGenerica(mContexto, avisos.size(), onItem(avisos)));
             }
         };
     }
@@ -128,7 +133,7 @@ public class AvisadorFragment extends Fragment {
                             @Override
                             public void fazer() {
 
-                                Avisos.aviso_remover(eAviso.getID());
+                                Avisos.remover(eAviso.getID());
                                 RECARREGAR_LISTA.fazer();
 
                             }

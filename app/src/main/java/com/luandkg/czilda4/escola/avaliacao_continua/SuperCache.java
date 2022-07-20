@@ -8,6 +8,7 @@ import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.alunos.AlunoComNota;
 import com.luandkg.czilda4.escola.alunos.OrdenarAlunos;
 import com.luandkg.czilda4.escola.avaliacao.Atividade;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.libs.tempo.Data;
 
@@ -17,13 +18,10 @@ public class SuperCache {
 
     private DKGObjeto mRaizAvaliacaoContinuaFormativa;
 
-    public SuperCache(String eArquivo) {
+    public SuperCache(String colecao_notas) {
 
-        DKG fluxo_entrega = new DKG();
+        DKG fluxo_entrega = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(colecao_notas);
 
-        if (FS.arquivoExiste(eArquivo)) {
-            fluxo_entrega.abrir(FS.getArquivoLocal(eArquivo));
-        }
 
         mRaizAvaliacaoContinuaFormativa = fluxo_entrega.unicoObjeto("AVALIACAO_CONTINUA_FORMATIVA");
 
@@ -83,7 +81,7 @@ public class SuperCache {
                 for (DKGObjeto proc : mRaizAvaliacaoContinuaFormativa.getObjetos()) {
 
 
-                    for (DKGObjeto em_data : proc.getObjetos()) {
+                    for (DKGObjeto em_data : proc.unicoObjeto("Momentos").getObjetos()) {
 
                         if (em_data.identifique("Data").getValor().contentEquals(data.getTempo())) {
 
@@ -137,7 +135,7 @@ public class SuperCache {
                 for (DKGObjeto proc : mRaizAvaliacaoContinuaFormativa.getObjetos()) {
 
 
-                    for (DKGObjeto em_data : proc.getObjetos()) {
+                    for (DKGObjeto em_data : proc.unicoObjeto("Momentos").getObjetos()) {
 
                         if (em_data.identifique("Data").getValor().contentEquals(data.getTempo())) {
 
@@ -238,13 +236,14 @@ public class SuperCache {
         for (DKGObjeto aluno_passando : mRaizAvaliacaoContinuaFormativa.getObjetos()) {
 
             String id = aluno_passando.identifique("ID").getValor();
+            String nome = aluno_passando.identifique("Nome").getValor();
 
             if (aluno_passando.identifique("RecuperacaoRealizada").isValor("SIM")) {
 
                 String rec_valor = aluno_passando.identifique("RecuperacaoValor").getValor();
                 String rec_data = aluno_passando.identifique("RecuperacaoData").getValor();
 
-                ret.add(new Aluno(id, Data.toData(rec_data).getFluxoSemAno(), rec_valor, "", ""));
+                ret.add(new Aluno(id, Data.toData(rec_data).getFluxoSemAno(),nome, rec_valor, ""));
 
             }
 
@@ -254,6 +253,7 @@ public class SuperCache {
         return ret;
 
     }
+
 
 
     public ArrayList<Aluno> getAlunosDeRecuperacaoAntiga(int eBimestreID) {

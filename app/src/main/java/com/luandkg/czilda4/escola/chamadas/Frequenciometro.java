@@ -5,6 +5,7 @@ import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.utils.ContadorSN;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.utils.Texto;
 import com.luandkg.czilda4.libs.tempo.Data;
@@ -37,21 +38,27 @@ public class Frequenciometro {
 
         Local.organizarPastas();
 
-        DKG eArquivoChamadas = new DKG();
-        DKGObjeto eChamadas = eArquivoChamadas.unicoObjeto("CHAMADAS");
+        DKG eArquivoChamadas = SigmaCollection.CREATE_COLLECTION("CHAMADAS");
 
         for (File arquivo : FS.listarArquivos(Local.LOCAL_REALIZAR_CHAMADA)) {
 
             DKG eDocumento = DKG.GET(arquivo.getAbsolutePath());
 
-            DKGObjeto chamada_dia = eChamadas.criarObjeto("CHAMADA");
+            DKGObjeto chamada_dia = eArquivoChamadas.unicoObjeto("CHAMADAS").criarObjeto("CHAMADA");
 
             chamada_dia.identifique("Data", arquivo.getName());
             chamada_dia.getObjetos().addAll(eDocumento.unicoObjeto("Chamada").getObjetos());
 
         }
 
-        eArquivoChamadas.salvar(FS.getArquivoLocal(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_CHAMADAS));
+       // eArquivoChamadas.salvar(FS.getArquivoLocal(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_CHAMADAS));
+
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_CHAMADAS,eArquivoChamadas);
+
+        System.out.println("Salvar chamadas completa !");
+       // System.out.println("Arquivo :: " + Local.LOCAL_CACHE + "/" + Local.ARQUIVO_CHAMADAS);
+
+     //   SigmaCollection.organizar(Local.COLECAO_CHAMADAS);
 
     }
 
@@ -136,9 +143,9 @@ public class Frequenciometro {
 
         }
 
+      SigmaCollection.WRITE_COLLECTION(Local.COLECAO_FREQUENCIAS,eArquivoChamadas);
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_ESTATISTICAS,eArquivoEstatisticas);
 
-        eArquivoChamadas.salvar(FS.getArquivoLocal(Local.ARQUIVO_CACHE_FREQUENCIA));
-        eArquivoEstatisticas.salvar(FS.getArquivoLocal(Local.ARQUIVO_CACHE_FREQUENCIA_ESTATISTICAS));
 
         System.out.println(eArquivoEstatisticas.toString());
 

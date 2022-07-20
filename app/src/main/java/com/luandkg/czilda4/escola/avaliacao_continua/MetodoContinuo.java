@@ -5,6 +5,7 @@ import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.tempo.BimestreCorrente;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.Chaveador;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.utils.Opcional;
@@ -16,11 +17,12 @@ import java.util.ArrayList;
 
 public class MetodoContinuo {
 
-    public static void montar(ArrayList<Aluno> mAlunos, ArrayList<Data> quais_datas, String eArquivo, String eArquivo_fluxo) {
+    public static void montar(ArrayList<Aluno> mAlunos, ArrayList<Data> quais_datas, String colecao_notas, String colecao_fluxo) {
 
         Local.organizarPastas();
 
-        DKG eArquivoAvaliacao = new DKG();
+        DKG eArquivoAvaliacao = SigmaCollection.INIT_COLLECTION(colecao_notas);
+
         DKGObjeto alunos_formativos_continuos = eArquivoAvaliacao.unicoObjeto("AVALIACAO_CONTINUA_FORMATIVA");
 
         alunos_formativos_continuos.identifique("DDC").setValor(Calendario.getTempoCompleto());
@@ -113,42 +115,40 @@ public class MetodoContinuo {
 
         // FREQUENCIA
 
-        if (FS.arquivoExiste(Local.ARQUIVO_CACHE_FREQUENCIA)) {
 
-            DKG eFrequencia = DKG.GET(FS.getArquivoLocal(Local.ARQUIVO_CACHE_FREQUENCIA));
-            DKGObjeto frequencia_raiz = eFrequencia.unicoObjeto("FREQUENCIA");
+        DKG eFrequencia = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_FREQUENCIAS);
+        DKGObjeto frequencia_raiz = eFrequencia.unicoObjeto("FREQUENCIA");
 
-            for (DKGObjeto aluno_avaliando : alunos_formativos_continuos.getObjetos()) {
+        for (DKGObjeto aluno_avaliando : alunos_formativos_continuos.getObjetos()) {
 
-                Opcional<DKGObjeto> proc_aluno_frequencia = frequencia_raiz.procurar("ID", aluno_avaliando.identifique("ID").getValor());
+            Opcional<DKGObjeto> proc_aluno_frequencia = frequencia_raiz.procurar("ID", aluno_avaliando.identifique("ID").getValor());
 
-                if (proc_aluno_frequencia.isOK()) {
-                    DKGObjeto aluno_frequencia = proc_aluno_frequencia.get();
+            if (proc_aluno_frequencia.isOK()) {
+                DKGObjeto aluno_frequencia = proc_aluno_frequencia.get();
 
-                    int presente = aluno_frequencia.identifique("Frequencia").getInteiro();
-                    int aulas = aluno_frequencia.identifique("Aulas").getInteiro();
+                int presente = aluno_frequencia.identifique("Frequencia").getInteiro();
+                int aulas = aluno_frequencia.identifique("Aulas").getInteiro();
 
-                    int aulas_metade = aulas / 2;
-                    int falta = aulas - presente;
+                int aulas_metade = aulas / 2;
+                int falta = aulas - presente;
 
-                    //System.out.println("-->> " + aluno_chamada_id + " :: " + presente);
+                //System.out.println("-->> " + aluno_chamada_id + " :: " + presente);
 
-                    if (presente >= aulas_metade) {
-                        aluno_avaliando.identifique("PRESENTE").setValor("SIM");
-                    } else {
-                        aluno_avaliando.identifique("PRESENTE").setValor("NAO");
-                    }
-
-                    aluno_avaliando.identifique("Aulas").setInteiro(aulas);
-                    aluno_avaliando.identifique("Presenca").setInteiro(presente);
-                    aluno_avaliando.identifique("Falta").setInteiro(falta);
-
-                    aluno_avaliando.identifique("DDM").setValor(Calendario.getTempoCompleto());
-
+                if (presente >= aulas_metade) {
+                    aluno_avaliando.identifique("PRESENTE").setValor("SIM");
+                } else {
+                    aluno_avaliando.identifique("PRESENTE").setValor("NAO");
                 }
 
+                aluno_avaliando.identifique("Aulas").setInteiro(aulas);
+                aluno_avaliando.identifique("Presenca").setInteiro(presente);
+                aluno_avaliando.identifique("Falta").setInteiro(falta);
+
+                aluno_avaliando.identifique("DDM").setValor(Calendario.getTempoCompleto());
 
             }
+
+
         }
 
 
@@ -196,8 +196,8 @@ public class MetodoContinuo {
 
         alunos_formativos_continuos.identifique("DDM").setValor(Calendario.getTempoCompleto());
 
-        eArquivoAvaliacao.salvar(FS.getArquivoLocal(eArquivo));
-        eArquivoFluxos.salvar(FS.getArquivoLocal(eArquivo_fluxo));
+        SigmaCollection.WRITE_COLLECTION(colecao_notas, eArquivoAvaliacao);
+        SigmaCollection.WRITE_COLLECTION(colecao_fluxo, eArquivoFluxos);
 
 
         //  System.out.println(eArquivoFluxo.toString());
@@ -214,7 +214,7 @@ public class MetodoContinuo {
 
     public static void avaliar(String eArquivo, ArrayList<AlunoContinuo> alunos, ArrayList<SemanaContinua> semanas) {
 
-        DKG documento = getDocumentoAvaliacao(eArquivo);
+        DKG documento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(eArquivo);
 
         avaliarComDocumento(documento, alunos, semanas);
 
@@ -225,17 +225,15 @@ public class MetodoContinuo {
 
     }
 
-    public static void avaliar_ate(String eArquivo, ArrayList<AlunoContinuo> alunos, ArrayList<SemanaContinua> semanas, Data ate) {
+    public static void avaliar_ate(String colecao_notas, ArrayList<AlunoContinuo> alunos, ArrayList<SemanaContinua> semanas, Data ate) {
 
-        DKG documento = new DKG();
-        documento.abrir(FS.getArquivoLocal(eArquivo));
+        DKG documento = SigmaCollection.REQUIRED_COLLECTION(colecao_notas);
 
         // System.out.println("Com data limite :: " + ate.getFluxo());
 
         avaliarComDocumentoComDataLimite(documento, alunos, semanas, true, ate);
 
-        documento.salvar(FS.getArquivoLocal(eArquivo));
-
+        SigmaCollection.WRITE_COLLECTION(colecao_notas, documento);
 
         //   System.out.println(documento.toString());
 

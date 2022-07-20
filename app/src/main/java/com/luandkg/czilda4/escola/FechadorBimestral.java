@@ -27,6 +27,7 @@ import com.luandkg.czilda4.escola.professores.Luan;
 import com.luandkg.czilda4.escola.tempo.Bimestre;
 import com.luandkg.czilda4.escola.utils.CicloDeProgresso;
 import com.luandkg.czilda4.escola.utils.HiperCacheDeAvaliacao;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.utils.ImagemCriador;
 import com.luandkg.czilda4.utils.Redizz;
@@ -100,7 +101,7 @@ public class FechadorBimestral implements Runnable {
 
         Threader.atualizar_texto(TX_EXECUTANDO, "Arquivando chamadas...");
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(30, 100));
-        ArquivarFrequencia.arquivar(CHAMADAS_ESCOLA, FS.getArquivoLocal(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_TUDO));
+        ArquivarFrequencia.arquivar(CHAMADAS_ESCOLA, Local.COLECAO_TUDO);
 
 
         PXX_arquivando.terminar();
@@ -119,30 +120,30 @@ public class FechadorBimestral implements Runnable {
 
         Threader.atualizar_texto(TX_EXECUTANDO, "Montando avaliação...");
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(50, 100));
-        MetodoContinuo.montar(alunos_visiveis, SEGUNDO_BIMESTRE, Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS, Local.LOCAL_CACHE + "/" + Local.ARQUIVO_FLUXO);
+        MetodoContinuo.montar(alunos_visiveis, SEGUNDO_BIMESTRE, Local.COLECAO_NOTAS, Local.COLECAO_FLUXO);
 
         PXX_Montando.terminar();
 
         Threader.atualizar_texto(TX_EXECUTANDO, "Organizando semanas contínuas...");
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(55, 100));
-        SemanasDeAtividades.organizar(mBimestre.getSemanas(), Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS, Local.LOCAL_CACHE + "/" + Local.ARQUIVO_FLUXO);
+        SemanasDeAtividades.organizar(mBimestre.getSemanas(), Local.COLECAO_NOTAS, Local.COLECAO_FLUXO);
 
 
         Threader.atualizar_texto(TX_EXECUTANDO, "Organizando atividades contínuas...");
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(60, 100));
-        SemanasDeAtividades.guardar(alunos_visiveis, SEGUNDO_SEMANAS, Local.LOCAL_CACHE + "/" + Local.ARQUIVO_SEMANAS);
+        SemanasDeAtividades.guardar(alunos_visiveis, SEGUNDO_SEMANAS, Local.COLECAO_SEMANAS);
 
         ProfileStamp PXX_Avaliando = KhronosProfiler.profile_started("FechadorBimestral.run().Avaliando()");
 
         Threader.atualizar_texto(TX_EXECUTANDO, "Avaliando relatórios....");
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(65, 100));
-        MetodoContinuo.avaliar(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS, alunos_visiveis_continuos, mBimestre.getSemanas());
+        MetodoContinuo.avaliar(Local.COLECAO_NOTAS, alunos_visiveis_continuos, mBimestre.getSemanas());
 
         PXX_Avaliando.terminar();
 
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(70, 100));
 
-        SuperCache eSuperCache = new SuperCache(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS);
+        SuperCache eSuperCache = new SuperCache(Local.COLECAO_NOTAS);
 
         for (TurmaTipo turma : Professores.getProfessorCorrente().getListaDeTurmas()) {
 
@@ -160,7 +161,7 @@ public class FechadorBimestral implements Runnable {
         Threader.atualizar_texto(TX_EXECUTANDO, "Desempenhos semanais....");
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(AGORA, 100));
 
-        DesempenhoIO.limpar(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO);
+        DesempenhoIO.limpar(Local.COLECAO_DESEMPENHOS);
 
         ProfileStamp PXX_Semanas = KhronosProfiler.profile_started("FechadorBimestral.run().Semanas()");
         KhronosProfiler.entrar();
@@ -183,8 +184,8 @@ public class FechadorBimestral implements Runnable {
 
             ProfileStamp PXX_Organizando = KhronosProfiler.profile_started("FechadorBimestral.run().Semana().SemanaCorrente().Organizando()");
 
-            MetodoContinuo.montar(alunos_visiveis, SEGUNDO_BIMESTRE, Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO_NOTAS, Local.LOCAL_CACHE + "/" + Local.ARQUIVO_FLUXO);
-            SemanasDeAtividades.organizar(mBimestre.getSemanas(), Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO_NOTAS, Local.LOCAL_CACHE + "/" + Local.ARQUIVO_FLUXO);
+            MetodoContinuo.montar(alunos_visiveis, SEGUNDO_BIMESTRE, Local.COLECAO_DESEMPENHANDO, Local.COLECAO_FLUXO);
+            SemanasDeAtividades.organizar(mBimestre.getSemanas(), Local.COLECAO_DESEMPENHANDO, Local.COLECAO_FLUXO);
             avancando += 1;
 
             PXX_Organizando.terminar();
@@ -195,20 +196,19 @@ public class FechadorBimestral implements Runnable {
 
             ProfileStamp PXX_Avaliando_ate = KhronosProfiler.profile_started("FechadorBimestral.run().Semana().SemanaCorrente().AvaliandoAte()");
 
-            MetodoContinuo.avaliar_ate(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO_NOTAS, alunos_continuos_semana, mBimestre.getSemanas(), semana.getDatas().get(semana.getDatas().size() - 1));
+            MetodoContinuo.avaliar_ate(Local.COLECAO_DESEMPENHANDO, alunos_continuos_semana, mBimestre.getSemanas(), semana.getDatas().get(semana.getDatas().size() - 1));
 
             //  MetodoContinuo.avaliar_ate(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS, alunos_continuos_semana, mBimestre.getSemanas(), semana.getDatas().get(semana.getDatas().size() - 1));
 
             PXX_Avaliando_ate.terminar();
-            ;
 
 
             HiperCacheDeAvaliacao.zerar();
             ArrayList<AlunoContinuo> perfis_semanais = Perfilometro.getPerfis(HiperCacheDeAvaliacao.getPerfis(), mBimestre.getSemanas());
 
-            DesempenhoIO.guardar(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO, semana.getUltimaData(), perfis_semanais);
+            DesempenhoIO.guardar(Local.COLECAO_DESEMPENHOS, semana.getUltimaData(), perfis_semanais);
 
-            Bitmap fluxo_ate = FluxoFormativoContinuado.criarFluxoDeEntrega_ate(alunos_total, mBimestre, semana.getUltimaData(), Local.LOCAL_CACHE + "/" + Local.ARQUIVO_FLUXO);
+            Bitmap fluxo_ate = FluxoFormativoContinuado.criarFluxoDeEntrega_ate(alunos_total, mBimestre, semana.getUltimaData(), Local.COLECAO_FLUXO);
             Threader.atualizar_imagem(FLUXO_VISUALIZADOR, fluxo_ate);
 
             avancando += 1;
@@ -225,7 +225,7 @@ public class FechadorBimestral implements Runnable {
 
         ProfileStamp PXX_Tudo = KhronosProfiler.profile_started("FechadorBimestral.Tudo()");
 
-        ArquivadorEscolaCompleta.salvar(Local.LOCAL_REALIZAR_CHAMADA, Local.CACHE_ARQUIVO(Local.ARQUIVO_NOTAS), Local.CACHE_ARQUIVO(Local.ARQUIVO_DESEMPENHO), FS.getArquivoLocal(Local.CACHE_ARQUIVO(Local.ARQUIVO_TUDO)));
+        ArquivadorEscolaCompleta.salvar(Local.LOCAL_REALIZAR_CHAMADA, SigmaCollection.getARQUIVO(Local.COLECAO_NOTAS), SigmaCollection.getARQUIVO(Local.COLECAO_DESEMPENHOS), SigmaCollection.getARQUIVO(Local.COLECAO_TUDO));
 
 
         PXX_Tudo.terminar();
@@ -235,7 +235,7 @@ public class FechadorBimestral implements Runnable {
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(100, 100));
 
 
-        Bitmap imagem = FluxoFormativoContinuado.criarFluxoDeEntrega(alunos_total, mBimestre, Local.LOCAL_CACHE + "/" + Local.ARQUIVO_FLUXO);
+        Bitmap imagem = FluxoFormativoContinuado.criarFluxoDeEntrega(alunos_total, mBimestre, Local.COLECAO_FLUXO);
         Threader.atualizar_imagem(FLUXO_VISUALIZADOR, imagem);
 
         HiperCacheDeAvaliacao.zerar();
@@ -256,8 +256,8 @@ public class FechadorBimestral implements Runnable {
 
             ProfileStamp PXX_Sincronizar = KhronosProfiler.profile_started("FechadorBimestral.sincronizar()");
 
-            Dropbox.realizar_upload_sobrescrevendo(Local.ARQUIVO_AVISOS, "CED_01/avisos.dkg");
-            Dropbox.realizar_upload_sobrescrevendo(Local.CACHE_ARQUIVO(Local.ARQUIVO_TUDO), "CED_01/tudo.dkg");
+            Dropbox.realizar_upload_sobrescrevendo(SigmaCollection.organizar(Local.COLECAO_AVISOS), "CED_01/avisos.dkg");
+            Dropbox.realizar_upload_sobrescrevendo(SigmaCollection.organizar(Local.COLECAO_TUDO), "CED_01/tudo.dkg");
 
 
             Dropbox.realizar_upload_sobrescrevendo(Local.CACHE_ARQUIVO("fechador_bimestral.khronos"), "CED_01/fechador_bimestral.dkg");

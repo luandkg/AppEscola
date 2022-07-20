@@ -3,6 +3,7 @@ package com.luandkg.czilda4.escola.atualizador;
 import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.Local;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 
 import java.util.ArrayList;
@@ -20,18 +21,16 @@ public class Inicializador {
             eTurmas.criarObjeto("Turma").identifique("Nome").setValor(turma);
         }
 
-
-        eDKG.salvar(FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoTurmas));
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_TURMAS, eDKG);
 
 
     }
 
     public static void init(ArrayList<String> turmas) {
 
-        FS.dirCriar(Local.LOCAL);
-        FS.dirCriar(Local.LOCAL_CACHE);
+        Local.organizarPastas();
 
-        if (!FS.arquivoExiste(Local.LOCAL, Local.ArquivoTurmas)) {
+        if (!SigmaCollection.EXISTS_COLLECTION(Local.COLECAO_TURMAS)) {
 
             DKG eDKG = new DKG();
             DKGObjeto eTurmas = eDKG.unicoObjeto("Turmas");
@@ -40,9 +39,8 @@ public class Inicializador {
                 eTurmas.criarObjeto("Turma").identifique("Nome").setValor(turma);
             }
 
+            SigmaCollection.WRITE_COLLECTION(Local.COLECAO_TURMAS, eDKG);
 
-
-            eDKG.salvar(FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoTurmas));
 
         }
 

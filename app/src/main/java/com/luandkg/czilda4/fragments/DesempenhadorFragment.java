@@ -94,19 +94,16 @@ public class DesempenhadorFragment extends Fragment {
         System.out.println("SEMANA ANTERIOR DATA :: " + semana_anterior_data);
 
         if (esta_no_bimestre) {
-            DesempenhoIO.guardar(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO, semana_atual_data, alunos_continuos);
+            DesempenhoIO.guardar(Local.COLECAO_DESEMPENHOS, semana_atual_data, alunos_continuos);
         }
 
-        DesempenhoReferencia mSEM_Antes = DesempenhoIO.getDesempenho_Sem(FS.getArquivoLocal(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO), semana_anterior_data);
-        DesempenhoReferencia mSEM_Agora = DesempenhoIO.getDesempenho_Sem(FS.getArquivoLocal(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO), semana_atual_data);
+        DesempenhoReferencia mSEM_Antes = DesempenhoIO.getDesempenho_Sem(Local.COLECAO_DESEMPENHOS, semana_anterior_data);
+        DesempenhoReferencia mSEM_Agora = DesempenhoIO.getDesempenho_Sem(Local.COLECAO_DESEMPENHOS, semana_atual_data);
 
 
-        DesempenhoReferencia mCOM_Antes = DesempenhoIO.getDesempenho_Com(FS.getArquivoLocal(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO), semana_anterior_data);
-        DesempenhoReferencia mCOM_Agora = DesempenhoIO.getDesempenho_Com(FS.getArquivoLocal(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_DESEMPENHO), semana_atual_data);
+        DesempenhoReferencia mCOM_Antes = DesempenhoIO.getDesempenho_Com(Local.COLECAO_DESEMPENHOS, semana_anterior_data);
+        DesempenhoReferencia mCOM_Agora = DesempenhoIO.getDesempenho_Com(Local.COLECAO_DESEMPENHOS, semana_atual_data);
 
-
-        //  mSEM_Antes.set(80, 15, 8, 3);
-        // mCOM_Antes.set(80, 15, 8, 3);
 
 
         IV_PRE.setImageBitmap(DesempenhoGrafico.onMedias(alunos_continuos, mSEM_Antes, mSEM_Agora, false));

@@ -8,11 +8,16 @@ public class Versionador extends Verkuz {
     public Versionador() {
 
 
-        setEstagio(Verkuz.RELEASE);
-
+        setEstagio(Verkuz.TESTE);
 
 
         // FASE 4
+        DEV("2022_07_20", "Migrando arquivos para SigmaCollections !");
+        DEV("2022_07_19", "Novas Features em DKGObjeto ");
+        DEV("2022_07_19", "Melhorias no sistema SigmaCollection");
+        DEV("2022_07_14", "Implementação da lib Verkuz 1.0");
+
+
         DEV("2022_07_13", "Criptografia LLCripto - Luan Criptografia Simples 1.0");
         DEV("2022_07_13", "Arquivo Escola_Completa");
         DEV("2022_07_13", "Arquivo de Preferencias REDIZZ");

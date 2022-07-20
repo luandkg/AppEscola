@@ -5,6 +5,7 @@ import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.avaliacao.Recuperacao;
 import com.luandkg.czilda4.escola.tempo.Semanador;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.libs.tempo.Data;
 import com.luandkg.czilda4.utils.Texto;
@@ -15,13 +16,8 @@ public class Perfilometro {
 
     public static ArrayList<DKGObjeto> getPerfilRaiz() {
 
-        String eArquivo = FS.getPath(Local.LOCAL_CACHE, Local.ARQUIVO_NOTAS);
+        DKG documento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_NOTAS);
 
-        DKG documento = new DKG();
-
-        if (FS.arquivoExiste(eArquivo)) {
-            documento = DKG.GET(FS.getArquivoLocal(eArquivo));
-        }
 
         return documento.unicoObjeto("AVALIACAO_CONTINUA_FORMATIVA").getObjetos();
     }

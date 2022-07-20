@@ -3,13 +3,14 @@ package com.luandkg.czilda4.escola.desempenhador;
 import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.avaliacao_continua.AlunoContinuo;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 
 import java.util.ArrayList;
 
 public class DesempenhoIO {
 
-    public static void limpar(String arquivo) {
+    public static void limpar(String colecao_desempenho) {
 
 
         DKG documento = new DKG();
@@ -19,18 +20,15 @@ public class DesempenhoIO {
         DKGObjeto mSemRecuperacao = mRaiz.unicoObjeto("SEM_RECUPERACAO");
         DKGObjeto mComRecuperacao = mRaiz.unicoObjeto("COM_RECUPERACAO");
 
-        documento.salvar(FS.getArquivoLocal(arquivo));
+        SigmaCollection.WRITE_COLLECTION(colecao_desempenho,documento);
 
     }
 
-    public static void guardar(String arquivo, String eData, ArrayList<AlunoContinuo> alunos_continuos) {
+    public static void guardar(String colecao_desempenho, String eData, ArrayList<AlunoContinuo> alunos_continuos) {
 
 
-        DKG documento = new DKG();
+        DKG documento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(colecao_desempenho);
 
-        if (FS.arquivoExiste(arquivo)) {
-            documento.abrir(FS.getArquivoLocal(arquivo));
-        }
 
         //  System.out.println(documento.toString());
 
@@ -87,13 +85,12 @@ public class DesempenhoIO {
         }
 
 
-        documento.salvar(FS.getArquivoLocal(arquivo));
-
+        SigmaCollection.WRITE_COLLECTION(colecao_desempenho,documento);
     }
 
-    public static DesempenhoReferencia getDesempenho_Sem(String arquivo, String eData) {
-        DKG documento = new DKG();
-        documento.abrir(arquivo);
+    public static DesempenhoReferencia getDesempenho_Sem(String colecao_desempenho, String eData) {
+
+        DKG documento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(colecao_desempenho);
 
         System.out.println(documento.toString());
 

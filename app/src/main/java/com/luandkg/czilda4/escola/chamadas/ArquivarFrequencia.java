@@ -9,6 +9,7 @@ import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.alunos.AlunoChamadas;
 import com.luandkg.czilda4.escola.organizacao.AulaTurmaDia;
 import com.luandkg.czilda4.escola.organizacao.Professor;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.libs.tempo.Data;
@@ -21,7 +22,7 @@ public class ArquivarFrequencia {
 
     public static ArrayList<TurmaChamadas> carregar(Professor eProfessor) {
 
-          ArrayList<TurmaChamadas> turmas= new ArrayList<TurmaChamadas>();
+        ArrayList<TurmaChamadas> turmas = new ArrayList<TurmaChamadas>();
 
         for (String turma : eProfessor.getQuaisTurmas()) {
             TurmaChamadas tc = new TurmaChamadas(turma);
@@ -115,9 +116,9 @@ public class ArquivarFrequencia {
     }
 
 
-    public static void arquivar(ArrayList<TurmaChamadas> tudo, String arquivo) {
+    public static void arquivar(ArrayList<TurmaChamadas> tudo, String colecao_tudo) {
 
-        DKG documento = new DKG();
+        DKG documento = SigmaCollection.INIT_COLLECTION(colecao_tudo);
 
         DKGObjeto mEscola = documento.unicoObjeto("ESCOLA");
 
@@ -143,8 +144,7 @@ public class ArquivarFrequencia {
 
         }
 
-
-        documento.salvar(arquivo);
+        SigmaCollection.WRITE_COLLECTION(colecao_tudo, documento);
 
 
     }

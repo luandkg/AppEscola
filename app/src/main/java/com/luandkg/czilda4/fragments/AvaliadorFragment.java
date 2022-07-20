@@ -52,9 +52,9 @@ public class AvaliadorFragment extends Fragment {
         mAlunos = Escola.getAlunosVisiveis();
 
 
-        mSemanas = SemanasDeAtividades.carregarSemanas(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_SEMANAS);
+        mSemanas = SemanasDeAtividades.carregarSemanas(Local.COLECAO_SEMANAS);
 
-        int atividades = SemanasDeAtividades.getAtividades(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_SEMANAS);
+        int atividades = SemanasDeAtividades.getAtividades(Local.COLECAO_SEMANAS);
         int presentes_porcentagem = Chamada.getPresentesPorcentagem();
         int recuperacao_porcentagem = Recuperacao.getRecuperacaoPorcentagem();
 

@@ -194,14 +194,60 @@ public class DKGObjeto {
 
 
     // FEATURE 2022.07
-    public Opcional<DKGObjeto> procurar(String atributo, String atributo_valor) {
+
+    public Opcional<DKGObjeto> procurar(String atributo_nome, String atributo_valor) {
 
         for (DKGObjeto objeto : mDKGObjetos) {
-            if (objeto.identifique(atributo).isValor(atributo_valor)) {
+            if (objeto.identifique(atributo_nome).isValor(atributo_valor)) {
                 return Opcional.OK(objeto);
             }
         }
 
         return Opcional.CANCEL();
+    }
+
+
+    // FEATURE 2022.07
+
+    public String id_string(String eNome) {
+        return identifique(eNome).getValor();
+    }
+
+    public int id_inteiro(String eNome) {
+        return identifique(eNome).getInteiro();
+    }
+
+    public boolean id_bool(String eNome) {
+        return identifique(eNome).getBool();
+    }
+
+    public double id_double(String eNome) {
+        return identifique(eNome).getDouble();
+    }
+
+    public float id_float(String eNome) {
+        return identifique(eNome).getFloat();
+    }
+
+    // FEATURE 2022.07
+
+    public boolean id_is(String eNome, String eValor) {
+        return identifique(eNome).isValor(eValor);
+    }
+
+    public boolean id_is(String eNome, int eValor) {
+        return identifique(eNome).isInteiro(eValor);
+    }
+
+    public boolean id_is(String eNome, boolean eValor) {
+        return identifique(eNome).isBool(eValor);
+    }
+
+    public boolean id_is(String eNome, double eValor) {
+        return identifique(eNome).isDouble(eValor);
+    }
+
+    public boolean id_is(String eNome, float eValor) {
+        return identifique(eNome).isFloat(eValor);
     }
 }

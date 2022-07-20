@@ -9,6 +9,7 @@ import com.luandkg.czilda4.escola.avaliacao_continua.AlunoContinuo;
 import com.luandkg.czilda4.escola.avaliacao_continua.MetodoContinuo;
 import com.luandkg.czilda4.escola.avaliacao_continua.Perfilometro;
 import com.luandkg.czilda4.escola.avaliacao_continua.SemanaContinua;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 
 import java.util.ArrayList;
 
@@ -55,7 +56,8 @@ public class HiperCacheDeAvaliacao {
 
             System.out.println("-->> Construir cache do Metodo de Avaliacao");
 
-            eDocumento = MetodoContinuo.getDocumentoAvaliacao(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS);
+            eDocumento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_NOTAS);
+
             isDocumentoCarregado = true;
 
         }
@@ -72,7 +74,7 @@ public class HiperCacheDeAvaliacao {
         return perfil;
     }
 
-    public static ArrayList<DKGObjeto>  getPerfis(){
+    public static ArrayList<DKGObjeto> getPerfis() {
         return getDocumento().unicoObjeto("AVALIACAO_CONTINUA_FORMATIVA").getObjetos();
     }
 }

@@ -8,6 +8,7 @@ import com.luandkg.czilda4.escola.alunos.AlunoComNota;
 import com.luandkg.czilda4.escola.alunos.OrdenarAlunos;
 import com.luandkg.czilda4.escola.avaliacao.Atividade;
 import com.luandkg.czilda4.escola.chamadas.Chamada;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.libs.tempo.Calendario;
 
@@ -57,7 +58,8 @@ public class FakerSchool {
         criarAluno(eAlunos, "9002", "Xuzz Samuca", "9G");
         criarAluno(eAlunos, "9003", "Algom Lerdus", "9G");
 
-        eDKGAlunos.salvar(FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_ALUNOS, eDKGAlunos);
+        //  eDKGAlunos.salvar(FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
 
         criarAtividade("2022_04_22");
         criarAtividade("2022_04_24");
@@ -75,6 +77,11 @@ public class FakerSchool {
         criarAtividade("2022_05_28");
         criarAtividade("2022_05_30");
 
+        criarAtividade("2022_06_03");
+        criarAtividade("2022_06_05");
+        criarAtividade("2022_06_08");
+        criarAtividade("2022_06_10");
+
         criarAtividade("2022_06_12");
         criarAtividade("2022_06_14");
         criarAtividade("2022_06_16");
@@ -86,9 +93,14 @@ public class FakerSchool {
         criarAtividade("2022_06_23");
         criarAtividade("2022_06_24");
 
+        criarAtividade("2022_06_30");
+        criarAtividade("2022_07_03");
+        criarAtividade("2022_07_08");
+        criarAtividade("2022_07_10");
+
         criarAtividade(Calendario.getADMComTracoInferior());
 
-        criarRecuperacao("2", "2022_06_25");
+        criarRecuperacao(2, "2022_06_22", "2022_06_24", "2022_06_26");
 
     }
 
@@ -164,11 +176,11 @@ public class FakerSchool {
 
     }
 
-    public static void criarRecuperacao(String eBimestre, String eAtividade) {
+    public static void criarRecuperacao(int eBimestre, String eData1, String eData2, String eData3) {
 
         String AVALIAR = "RECUPERACAO";
 
-        String mArquivoCorrente = "Escola/Notas/notas_RECUPERACAO_0" + eBimestre + ".dkg";
+        String mArquivoCorrente = Local.ARQUIVO_RECUPERACAO(eBimestre);
 
         ArrayList<AlunoComNota> mAlunos = OrdenarAlunos.ordendarComNotas(Escola.filtarVisiveis(Escola.carregarAlunosComNota()));
 
@@ -176,19 +188,28 @@ public class FakerSchool {
 
         for (AlunoComNota aluno : mAlunos) {
             int v = eSorte.nextInt(100);
+            int vData = eSorte.nextInt(100);
 
-            aluno.setNota(AVALIAR, "0", Calendario.getADMComBarras());
+            String em_data = eData1;
+
+            if (vData > 50) {
+                em_data = eData2;
+            } else if (vData > 75) {
+                em_data = eData3;
+            }
+
+            aluno.setNota(AVALIAR, "0", em_data);
 
             if (v >= 75) {
-                aluno.setNota(AVALIAR, "1", Calendario.getADMComBarras());
+                aluno.setNota(AVALIAR, "1", em_data);
             }
 
             if (v >= 85) {
-                aluno.setNota(AVALIAR, "2", Calendario.getADMComBarras());
+                aluno.setNota(AVALIAR, "2", em_data);
             }
 
             if (v >= 95) {
-                aluno.setNota(AVALIAR, "3", Calendario.getADMComBarras());
+                aluno.setNota(AVALIAR, "3", em_data);
             }
         }
 
@@ -207,7 +228,9 @@ public class FakerSchool {
         }
 
 
-        Chamada.salvarChamadaNoDia(eAtividade, chamada_alunos);
+        Chamada.salvarChamadaNoDia(eData1, chamada_alunos);
+        Chamada.salvarChamadaNoDia(eData2, chamada_alunos);
+        Chamada.salvarChamadaNoDia(eData3, chamada_alunos);
 
     }
 

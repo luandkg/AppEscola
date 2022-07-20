@@ -1,11 +1,16 @@
-package com.luandkg.czilda4;
+package com.luandkg.czilda4.libs.sigmacollection;
 
+import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.libs.dkg.DKG;
+import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.utils.FS;
 
 import java.io.File;
+import java.util.ArrayList;
 
-public class IColecionattor {
+public class SigmaCollection {
+
+    private static String EXTENSAO = "dkg";
 
     public static String organizar(String caminho) {
 
@@ -14,6 +19,9 @@ public class IColecionattor {
 
         // @ESCOLA::ALUNOS
         // @ESCOLA->CACHE::NOTAS
+
+        // @ESCOLA->AVALIACOES::2022_10_05  -->> Escola/Avaliacoes/2022_10_05.dkg
+        // @ESCOLA->CHAMADAS::2022_10_12    -->> Escola/Chamadas/2022_10_12.dkg
 
         String DOMINIO = "";
         String PASTA = "";
@@ -24,6 +32,7 @@ public class IColecionattor {
 
         int e = 0;
 
+        // OBTER DOMINIO
         while (i < o) {
             String letra = String.valueOf(caminho.charAt(i));
             if (letra.contentEquals("@")) {
@@ -64,6 +73,8 @@ public class IColecionattor {
             }
         }
 
+
+        // EXISTE PASTA ENTAO VAMOS OBTE-LA
         if (e == 4) {
             while (i < o) {
                 String letra = String.valueOf(caminho.charAt(i));
@@ -90,6 +101,7 @@ public class IColecionattor {
             }
         }
 
+        // OBTER ARQUIVO
         if (e == 5) {
             while (i < o) {
                 String letra = String.valueOf(caminho.charAt(i));
@@ -105,8 +117,16 @@ public class IColecionattor {
         }
 
 
-        System.out.println("PATH :: " + caminho);
+        String transformado = "";
 
+        if (PASTA.length() == 0) {
+            transformado = toCapital(DOMINIO) + "/" + toAbaixo(ARQUIVO) + "." + EXTENSAO;
+        } else {
+            transformado = toCapital(DOMINIO) + "/" + toCapital(PASTA) + "/" + toAbaixo(ARQUIVO) + "." + EXTENSAO;
+        }
+
+
+        System.out.println("PATH :: " + caminho);
         System.out.println("\t - DOMINIO :: " + DOMINIO);
 
         if (PASTA.length() > 0) {
@@ -114,21 +134,13 @@ public class IColecionattor {
         }
 
         System.out.println("\t - ARQUIVO :: " + ARQUIVO);
-
-        String transformado = "";
-
-        if (PASTA.length() == 0) {
-            transformado = toCapital(DOMINIO) + "/" + toAbaixo(ARQUIVO) + ".dkg";
-        } else {
-            transformado = toCapital(DOMINIO) + "/" + toCapital(PASTA) + "/" + toAbaixo(ARQUIVO) + ".dkg";
-        }
-
-
         System.out.println("\t - SAIDA :: " + transformado);
+
+
         return transformado;
     }
 
-    public static String toCapital(String entrada) {
+    private static String toCapital(String entrada) {
 
         int i = 0;
         int o = entrada.length();
@@ -151,28 +163,98 @@ public class IColecionattor {
         return saida;
     }
 
-    public static String toAbaixo(String entrada) {
+    private static String toAbaixo(String entrada) {
         return entrada.toLowerCase();
     }
+
+    private static String toAcima(String entrada) {
+        return entrada.toUpperCase();
+    }
+
+
+    // COLLECTION
+
+    public static String getARQUIVO(String caminho) {
+        String arquivo_caminho = FS.getArquivoLocal(organizar(caminho));
+        return arquivo_caminho;
+    }
+
 
     public static DKG REQUIRED_COLLECTION(String caminho) {
         return DKG.GET(FS.getArquivoLocal(organizar(caminho)));
     }
 
+    public static DKG REQUIRED_COLLECTION_OR_BUILD(String caminho) {
+
+        DKG eDocumento = new DKG();
+
+        if (SigmaCollection.EXISTS_COLLECTION(caminho)) {
+            eDocumento = SigmaCollection.REQUIRED_COLLECTION(caminho);
+        }
+
+        return eDocumento;
+    }
+
+
+    public static ArrayList<DKGObjeto> REQUIRED_COLLECTION(String caminho, String lista) {
+        return REQUIRED_COLLECTION(caminho).unicoObjeto(lista).getObjetos();
+    }
+
     public static boolean EXISTS_COLLECTION(String caminho) {
 
-        String eArquivoLocal = FS.getArquivoLocal(organizar(caminho));
+        String arquivo_caminho = FS.getArquivoLocal(organizar(caminho));
 
-        File eArquivo = new File(eArquivoLocal);
+        File eArquivo = new File(arquivo_caminho);
         return eArquivo.exists();
     }
 
     public static void BUILD_COLLECTION(String caminho) {
 
-        String eArquivoLocal = FS.getArquivoLocal(organizar(caminho));
+        String arquivo_caminho = FS.getArquivoLocal(organizar(caminho));
 
         DKG doc = new DKG();
-        doc.salvar(eArquivoLocal);
+        doc.salvar(arquivo_caminho);
 
+    }
+
+    public static void BUILD_COLLECTION(String caminho, String lista) {
+
+        String arquivo_caminho = FS.getArquivoLocal(organizar(caminho));
+
+        DKG doc = new DKG();
+        doc.unicoObjeto(lista);
+        doc.salvar(arquivo_caminho);
+
+    }
+
+    public static DKG INIT_COLLECTION(String caminho) {
+
+        String arquivo_caminho = FS.getArquivoLocal(organizar(caminho));
+        DKG doc = new DKG();
+        return doc;
+    }
+
+
+    public static DKG CREATE_COLLECTION(String lista) {
+
+        DKG eDocumento = new DKG();
+        DKGObjeto raiz = eDocumento.unicoObjeto(lista);
+
+        return eDocumento;
+    }
+
+    public static void WRITE_COLLECTION(String caminho, DKG colecao) {
+
+        String arquivo_caminho = FS.getArquivoLocal(organizar(caminho));
+        colecao.salvar(arquivo_caminho);
+
+    }
+
+    public static int INDEX(DKGObjeto raiz, String eIndex) {
+
+        int idGeral = raiz.identifique(eIndex).getInteiro(0);
+        raiz.identifique(eIndex).setInteiro(idGeral + 1);
+
+        return idGeral;
     }
 }

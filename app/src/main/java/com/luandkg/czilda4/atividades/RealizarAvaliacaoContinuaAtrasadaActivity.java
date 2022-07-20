@@ -85,10 +85,7 @@ public class RealizarAvaliacaoContinuaAtrasadaActivity extends AppCompatActivity
 
         mContexto = this.getBaseContext();
 
-        FS.dirCriar(Local.LOCAL);
-        FS.dirCriar(Local.LOCAL_NOTAS);
-        FS.dirCriar(Local.LOCAL_RELATORIOS);
-        FS.dirCriar(Local.LOCAL_AVALIANDO);
+        Local.organizarPastas();
 
 
         BTN_TITULO = (TextView) findViewById(R.id.atrasada_avaliador_continuo_titulo);
@@ -202,7 +199,7 @@ public class RealizarAvaliacaoContinuaAtrasadaActivity extends AppCompatActivity
             ArrayList<AlunoContinuo> alunos_continuos = Escola.getAlunosContinuosVisiveisEOrdenadosDaTurma(mTurma);
 
 
-            MetodoContinuo.avaliar(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_NOTAS, alunos_continuos, BimestreCorrente.GET().getSemanas());
+            MetodoContinuo.avaliar(Local.COLECAO_NOTAS, alunos_continuos, BimestreCorrente.GET().getSemanas());
 
 
             LISTA.setAdapter(new Lista_AlunoContinuoNotaFinal(mContexto, alunos_continuos));

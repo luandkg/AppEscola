@@ -47,7 +47,7 @@ public class CriarAvisoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (mTextInputEditText.getText().toString().length() > 0) {
-                    Avisos.aviso_criar(mTextInputEditText.getText().toString());
+                    Avisos.criar(mTextInputEditText.getText().toString());
 
                     AvisadorFragment.FAZER();
 

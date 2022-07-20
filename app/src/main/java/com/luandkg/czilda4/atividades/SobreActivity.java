@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.R;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.Redizz;
 import com.luandkg.czilda4.Versionador;
 import com.luandkg.czilda4.dropbox.Dropbox;
@@ -37,8 +38,8 @@ public class SobreActivity extends AppCompatActivity {
                 Dropbox.iniciar(view.getContext());
 
                 if (Redizz.obter("DROPBOXCHAVE").length() > 0) {
-                    Dropbox.realizar_upload_sobrescrevendo(Local.ARQUIVO_AVISOS, "CED_01/avisos.dkg");
-                    Dropbox.realizar_upload_sobrescrevendo(Local.CACHE_ARQUIVO(Local.ARQUIVO_TUDO), "CED_01/tudo.dkg");
+                    Dropbox.realizar_upload_sobrescrevendo(SigmaCollection.organizar(Local.COLECAO_AVISOS) , "CED_01/avisos.dkg");
+                    Dropbox.realizar_upload_sobrescrevendo(SigmaCollection.organizar(Local.COLECAO_TUDO), "CED_01/tudo.dkg");
                 }
 
             }

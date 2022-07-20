@@ -229,7 +229,6 @@ public class RealizarAvaliacaoContinua extends AppCompatActivity {
 
             LISTA.setAdapter(new Lista_AlunoContinuoNotaFinal(mContexto, alunos_continuos));
 
-
             ContadorSN contagem = AtividadeContador.contarAlunosContinuosNotas(alunos_continuos);
 
             TXT_NAO.setText(String.valueOf(contagem.getNao()));

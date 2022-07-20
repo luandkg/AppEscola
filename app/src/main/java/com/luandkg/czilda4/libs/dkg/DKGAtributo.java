@@ -128,4 +128,11 @@ public class DKGAtributo {
         return getBool() == valorComparavel;
     }
 
+    public boolean isDouble(double valorComparavel) {
+        return getDouble() == valorComparavel;
+    }
+
+    public boolean isFloat(float valorComparavel) {
+        return getFloat() == valorComparavel;
+    }
 }

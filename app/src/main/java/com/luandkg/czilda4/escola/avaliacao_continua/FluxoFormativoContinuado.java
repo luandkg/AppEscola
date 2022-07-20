@@ -14,6 +14,7 @@ import com.luandkg.czilda4.escola.tempo.Hoje;
 import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.avaliacao.Mensionador;
 import com.luandkg.czilda4.escola.avaliacao.CoresDeAvaliacao;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.utils.ImagemCriador;
 import com.luandkg.czilda4.utils.Matematica;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 
 public class FluxoFormativoContinuado {
 
-    public static Bitmap criarFluxoDeEntrega(int quantidade_alunos, Bimestre eBimestre, String eArquivo) {
+    public static Bitmap criarFluxoDeEntrega(int quantidade_alunos, Bimestre eBimestre, String colecao_fluxo) {
 
         ArrayList<Data> quais_datas = eBimestre.getDatas();
 
@@ -50,11 +51,8 @@ public class FluxoFormativoContinuado {
         paint2.setTextSize(200);
 
 
-        DKG fluxo_entrega = new DKG();
+        DKG fluxo_entrega = SigmaCollection.REQUIRED_COLLECTION(colecao_fluxo);
 
-        if (FS.arquivoExiste(eArquivo)) {
-            fluxo_entrega.abrir(FS.getArquivoLocal(eArquivo));
-        }
 
         DKGObjeto eFLUXO = fluxo_entrega.unicoObjeto("FLUXOS");
 
@@ -227,7 +225,7 @@ public class FluxoFormativoContinuado {
     }
 
 
-    public static Bitmap criarFluxoDeEntrega_ate(int quantidade_alunos, Bimestre eBimestre, String ate, String eArquivo) {
+    public static Bitmap criarFluxoDeEntrega_ate(int quantidade_alunos, Bimestre eBimestre, String ate, String colecao_fluxo) {
 
         ArrayList<Data> quais_datas = eBimestre.getDatas();
 
@@ -257,11 +255,8 @@ public class FluxoFormativoContinuado {
         paint2.setTextSize(200);
 
 
-        DKG fluxo_entrega = new DKG();
+        DKG fluxo_entrega = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(colecao_fluxo);
 
-        if (FS.arquivoExiste(eArquivo)) {
-            fluxo_entrega.abrir(FS.getArquivoLocal(eArquivo));
-        }
 
         DKGObjeto eFLUXO = fluxo_entrega.unicoObjeto("FLUXOS");
 
