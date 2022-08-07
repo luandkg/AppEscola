@@ -90,11 +90,9 @@ public class Lista_RealizarChamada extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext, AlunoDesempenhoActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                intent.putExtra("AlunoID", String.valueOf(eAluno.getID()));
-
-                mContext.startActivity(intent);
+               // Intent intent = new Intent(mContext, AlunoDesempenhoActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               // intent.putExtra("AlunoID", String.valueOf(eAluno.getID()));
+              //  mContext.startActivity(intent);
 
             }
         });

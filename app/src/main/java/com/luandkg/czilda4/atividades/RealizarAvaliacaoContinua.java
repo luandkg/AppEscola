@@ -20,7 +20,7 @@ import com.luandkg.czilda4.escola.avaliacao.Atividade;
 import com.luandkg.czilda4.escola.utils.ContadorSN;
 import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.avaliacao_continua.AlunoContinuo;
-import com.luandkg.czilda4.fragments.SegundoBimestreFragment;
+import com.luandkg.czilda4.fragments.AvaliarFragment;
 import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.R;
 import com.luandkg.czilda4.listas.Lista_AlunoContinuoNotaFinal;
@@ -274,7 +274,7 @@ public class RealizarAvaliacaoContinua extends AppCompatActivity {
 
 
             Atualizador.mudarStatusAvaliacao(mTurma, evento);
-            SegundoBimestreFragment.RECARREGAR_LISTA.fazer();
+            AvaliarFragment.RECARREGAR_LISTA.fazer();
 
         }
 

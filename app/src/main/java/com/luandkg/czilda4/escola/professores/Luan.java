@@ -20,7 +20,9 @@ public class Luan {
 
         eProfessor.repor("2022_04_09","QUINTA");
 
-        eProfessor.adicionar_ferias(Calendario.filtrar(  CED1_Calendario.getAno(),new Data(2022,7,10, DiaSemanal.Domingo),new Data(2022,7,29,DiaSemanal.Domingo)));
+        CED1_Calendario cal = new CED1_Calendario();
+
+        eProfessor.adicionar_ferias(Calendario.filtrar(  cal.getAno(),new Data(2022,7,10, DiaSemanal.Domingo),new Data(2022,7,29,DiaSemanal.Domingo)));
 
         eProfessor.setSiglaComNome("LUAN", "Luan Freitas");
 

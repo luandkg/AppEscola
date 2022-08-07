@@ -1,5 +1,6 @@
 package com.luandkg.czilda4.fragments;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.luandkg.czilda4.escola.avaliacao_continua.FluxoFormativoContinuado;
 import com.luandkg.czilda4.escola.tempo.BimestreTemporal;
 import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.utils.AndroidTheme;
 import com.luandkg.czilda4.zilda2020.exportadores.FluxoDeAtividades;
 import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.libs.tempo.Data;
@@ -44,6 +46,7 @@ public class BimestreFragment extends Fragment {
     private FechadorBimestral mFechadorBimestral;
     private boolean mExecutando = false;
     private Thread thread;
+    private Context mContexto;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +67,8 @@ public class BimestreFragment extends Fragment {
 
         TV_CONTAGEM_TEXTO.setText(HOJE_DATA);
 
+        mContexto=this.getContext();
+
 
         CED1_Calendario ESCOLA_CALENDARIO = new CED1_Calendario();
         Bimestre eBimestre = BimestreCorrente.GET();
@@ -72,24 +77,24 @@ public class BimestreFragment extends Fragment {
 
         if (BimestreTemporal.temBimestre(HOJE_DATA, ESCOLA_CALENDARIO)) {
 
-            String bimestre = BimestreTemporal.getBimestreNome(HOJE_DATA);
-            ArrayList<Data> datas = BimestreTemporal.getBimestre(HOJE_DATA);
+            String bimestre = BimestreTemporal.getBimestreNome(HOJE_DATA,ESCOLA_CALENDARIO);
+            ArrayList<Data> datas = BimestreTemporal.getBimestre(HOJE_DATA,ESCOLA_CALENDARIO);
 
             mostrar(HOJE_DATA, bimestre + "º BIMESTRE", datas);
 
-        } else if (CED1_Calendario.isRecesso(Calendario.getDataHoje())) {
+        } else if (ESCOLA_CALENDARIO.isRecesso(Calendario.getDataHoje())) {
 
             TV_CONTAGEM_TEXTO.setText(Calendario.getData() + " - RECESSO !");
 
-            TV_BIMESTRE_INICIO.setText(Calendario.filtrar_primeira(CED1_Calendario.getRecesso()).getTempoLegivel());
-            TV_BIMESTRE_FIM.setText(Calendario.filtrar_ultima(CED1_Calendario.getRecesso()).getTempoLegivel());
+            TV_BIMESTRE_INICIO.setText(Calendario.filtrar_primeira(ESCOLA_CALENDARIO.getRecesso()).getTempoLegivel());
+            TV_BIMESTRE_FIM.setText(Calendario.filtrar_ultima(ESCOLA_CALENDARIO.getRecesso()).getTempoLegivel());
 
-            double acabar = (double) CED1_Calendario.recesso_passou(Calendario.getDataHoje()) / (double) CED1_Calendario.getRecesso().size();
+            double acabar = (double) ESCOLA_CALENDARIO.recesso_passou(Calendario.getDataHoje()) / (double) ESCOLA_CALENDARIO.getRecesso().size();
 
 
-            int para_acabar = CED1_Calendario.getRecesso().size() - CED1_Calendario.recesso_passou(Calendario.getDataHoje());
+            int para_acabar = ESCOLA_CALENDARIO.getRecesso().size() - ESCOLA_CALENDARIO.recesso_passou(Calendario.getDataHoje());
 
-            IV_CONTAGEM_TEMPO.setImageBitmap(FluxoDeAtividades.onBimestre((int) (acabar * 100.0f), para_acabar));
+            IV_CONTAGEM_TEMPO.setImageBitmap(FluxoDeAtividades.onBimestre((int) (acabar * 100.0f), para_acabar, AndroidTheme.isDark(mContexto)));
 
         }
 
@@ -124,7 +129,7 @@ public class BimestreFragment extends Fragment {
         int para_acabar = BimestreTemporal.getDiasParaAcabar(HOJE_DATA, datas);
         int em_progresso = BimestreTemporal.getPorcentagem(HOJE_DATA, datas);
 
-        IV_CONTAGEM_TEMPO.setImageBitmap(FluxoDeAtividades.onBimestre(em_progresso, para_acabar));
+        IV_CONTAGEM_TEMPO.setImageBitmap(FluxoDeAtividades.onBimestre(em_progresso, para_acabar,AndroidTheme.isDark(mContexto)));
 
 
     }

@@ -187,7 +187,9 @@ public class DKGObjeto {
 
         ParserDKG escritor = new ParserDKG();
 
-        escritor.montar("", mDKGObjetos);
+        ArrayList<DKGObjeto> objs = new ArrayList<DKGObjeto>();
+        objs.add(this);
+        escritor.montar("", objs);
 
         return escritor.getTexto();
     }

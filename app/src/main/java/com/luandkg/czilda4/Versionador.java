@@ -10,8 +10,21 @@ public class Versionador extends Verkuz {
 
         setEstagio(Verkuz.RELEASE);
 
+        // FASE 5
+        DEV("2022_08_08", "Check para chamada realizada no dia");
+        DEV("2022_08_08", "Detecção automática do tema Dark");
+        DEV("2022_08_05", "Itens dos aivos - refatoramento de botoes");
+        DEV("2022_08_01", "Mudar cor da aula de acordo ao tempo do dia");
+
 
         // FASE 4
+
+        DEV("2022_07_30", "Sistema de Classificação das Atividades");
+        DEV("2022_07_30", "Correção do Ponto Extra do 2 Bimestre");
+
+        DEV("2022_07_26", "Implementação de avisos arquivados");
+        DEV("2022_07_26", "Tela de editar avisos");
+
         DEV("2022_07_20", "Migrando arquivos para SigmaCollections !");
         DEV("2022_07_19", "Novas Features em DKGObjeto ");
         DEV("2022_07_19", "Melhorias no sistema SigmaCollection");

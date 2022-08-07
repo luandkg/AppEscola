@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_aviso_arquivado"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_margin="5dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/item_aviso_arquivado_texto"
+        android:layout_width="280dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/item_aviso_arquivado_desarquivar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="5dp"
+        android:backgroundTint="#4caf50"
+        android:text="D"
+        android:textSize="10dp" />
+
+    <Button
+        android:id="@+id/item_aviso_arquivado_remover"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#d32f2f"
+        android:text="R"
+        android:textSize="10dp" />
+
+
+</LinearLayout>

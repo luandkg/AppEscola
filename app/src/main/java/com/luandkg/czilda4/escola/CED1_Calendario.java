@@ -2,73 +2,51 @@ package com.luandkg.czilda4.escola;
 
 import com.luandkg.czilda4.escola.avaliacao_continua.SemanaContinua;
 import com.luandkg.czilda4.escola.tempo.Bimestre;
+import com.luandkg.czilda4.escola.tempo.CalendarioEscolar;
 import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.libs.tempo.Data;
 import com.luandkg.czilda4.libs.tempo.DiaSemanal;
 
 import java.util.ArrayList;
 
-public class CED1_Calendario {
+public class CED1_Calendario extends CalendarioEscolar {
 
-    public static ArrayList<Data> getAno() {
-        ArrayList<Data> mDatas = Calendario.construirAno(2022, DiaSemanal.Sabado, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-        return mDatas;
+    public CED1_Calendario() {
+        super();
+
+        setAno(Calendario.construirAno(2022, DiaSemanal.Sabado, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31));
+        setRecesso(Calendario.filtrar(getAno(), Calendario.parse("12/7/2022"), Calendario.parse("29/7/2022")));
+
     }
 
-    public static ArrayList<Data> getPrimeiro() {
-        ArrayList<Data> mDatas = getAno();
-        return Calendario.filtrar(mDatas, Calendario.parse("14/02/2022"), Calendario.parse("29/04/2022"));
+    @Override
+    public Bimestre PRIMEIRO_BIMESTRE() {
+
+        ArrayList<Data> PRIMEIRO_BIMESTRE_DATAS = Calendario.filtrar(getAno(), Calendario.parse("14/02/2022"), Calendario.parse("29/04/2022"));
+
+        ArrayList<SemanaContinua> PRIMEIRO_BIMESTRE_SEMANAS = new ArrayList<SemanaContinua>();
+
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(1, "1", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("14/02/2022"), Calendario.parse("19/02/2022"))));
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(2, "2", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("20/02/2022"), Calendario.parse("26/02/2022"))));
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(3, "3", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("27/02/2022"), Calendario.parse("05/03/2022"))));
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(4, "4", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("06/03/2022"), Calendario.parse("12/03/2022"))));
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(5, "5", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("13/03/2022"), Calendario.parse("19/03/2022"))));
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(6, "6", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("20/03/2022"), Calendario.parse("26/03/2022"))));
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(7, "7", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("27/03/2022"), Calendario.parse("02/04/2022"))));
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(8, "8", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("03/04/2022"), Calendario.parse("09/04/2022"))));
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(9, "9", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("10/04/2022"), Calendario.parse("16/04/2022"))));
+        PRIMEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(10, "10", Calendario.filtrar(PRIMEIRO_BIMESTRE_DATAS, Calendario.parse("17/04/2022"), Calendario.parse("24/04/2022"))));
+
+
+
+        return new Bimestre(1, PRIMEIRO_BIMESTRE_DATAS, PRIMEIRO_BIMESTRE_SEMANAS);
+
     }
 
-    public static ArrayList<Data> getSegundo() {
-        ArrayList<Data> mDatas = getAno();
-        return Calendario.filtrar(mDatas, Calendario.parse("02/05/2022"), Calendario.parse("11/07/2022"));
-    }
+    @Override
+    public Bimestre SEGUNDO_BIMESTRE() {
 
-    public static ArrayList<Data> getTerceiro() {
-        ArrayList<Data> mDatas = getAno();
-        return Calendario.filtrar(mDatas, Calendario.parse("29/07/2022"), Calendario.parse("07/10/2022"));
-    }
-
-    public static ArrayList<Data> getQuarto() {
-        ArrayList<Data> mDatas = getAno();
-        return Calendario.filtrar(mDatas, Calendario.parse("10/10/2022"), Calendario.parse("22/12/2022"));
-    }
-
-    public static ArrayList<Data> getRecesso() {
-        ArrayList<Data> mDatas = getAno();
-        return Calendario.filtrar(mDatas, Calendario.parse("12/7/2022"), Calendario.parse("29/7/2022"));
-    }
-
-    public static boolean isRecesso(Data eData) {
-        boolean ret = false;
-
-        for (Data dt : getRecesso()) {
-            if (dt.isIgual(eData)) {
-                ret = true;
-                break;
-            }
-        }
-        return ret;
-    }
-
-    public static int recesso_passou(Data eData) {
-        int ret = 0;
-
-        for (Data dt : getRecesso()) {
-            if (dt.isIgual(eData)) {
-                break;
-            }
-            ret += 1;
-        }
-
-        return ret;
-    }
-
-    public static Bimestre SEGUNDO_BIMESTRE() {
-
-        ArrayList<Data> TODAS_DATAS = Calendario.construirAno(2022, DiaSemanal.Sabado, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-        ArrayList<Data> SEGUNDO_BIMESTRE_DATAS = Calendario.filtrar(TODAS_DATAS, Calendario.parse("25/04/2022"), Calendario.parse("11/07/2022"));
+        ArrayList<Data> SEGUNDO_BIMESTRE_DATAS = Calendario.filtrar(getAno(), Calendario.parse("25/04/2022"), Calendario.parse("11/07/2022"));
 
 
         ArrayList<SemanaContinua> SEGUNDO_BIMESTRE_SEMANAS = new ArrayList<SemanaContinua>();
@@ -89,11 +67,11 @@ public class CED1_Calendario {
 
     }
 
-    public static Bimestre TERCEIRO_BIMESTRE() {
+    @Override
+    public Bimestre TERCEIRO_BIMESTRE() {
 
 
-        ArrayList<Data> TODAS_DATAS = Calendario.construirAno(2022, DiaSemanal.Sabado, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-        ArrayList<Data> TERCEIRO_BIMESTRE_DATAS = Calendario.filtrar(TODAS_DATAS, Calendario.parse("29/07/2022"), Calendario.parse("07/10/2022"));
+        ArrayList<Data> TERCEIRO_BIMESTRE_DATAS = Calendario.filtrar(getAno(), Calendario.parse("29/07/2022"), Calendario.parse("07/10/2022"));
 
 
         ArrayList<SemanaContinua> TERCEIRO_BIMESTRE_SEMANAS = new ArrayList<SemanaContinua>();
@@ -103,7 +81,7 @@ public class CED1_Calendario {
         TERCEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(3, "3", Calendario.filtrar(TERCEIRO_BIMESTRE_DATAS, Calendario.parse("14/08/2022"), Calendario.parse("20/08/2022"))));
         TERCEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(4, "4", Calendario.filtrar(TERCEIRO_BIMESTRE_DATAS, Calendario.parse("21/08/2022"), Calendario.parse("27/08/2022"))));
         TERCEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(5, "5", Calendario.filtrar(TERCEIRO_BIMESTRE_DATAS, Calendario.parse("28/08/2022"), Calendario.parse("03/09/2022"))));
-        TERCEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(6, "6", Calendario.filtrar(TERCEIRO_BIMESTRE_DATAS, Calendario.parse("04/08/2022"), Calendario.parse("10/09/2022"))));
+        TERCEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(6, "6", Calendario.filtrar(TERCEIRO_BIMESTRE_DATAS, Calendario.parse("04/09/2022"), Calendario.parse("10/09/2022"))));
         TERCEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(7, "7", Calendario.filtrar(TERCEIRO_BIMESTRE_DATAS, Calendario.parse("11/09/2022"), Calendario.parse("17/09/2022"))));
         TERCEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(8, "8", Calendario.filtrar(TERCEIRO_BIMESTRE_DATAS, Calendario.parse("18/09/2022"), Calendario.parse("24/09/2022"))));
         TERCEIRO_BIMESTRE_SEMANAS.add(new SemanaContinua(9, "9", Calendario.filtrar(TERCEIRO_BIMESTRE_DATAS, Calendario.parse("25/09/2022"), Calendario.parse("01/10/2022"))));
@@ -114,11 +92,11 @@ public class CED1_Calendario {
 
     }
 
-    public static Bimestre QUARTO_BIMESTRE() {
+    @Override
+    public Bimestre QUARTO_BIMESTRE() {
 
 
-        ArrayList<Data> TODAS_DATAS = Calendario.construirAno(2022, DiaSemanal.Sabado, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-        ArrayList<Data> QUARTO_BIMESTRE_DATAS = Calendario.filtrar(TODAS_DATAS, Calendario.parse("10/10/2022"), Calendario.parse("22/10/2022"));
+        ArrayList<Data> QUARTO_BIMESTRE_DATAS = Calendario.filtrar(getAno(), Calendario.parse("10/10/2022"), Calendario.parse("22/10/2022"));
 
 
         ArrayList<SemanaContinua> QUARTO_BIMESTRE_SEMANAS = new ArrayList<SemanaContinua>();

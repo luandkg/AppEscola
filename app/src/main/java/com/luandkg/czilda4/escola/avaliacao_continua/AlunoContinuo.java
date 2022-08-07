@@ -37,6 +37,8 @@ public class AlunoContinuo {
     private int mFrequencia;
     private int mQualificacao;
 
+    private String mUltimaAtividadeRealizada;
+
     public AlunoContinuo(int eID, String eNome, String eTurma, String eVisibilidade) {
         mID = eID;
         mSID = "";
@@ -65,6 +67,7 @@ public class AlunoContinuo {
         mFrequencia = 0;
         mQualificacao = 0;
 
+        mUltimaAtividadeRealizada="";
     }
 
 
@@ -84,6 +87,7 @@ public class AlunoContinuo {
         mAcumuladoContinuidadeComRecuperacao = 0;
         mAtividadesEntregues = 0;
 
+        mUltimaAtividadeRealizada="";
     }
 
 
@@ -344,4 +348,11 @@ public class AlunoContinuo {
     public int getQualificacao() {
         return mQualificacao;
     }
+
+
+    public void setUltimaAtividadeRealizada(String u){
+        mUltimaAtividadeRealizada=u;
+    }
+
+    public String getUltimaAtividadeRealizada(){return mUltimaAtividadeRealizada;}
 }

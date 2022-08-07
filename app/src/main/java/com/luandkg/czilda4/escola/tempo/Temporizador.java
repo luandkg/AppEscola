@@ -50,7 +50,14 @@ public class Temporizador {
         mTexto = texto;
     }
 
-    public Bitmap criar() {
+    private boolean isDark = false;
+
+    public void setTema(boolean e_isDark) {
+        isDark = e_isDark;
+    }
+
+
+    public Bitmap criar( ) {
 
         int w = 700;
         int h = 700;
@@ -66,14 +73,13 @@ public class Temporizador {
 
         if (isFerias) {
 
-            criarFerias(canvas,w,h,width,height);
+            criarFerias(canvas, w, h, width, height);
 
         } else {
 
-            criarTrabalho(canvas,w,h,width,height);
+            criarTrabalho(canvas, w, h, width, height);
 
         }
-
 
 
         return bmp;
@@ -107,7 +113,7 @@ public class Temporizador {
     }
 
 
-    private void criarFerias(Canvas canvas,int w,int h, int width, int height) {
+    private void criarFerias(Canvas canvas, int w, int h, int width, int height) {
 
         Paint mPaint;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -162,7 +168,7 @@ public class Temporizador {
     }
 
 
-    private void criarTrabalho(Canvas canvas,int w,int h, int width, int height){
+    private void criarTrabalho(Canvas canvas, int w, int h, int width, int height) {
 
         int interno = PaletaDeCores.AZUL;
 
@@ -326,8 +332,13 @@ public class Temporizador {
         if (mTexto.length() > 0) {
 
             Paint paint2 = new Paint();
-            paint2.setColor(Color.WHITE);
             paint2.setTextSize(80);
+
+            if (isDark){
+                paint2.setColor(Color.WHITE);
+            }else{
+                paint2.setColor(Color.BLACK);
+            }
 
 
             Rect bounds = new Rect();

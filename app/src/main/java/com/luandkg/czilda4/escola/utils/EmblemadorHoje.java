@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class EmblemadorHoje {
 
-    public static Bitmap criar(ArrayList<TurmaComHorario> turmas_realizadas, int fizeram, int total) {
+    public static Bitmap criar(ArrayList<TurmaComHorario> turmas_realizadas, int fizeram, int total,boolean isDark) {
 
 
         int largura = 800;
@@ -61,7 +61,12 @@ public class EmblemadorHoje {
 
         Paint escritor = new Paint();
         escritor.setTextSize(80);
-        escritor.setColor(Color.WHITE);
+
+        if (isDark){
+            escritor.setColor(Color.WHITE);
+        }else{
+            escritor.setColor(Color.BLACK);
+        }
 
 
         if (fizeram > 0) {

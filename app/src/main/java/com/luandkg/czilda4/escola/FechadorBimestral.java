@@ -65,7 +65,16 @@ public class FechadorBimestral implements Runnable {
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(0, 100));
         Threader.atualizar_imagem(FLUXO_VISUALIZADOR, ImagemCriador.vazio());
 
+
         HiperCacheDeAvaliacao.zerar();
+
+
+        // LEVAR PONTO EXTRA DO 2 -> 3
+        //  PontoExtra2Para3.mostrar_ponto_extra(Local.LOCAL_AVALIANDO + "/2022_07_29.dkg");
+
+
+        HiperCacheDeAvaliacao.zerar();
+
 
         Threader.atualizar_texto(TX_EXECUTANDO, "Organizando fechamento de bimestre ...");
 
@@ -95,7 +104,7 @@ public class FechadorBimestral implements Runnable {
 
         Threader.atualizar_texto(TX_EXECUTANDO, "Arquivando chamadas...");
         Threader.atualizar_imagem(IV_VISUALIZADOR, CicloDeProgresso.criarProgresso(20, 100));
-        ArrayList<TurmaChamadas> CHAMADAS_ESCOLA = CarregadorDeFrequencia.carregar(Luan.getLuan());
+        ArrayList<TurmaChamadas> CHAMADAS_ESCOLA = CarregadorDeFrequencia.carregar(Luan.getLuan(), mBimestre);
 
         ProfileStamp PXX_arquivando = KhronosProfiler.profile_started("FechadorBimestral.run().Arquivando()");
 
@@ -225,7 +234,7 @@ public class FechadorBimestral implements Runnable {
 
         ProfileStamp PXX_Tudo = KhronosProfiler.profile_started("FechadorBimestral.Tudo()");
 
-        ArquivadorEscolaCompleta.salvar(Local.LOCAL_REALIZAR_CHAMADA, SigmaCollection.getARQUIVO(Local.COLECAO_NOTAS), SigmaCollection.getARQUIVO(Local.COLECAO_DESEMPENHOS), SigmaCollection.getARQUIVO(Local.COLECAO_TUDO));
+        ArquivadorEscolaCompleta.salvar( SigmaCollection.getARQUIVO(Local.COLECAO_TUDO));
 
 
         PXX_Tudo.terminar();
@@ -240,9 +249,6 @@ public class FechadorBimestral implements Runnable {
 
         HiperCacheDeAvaliacao.zerar();
 
-
-        // GUARDAR PONTO EXTRA PARA O PROXIMO BIMESTRE
-        MoverAtividade.pontoExtraToAtividade(Local.LOCAL_AVALIANDO + "/2022_07_29.dkg", "2022_07_29");
 
         System.out.println("-->> Terminar ...");
 

@@ -218,7 +218,7 @@ public class MetodoContinuo {
 
         avaliarComDocumento(documento, alunos, semanas);
 
-        documento.salvar(FS.getArquivoLocal(eArquivo));
+        documento.salvar(FS.getArquivoLocal(SigmaCollection.organizar(eArquivo)));
 
 
         //   System.out.println(documento.toString());
@@ -328,7 +328,7 @@ public class MetodoContinuo {
                                 }
                             }
 
-
+                            a.setUltimaAtividadeRealizada(data);
                         }
 
 

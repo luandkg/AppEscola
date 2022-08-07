@@ -16,7 +16,7 @@ import com.luandkg.czilda4.escola.atualizador.Atualizador;
 import com.luandkg.czilda4.escola.avaliacao.AtividadeContador;
 import com.luandkg.czilda4.escola.avaliacao_quantitativa.M5;
 import com.luandkg.czilda4.escola.avaliacao_formativa.Formativa;
-import com.luandkg.czilda4.fragments.AtualizacoesFragment;
+import com.luandkg.czilda4.fragments.ChamadasFragment;
 import com.luandkg.czilda4.escola.alunos.AlunoComNota;
 import com.luandkg.czilda4.escola.avaliacao.Atividade;
 import com.luandkg.czilda4.escola.Escola;
@@ -202,7 +202,7 @@ public class RealizarAvaliacao extends AppCompatActivity {
         Atualizador.avaliacao(mTurma, com_atividade);
 
 
-        AtualizacoesFragment.RECARREGAR_LISTA.fazer();
+        ChamadasFragment.RECARREGAR_LISTA.fazer();
 
     }
 

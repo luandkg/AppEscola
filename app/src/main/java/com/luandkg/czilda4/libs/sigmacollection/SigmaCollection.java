@@ -125,16 +125,20 @@ public class SigmaCollection {
             transformado = toCapital(DOMINIO) + "/" + toCapital(PASTA) + "/" + toAbaixo(ARQUIVO) + "." + EXTENSAO;
         }
 
+        boolean vis = false;
 
-        System.out.println("PATH :: " + caminho);
-        System.out.println("\t - DOMINIO :: " + DOMINIO);
+        if (vis) {
 
-        if (PASTA.length() > 0) {
-            System.out.println("\t - PASTA :: " + PASTA);
+            System.out.println("PATH :: " + caminho);
+            System.out.println("\t - DOMINIO :: " + DOMINIO);
+
+            if (PASTA.length() > 0) {
+                System.out.println("\t - PASTA :: " + PASTA);
+            }
+
+            System.out.println("\t - ARQUIVO :: " + ARQUIVO);
+            System.out.println("\t - SAIDA :: " + transformado);
         }
-
-        System.out.println("\t - ARQUIVO :: " + ARQUIVO);
-        System.out.println("\t - SAIDA :: " + transformado);
 
 
         return transformado;

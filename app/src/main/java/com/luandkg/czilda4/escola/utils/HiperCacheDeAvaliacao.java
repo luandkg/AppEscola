@@ -50,6 +50,23 @@ public class HiperCacheDeAvaliacao {
 
     }
 
+    public static ArrayList<AlunoContinuo> getTodos() {
+
+
+        eDocumento = getDocumento();
+
+        alunos_continuos = Escola.getAlunosContinuosVisiveisEOrdenadosDaEscola();
+
+        MetodoContinuo.avaliarComDocumento(eDocumento, alunos_continuos, BimestreCorrente.GET().getSemanas());
+
+        System.out.println("-->> Construir cache do Metodo de Avaliacao ");
+
+        isTurmaCarrega=false;
+
+        return alunos_continuos;
+
+    }
+
     public static DKG getDocumento() {
 
         if (!isDocumentoCarregado) {

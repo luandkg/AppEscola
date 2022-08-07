@@ -43,7 +43,9 @@ public class ActivityDrawler extends AppCompatActivity {
         Internet.pedirPermissoes(this);
 
         // DEFINIR BIMESTRE ATUAL
-        BimestreCorrente.SET(CED1_Calendario.TERCEIRO_BIMESTRE());
+
+        CED1_Calendario calendario = new CED1_Calendario();
+        BimestreCorrente.SET(calendario.TERCEIRO_BIMESTRE());
 
 
         binding = ActivityDrawlerBinding.inflate(getLayoutInflater());
@@ -78,7 +80,7 @@ public class ActivityDrawler extends AppCompatActivity {
         Inicializador.init(Professores.getProfessorCorrente().getQuaisTurmas());
 
         if (Versionador.isTeste()) {
-            //    FakerSchool.init();
+            //    FakerSchool.init_segundo();
         }
 
         Notificar.criarCanal(getBaseContext(), "AVISOS", "SISTEMA DE AVISOS");
@@ -91,6 +93,7 @@ public class ActivityDrawler extends AppCompatActivity {
         HashSet<Integer> gaveta = new HashSet<Integer>();
 
         gaveta.add(R.id.nav_hoje);
+        gaveta.add(R.id.nav_buscar_aluno);
         gaveta.add(R.id.nav_atualizacoes);
         gaveta.add(R.id.nav_segundobimestre);
         gaveta.add(R.id.nav_chamads_visualizador_geral);
@@ -111,7 +114,6 @@ public class ActivityDrawler extends AppCompatActivity {
 
         mAvisador = new Avisador(this.getBaseContext(), Professores.getProfessorCorrente());
         mAvisador.run();
-
 
 
     }

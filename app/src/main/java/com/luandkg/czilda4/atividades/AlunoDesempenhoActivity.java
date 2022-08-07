@@ -43,13 +43,7 @@ public class AlunoDesempenhoActivity extends AppCompatActivity {
         Intent it = getIntent();
         String aluno_id = it.getStringExtra("AlunoID");
 
-       // String mTurma = Escola.getTurmaDe(aluno_id);
-       // ArrayList<AlunoContinuo> alunos_continuos = HiperCacheDeAvaliacao.get(mTurma);
-
-
         AlunoContinuo perfil = HiperCacheDeAvaliacao.getPerfil(aluno_id, BimestreCorrente.GET().getSemanas());
-
-
 
 
         TX_NOME.setText(perfil.getNome());
@@ -59,11 +53,18 @@ public class AlunoDesempenhoActivity extends AppCompatActivity {
         IV_FLUXO.setImageBitmap(DesempenhoGrafico.onDesempenho(perfil.getParticipacao(), perfil.getCompromisso(), perfil.getDedicacao(), perfil.getFrequencia(), perfil.getQualificacao()));
 
         ArrayList<Desempenho> desempenhos = new ArrayList<Desempenho>();
-        desempenhos.add(new Desempenho("Participação", Qualidade.getExpressaoFeminina(perfil.getParticipacao()),perfil.getParticipacao()));
-        desempenhos.add(new Desempenho("Compromisso", Qualidade.getExpressaoMasculina(perfil.getParticipacao()),perfil.getCompromisso()));
-        desempenhos.add(new Desempenho("Dedicação", Qualidade.getExpressaoFeminina(perfil.getParticipacao()),perfil.getDedicacao()));
-        desempenhos.add(new Desempenho("Frequência", Qualidade.getExpressaoFeminina(perfil.getParticipacao()),perfil.getFrequencia()));
-        desempenhos.add(new Desempenho("Qualificação", Qualidade.getExpressaoFeminina(perfil.getParticipacao()),perfil.getQualificacao()));
+      //  desempenhos.add(new Desempenho("Participação", Qualidade.getExpressaoFeminina(perfil.getParticipacao()),perfil.getParticipacao()));
+      //  desempenhos.add(new Desempenho("Compromisso", Qualidade.getExpressaoMasculina(perfil.getCompromisso()),perfil.getCompromisso()));
+      //  desempenhos.add(new Desempenho("Dedicação", Qualidade.getExpressaoFeminina(perfil.getDedicacao()),perfil.getDedicacao()));
+     //   desempenhos.add(new Desempenho("Frequência", Qualidade.getExpressaoFeminina(perfil.getFrequencia()),perfil.getFrequencia()));
+      //  desempenhos.add(new Desempenho("Qualificação", Qualidade.getExpressaoFeminina(perfil.getQualificacao()),perfil.getQualificacao()));
+
+        desempenhos.add(new Desempenho("Participação :: " + perfil.getParticipacao(), Qualidade.getExpressaoFeminina(perfil.getParticipacao()),perfil.getParticipacao()));
+        desempenhos.add(new Desempenho("Compromisso :: "+ perfil.getCompromisso(), Qualidade.getExpressaoMasculina(perfil.getCompromisso()),perfil.getCompromisso()));
+        desempenhos.add(new Desempenho("Dedicação :: "+ perfil.getDedicacao(), Qualidade.getExpressaoFeminina(perfil.getDedicacao()),perfil.getDedicacao()));
+        desempenhos.add(new Desempenho("Frequência :: "+ perfil.getFrequencia(), Qualidade.getExpressaoFeminina(perfil.getFrequencia()),perfil.getFrequencia()));
+        desempenhos.add(new Desempenho("Qualificação :: "+ perfil.getQualificacao(), Qualidade.getExpressaoFeminina(perfil.getQualificacao()),perfil.getQualificacao()));
+
 
 
         Lista_AlunoDesempenhos mLista_AlunoDesempenhos = new Lista_AlunoDesempenhos(getBaseContext(),desempenhos);

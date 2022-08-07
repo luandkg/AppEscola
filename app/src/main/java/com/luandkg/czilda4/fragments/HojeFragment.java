@@ -1,5 +1,6 @@
 package com.luandkg.czilda4.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.luandkg.czilda4.escola.Escola;
 import com.luandkg.czilda4.escola.tempo.Hoje;
 import com.luandkg.czilda4.escola.organizacao.TurmaComHorario;
 import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.utils.AndroidTheme;
 import com.luandkg.czilda4.zilda2020.exportadores.FluxoDeAtividades;
 
 import java.util.ArrayList;
@@ -46,6 +48,7 @@ public class HojeFragment extends Fragment {
     private Button BTN_VIVENCIA;
 
     private String HOJE = "";
+private Context mContexto;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -90,6 +93,7 @@ public class HojeFragment extends Fragment {
 
         String HOJE_DIA = Calendario.getDiaAtual();
 
+        mContexto=this.getContext();
 
         BTN_VIVENCIA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +117,7 @@ public class HojeFragment extends Fragment {
 
         int atividades_realizadas = Hoje.getQuantidadeDeAtividadesRealizadas(HOJE, turmas_realizadas);
 
+        CED1_Calendario CED1_Calendario = new CED1_Calendario();
 
         if (turmas_hoje.size() > 0) {
 
@@ -124,11 +129,11 @@ public class HojeFragment extends Fragment {
 
                 int para_acabar = CED1_Calendario.getRecesso().size() - CED1_Calendario.recesso_passou(Calendario.getDataHoje());
 
-                IV_HOJE.setImageBitmap(FluxoDeAtividades.onBimestre((int) (acabar * 100.0f), para_acabar));
+                IV_HOJE.setImageBitmap(FluxoDeAtividades.onBimestre((int) (acabar * 100.0f), para_acabar, AndroidTheme.isDark(mContexto)));
 
 
             }else{
-                IV_HOJE.setImageBitmap(EmblemadorHoje.criar(turmas_realizadas_com_horario, turmas_realizadas.size(), turmas_hoje.size()));
+                IV_HOJE.setImageBitmap(EmblemadorHoje.criar(turmas_realizadas_com_horario, turmas_realizadas.size(), turmas_hoje.size(),AndroidTheme.isDark(mContexto)));
             }
 
         }

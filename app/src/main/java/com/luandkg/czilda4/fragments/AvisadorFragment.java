@@ -16,7 +16,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.luandkg.czilda4.atividades.CriarAvisoActivity;
+import com.luandkg.czilda4.atividades.AvisoCriarActivity;
+import com.luandkg.czilda4.atividades.AvisoEditarActivity;
+import com.luandkg.czilda4.atividades.AvisosArquivadosActivity;
+import com.luandkg.czilda4.atividades.SobreActivity;
 import com.luandkg.czilda4.escola.avisos.Aviso;
 import com.luandkg.czilda4.R;
 import com.luandkg.czilda4.utils.Itenizador;
@@ -35,7 +38,8 @@ public class AvisadorFragment extends Fragment {
     private FragmentAvisadorBinding mInterface;
 
     private ListView LISTA_AVISOS;
-    private Button BTN_AVISAR;
+    private Button BTN_CRIAR_AVISO;
+    private Button BTN_ARQUIVADOS;
 
     private Context mContexto;
     private Acao RECARREGAR_LISTA;
@@ -58,13 +62,27 @@ public class AvisadorFragment extends Fragment {
         View root = mInterface.getRoot();
 
         LISTA_AVISOS = mInterface.avisadorListagem;
-        BTN_AVISAR = mInterface.avisadorCriarAviso;
+        BTN_CRIAR_AVISO = mInterface.avisadorCriarAviso;
+        BTN_ARQUIVADOS = mInterface.avisadorArquivados;
 
-        BTN_AVISAR.setOnClickListener(new View.OnClickListener() {
+        BTN_CRIAR_AVISO.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.R)
             @Override
             public void onClick(View view) {
-                criarAviso();
+                Intent intent = new Intent(view.getContext(), AvisoCriarActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(intent);
+            }
+        });
+
+        BTN_ARQUIVADOS.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.R)
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(view.getContext(), AvisosArquivadosActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(intent);
+
+
             }
         });
 
@@ -82,15 +100,14 @@ public class AvisadorFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
-    public void criarAviso() {
-
-
-        Intent intent = new Intent(this.getContext(), CriarAvisoActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        this.getContext().startActivity(intent);
-
-
+        ArrayList<Aviso> avisos = Avisos.listar();
+        LISTA_AVISOS.setAdapter(new ListaGenerica(mContexto, avisos.size(), onItem(avisos)));
     }
+
 
     public Acao getRecarregar() {
         return new Acao() {
@@ -118,11 +135,36 @@ public class AvisadorFragment extends Fragment {
                 Widget mWidget = new Widget(R.layout.item_aviso, inflater, parent);
 
                 TextView texto = mWidget.getTextView(R.id.item_aviso_texto);
+                Button arquivar = mWidget.getButton(R.id.item_aviso_arquivar);
                 Button remover = mWidget.getButton(R.id.item_aviso_remover);
 
 
                 texto.setText(eAviso.getMensagem());
 
+                texto.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.R)
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(view.getContext(), AvisoEditarActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("ID", eAviso.getID());
+                        view.getContext().startActivity(intent);
+
+
+                    }
+                });
+
+                arquivar.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.R)
+                    @Override
+                    public void onClick(View view) {
+
+                        Avisos.arquivar(eAviso.getID());
+                        RECARREGAR_LISTA.fazer();
+
+
+                    }
+                });
 
                 remover.setOnClickListener(new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.R)

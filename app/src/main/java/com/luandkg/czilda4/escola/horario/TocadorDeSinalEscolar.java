@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.luandkg.czilda4.escola.organizacao.Professor;
 import com.luandkg.czilda4.escola.organizacao.TurmaItem;
 import com.luandkg.czilda4.escola.tempo.Temporizador;
+import com.luandkg.czilda4.utils.AndroidTheme;
 import com.luandkg.czilda4.utils.Threader;
 import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.libs.tempo.Data;
@@ -29,6 +30,7 @@ public class TocadorDeSinalEscolar {
     private Context mContexto;
     private boolean sextou = false;
     private Temporizador mTemporizador;
+    private boolean isDark = false;
 
     public TocadorDeSinalEscolar(Context eContext, Temporizador eTemporizador, TextView eFazendo, ImageView eProgressante, Professor eProfessor) {
         mContexto = eContext;
@@ -36,6 +38,9 @@ public class TocadorDeSinalEscolar {
         mFazendo = eFazendo;
         mProgressante = eProgressante;
         mProfessor = eProfessor;
+
+          isDark = AndroidTheme.isDark(eContext);
+
     }
 
 
@@ -61,6 +66,7 @@ public class TocadorDeSinalEscolar {
             mTemporizador.setProgressPequeno(0);
 
             mTemporizador.setText("");
+            mTemporizador.setTema(isDark);
 
             // ----------------------------------------------------
 

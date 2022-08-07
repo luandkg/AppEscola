@@ -308,7 +308,7 @@ public class FluxoDeAtividades {
     }
 
 
-    public static Bitmap onBimestre(int v, int acabar) {
+    public static Bitmap onBimestre(int v, int acabar,boolean isDark) {
 
         int w = 500;
         int h = 500;
@@ -338,7 +338,12 @@ public class FluxoDeAtividades {
 
         Paint escritor = new Paint();
         escritor.setTextSize(150);
-        escritor.setColor(Color.WHITE);
+
+        if (isDark){
+            escritor.setColor(Color.WHITE);
+        }else{
+            escritor.setColor(Color.BLACK);
+        }
 
 
         Rect bounds = new Rect();

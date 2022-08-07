@@ -35,6 +35,23 @@ public class Mensionador {
 
     }
 
+    public static String getCorDaMensao(String eMensao) {
+        String ret = "";
+
+        if (eMensao.contentEquals(OMEGA)) {
+            ret = COR_OMEGA;
+        } else if (eMensao.contentEquals(ZETA)) {
+            ret = COR_ZETA;
+        } else if (eMensao.contentEquals(DELTA)) {
+            ret = COR_DELTA;
+        } else if (eMensao.contentEquals(ALFA)) {
+            ret = COR_ALFA;
+        }
+
+        return ret;
+
+    }
+
     public static double acima(String eMensao) {
 
         double valor = 0;

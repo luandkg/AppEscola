@@ -163,6 +163,111 @@ public class DesempenhoGrafico {
 
     }
 
+    public static Bitmap onMedias(ArrayList<AlunoContinuo> alunos_continuos, boolean isComRecuperacao) {
+
+        int w = 600;
+        int h = 250;
+
+        Bitmap bmp = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bmp);
+
+
+        Paint paint = new Paint();
+        paint.setStrokeWidth(1);
+        paint.setAntiAlias(true);
+        paint.setStrokeCap(Paint.Cap.BUTT);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(Color.parseColor("#455a64"));
+        paint.setTextSize(15);
+
+        Paint pintor_vermelho = new Paint();
+        pintor_vermelho.setColor(Color.parseColor(Mensionador.COR_OMEGA));
+        pintor_vermelho.setStyle(Paint.Style.FILL);
+
+        Paint pintor_laranja = new Paint();
+        pintor_laranja.setColor(Color.parseColor(Mensionador.COR_ZETA));
+        pintor_laranja.setStyle(Paint.Style.FILL);
+
+
+        Paint pintor_amarelo = new Paint();
+        pintor_amarelo.setColor(Color.parseColor(Mensionador.COR_DELTA));
+        pintor_amarelo.setStyle(Paint.Style.FILL);
+
+
+        Paint pintor_verde = new Paint();
+        pintor_verde.setColor(Color.parseColor(Mensionador.COR_ALFA));
+        pintor_verde.setStyle(Paint.Style.FILL);
+
+        Paint pintor_colorido = new Paint();
+        pintor_colorido.setColor(Color.parseColor(Mensionador.COR_ALFA));
+        pintor_colorido.setStyle(Paint.Style.FILL);
+
+        int ex = 50;
+
+        int px = 0;
+
+        int altura = h;
+
+        for (int a = 0; a <= 10; a++) {
+
+            paint.setColor(Color.parseColor("#455a64"));
+
+            int total = 0;
+
+            if (isComRecuperacao) {
+                total = DesempenhoIO.contar_com_recuperacao(alunos_continuos, a);
+            } else {
+                total = DesempenhoIO.contar_sem_recuperacao(alunos_continuos, a);
+            }
+
+            double prop = (double) total / (double) alunos_continuos.size();
+
+            int real = (int) (prop * 230.0F);
+
+            //real = 40;
+
+            if (real > 0) {
+                canvas.drawRect(ex + px, altura - real - 20, ex + px + 20, altura - 20, paint);
+
+                Paint pp = null;
+
+                if (a >= 0 && a < 3) {
+                    pp = pintor_vermelho;
+                } else if (a >= 3 && a < 5) {
+                    pp = pintor_laranja;
+                } else if (a >= 5 && a < 7) {
+                    pp = pintor_amarelo;
+                } else {
+                    pp = pintor_verde;
+                }
+
+                canvas.drawRect(ex + px, altura - real - 20, ex + px + 20, altura - 20, pp);
+
+
+                paint.setColor(PaletaDeCores.BRANCO);
+
+                if (String.valueOf(total).length() == 3) {
+                    canvas.drawText(String.valueOf(total), ex + px, altura - real - 30, paint);
+                } else {
+                    canvas.drawText(String.valueOf(total), ex + px + 5, altura - real - 30, paint);
+                }
+
+
+
+            }
+
+
+            paint.setColor(PaletaDeCores.BRANCO);
+            canvas.drawText(String.valueOf(a), ex + px + 5, altura - 5, paint);
+
+
+            px += 50;
+        }
+
+        return bmp;
+
+    }
+
     private static void drawTriangle(int x, int y, int width, int height, boolean inverted, Paint paint, Canvas canvas) {
 
         Point p1 = new Point(x, y);

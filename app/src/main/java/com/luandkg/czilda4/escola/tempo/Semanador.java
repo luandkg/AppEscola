@@ -51,6 +51,7 @@ public class Semanador {
     public static String getSemanaDataAnterior(String eData, ArrayList<SemanaContinua> semanas) {
 
         String semana_anterior_data = "";
+
         for (SemanaContinua eSemana : semanas) {
             if (eSemana.temData(eData)) {
                 break;

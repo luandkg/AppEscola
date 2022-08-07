@@ -143,7 +143,7 @@ public class Atualizador {
 
     }
 
-    public static ArrayList<Atualizacao> getAtualizacoes() {
+    public static ArrayList<Atualizacao> getAtualizacoesChamadas() {
 
         ArrayList<Atualizacao> mAtualizacoes = new ArrayList<Atualizacao>();
 

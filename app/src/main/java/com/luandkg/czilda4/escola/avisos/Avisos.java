@@ -22,17 +22,124 @@ public class Avisos {
         for (DKGObjeto ePacote : eDocumento.unicoObjeto("Avisos").getObjetos()) {
 
             String eID = ePacote.id_string("ID");
-            String mensagem = ePacote.id_string("Mensagem");
 
-            mAvisos.add(new Aviso(eID, mensagem));
+            if (!ePacote.identifique("EstaArquivado").isValor("SIM")) {
+                String mensagem = ePacote.id_string("Mensagem");
+                mAvisos.add(new Aviso(eID, mensagem));
+            }
+
 
         }
 
 
+        return ordenar(mAvisos);
+    }
+
+    public static ArrayList<Aviso> listar_arquivados() {
+
+        Local.organizarPastas();
+
+        ArrayList<Aviso> mAvisos = new ArrayList<Aviso>();
+
+        DKG eDocumento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_AVISOS);
+
+        for (DKGObjeto ePacote : eDocumento.unicoObjeto("Avisos").getObjetos()) {
+
+            String eID = ePacote.id_string("ID");
+
+            if (ePacote.identifique("EstaArquivado").isValor("SIM")) {
+                String mensagem = ePacote.id_string("Mensagem");
+                mAvisos.add(new Aviso(eID, mensagem));
+            }
+
+
+        }
 
 
         return ordenar(mAvisos);
     }
+
+    public static Aviso getAviso(String mID) {
+
+        Local.organizarPastas();
+
+        Aviso ret = null;
+
+        DKG eDocumento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_AVISOS);
+
+        for (DKGObjeto ePacote : eDocumento.unicoObjeto("Avisos").getObjetos()) {
+
+            String eID = ePacote.id_string("ID");
+            if (eID.contentEquals(mID)) {
+                String mensagem = ePacote.id_string("Mensagem");
+                ret = new Aviso(eID, mensagem);
+                break;
+            }
+
+        }
+
+
+        return ret;
+    }
+
+    public static void arquivar(String mID) {
+
+        Local.organizarPastas();
+
+        DKG eDocumento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_AVISOS);
+
+        for (DKGObjeto ePacote : eDocumento.unicoObjeto("Avisos").getObjetos()) {
+
+            String eID = ePacote.id_string("ID");
+            if (eID.contentEquals(mID)) {
+                ePacote.identifique("EstaArquivado").setValor("SIM");
+                break;
+            }
+
+        }
+
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_AVISOS, eDocumento);
+    }
+
+    public static void desarquivar(String mID) {
+
+        Local.organizarPastas();
+
+        DKG eDocumento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_AVISOS);
+
+        for (DKGObjeto ePacote : eDocumento.unicoObjeto("Avisos").getObjetos()) {
+
+            String eID = ePacote.id_string("ID");
+            if (eID.contentEquals(mID)) {
+                ePacote.identifique("EstaArquivado").setValor("NAO");
+                break;
+            }
+
+        }
+
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_AVISOS, eDocumento);
+    }
+
+
+    public static void alterar(String mID, String eMensagem) {
+
+        Local.organizarPastas();
+
+        DKG eDocumento = SigmaCollection.REQUIRED_COLLECTION_OR_BUILD(Local.COLECAO_AVISOS);
+
+        for (DKGObjeto ePacote : eDocumento.unicoObjeto("Avisos").getObjetos()) {
+
+            String eID = ePacote.id_string("ID");
+            if (eID.contentEquals(mID)) {
+                ePacote.identifique("Mensagem").setValor(eMensagem);
+                break;
+            }
+
+        }
+
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_AVISOS, eDocumento);
+    }
+
 
     public static void criar(String eMensagem) {
 

@@ -1,7 +1,9 @@
 package com.luandkg.czilda4.escola;
 
+import com.luandkg.czilda4.Local;
 import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
+import com.luandkg.czilda4.libs.sigmacollection.SigmaCollection;
 import com.luandkg.czilda4.utils.FS;
 import com.luandkg.czilda4.libs.tempo.Calendario;
 
@@ -9,7 +11,7 @@ import java.io.File;
 
 public class ArquivadorEscolaCompleta {
 
-    public static void salvar( String pasta_chamadas,String arquivo_notas, String arquivo_desempenhos, String arquivo) {
+    public static void salvar(String arquivo_tudo) {
 
 
         DKG documento = new DKG();
@@ -23,7 +25,7 @@ public class ArquivadorEscolaCompleta {
 
         // GUARDAR CHAMADAS
 
-        for (File arquivo_chamada : FS.listarArquivos(pasta_chamadas)) {
+        for (File arquivo_chamada : FS.listarArquivos(Local.LOCAL_REALIZAR_CHAMADA)) {
 
             DKG eDocumento = DKG.GET(arquivo_chamada.getAbsolutePath());
 
@@ -35,14 +37,14 @@ public class ArquivadorEscolaCompleta {
         }
 
 
-        DKG documento_notas = DKG.GET(FS.getArquivoLocal(arquivo_notas));
+        DKG documento_notas = SigmaCollection.INIT_COLLECTION(Local.COLECAO_NOTAS);
 
         for (DKGObjeto aluno : documento_notas.unicoObjeto("AVALIACAO_CONTINUA_FORMATIVA").getObjetos()) {
             mEscolaAvaliacoes.getObjetos().add(aluno);
         }
 
 
-        DKG documento_desempenhos = DKG.GET(FS.getArquivoLocal(arquivo_desempenhos));
+        DKG documento_desempenhos = SigmaCollection.INIT_COLLECTION(Local.COLECAO_DESEMPENHOS);
 
         for (DKGObjeto aluno : documento_desempenhos.unicoObjeto("DESEMPENHO").getObjetos()) {
             mEscolaDesempenhos.getObjetos().add(aluno);
@@ -51,7 +53,7 @@ public class ArquivadorEscolaCompleta {
 
         mEscola.identifique("DDM", Calendario.getHoraCompleta());
 
-        documento.salvar(arquivo);
+        documento.salvar(arquivo_tudo);
 
     }
 

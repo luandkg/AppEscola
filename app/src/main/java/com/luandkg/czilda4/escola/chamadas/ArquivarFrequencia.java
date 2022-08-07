@@ -1,6 +1,7 @@
 package com.luandkg.czilda4.escola.chamadas;
 
 import com.luandkg.czilda4.Local;
+import com.luandkg.czilda4.escola.tempo.Bimestre;
 import com.luandkg.czilda4.libs.dkg.DKG;
 import com.luandkg.czilda4.libs.dkg.DKGObjeto;
 import com.luandkg.czilda4.escola.CED1_Calendario;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 public class ArquivarFrequencia {
 
 
-    public static ArrayList<TurmaChamadas> carregar(Professor eProfessor) {
+    public static ArrayList<TurmaChamadas> carregar(Professor eProfessor, Bimestre eBimestre) {
 
         ArrayList<TurmaChamadas> turmas = new ArrayList<TurmaChamadas>();
 
@@ -41,9 +42,8 @@ public class ArquivarFrequencia {
             turmas.add(tc);
         }
 
-        CED1_Calendario calendario = new CED1_Calendario();
-        ArrayList<Data> BIMESTRE = calendario.getSegundo();
-        ArrayList<Data> ate = calendario.getSegundo();
+        ArrayList<Data> BIMESTRE = eBimestre.getDatas();
+        ArrayList<Data> ate = eBimestre.getDatas();
 
         int pos = Calendario.getIndice(BIMESTRE, Calendario.getData());
 

@@ -1,6 +1,5 @@
 package com.luandkg.czilda4.escola.tempo;
 
-import com.luandkg.czilda4.escola.CED1_Calendario;
 import com.luandkg.czilda4.libs.tempo.Data;
 
 import java.util.ArrayList;
@@ -8,51 +7,51 @@ import java.util.ArrayList;
 public class BimestreTemporal {
 
 
-    public static boolean temBimestre(String hoje, CED1_Calendario calendario) {
+    public static boolean temBimestre(String hoje, CalendarioEscolar calendario) {
         boolean ret = false;
 
-        System.out.println (" Primeiro :: " + CED1_Calendario.getPrimeiro().size());
+        System.out.println (" Primeiro :: " + calendario.PRIMEIRO_BIMESTRE().getDatas().size());
 
-        if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getPrimeiro())) {
+        if (BimestreTemporal.estouNesse(hoje, calendario.PRIMEIRO_BIMESTRE().getDatas())) {
             ret = true;
-        } else if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getSegundo())) {
+        } else if (BimestreTemporal.estouNesse(hoje, calendario.SEGUNDO_BIMESTRE().getDatas())) {
             ret = true;
-        } else if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getTerceiro())) {
+        } else if (BimestreTemporal.estouNesse(hoje, calendario.TERCEIRO_BIMESTRE().getDatas())) {
             ret = true;
-        } else if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getQuarto())) {
+        } else if (BimestreTemporal.estouNesse(hoje, calendario.QUARTO_BIMESTRE().getDatas())) {
             ret = true;
         }
 
         return ret;
     }
 
-    public static String getBimestreNome(String hoje ) {
+    public static String getBimestreNome(String hoje ,CalendarioEscolar calendario) {
         String ret = "0";
 
-        if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getPrimeiro())) {
+        if (BimestreTemporal.estouNesse(hoje, calendario.PRIMEIRO_BIMESTRE().getDatas())) {
             ret = "1";
-        } else if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getSegundo())) {
+        } else if (BimestreTemporal.estouNesse(hoje, calendario.SEGUNDO_BIMESTRE().getDatas())) {
             ret = "2";
-        } else if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getTerceiro())) {
+        } else if (BimestreTemporal.estouNesse(hoje, calendario.TERCEIRO_BIMESTRE().getDatas())) {
             ret = "3";
-        } else if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getQuarto())) {
+        } else if (BimestreTemporal.estouNesse(hoje, calendario.QUARTO_BIMESTRE().getDatas())) {
             ret = "4";
         }
 
         return ret;
     }
 
-    public static ArrayList<Data> getBimestre(String hoje ) {
+    public static ArrayList<Data> getBimestre(String hoje,CalendarioEscolar calendario ) {
         ArrayList<Data> ret = new ArrayList<Data>();
 
-        if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getPrimeiro())) {
-            ret = CED1_Calendario.getPrimeiro();
-        } else if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getSegundo())) {
-            ret = CED1_Calendario.getSegundo();
-        } else if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getTerceiro())) {
-            ret = CED1_Calendario.getTerceiro();
-        } else if (BimestreTemporal.estouNesse(hoje, CED1_Calendario.getQuarto())) {
-            ret = CED1_Calendario.getQuarto();
+        if (BimestreTemporal.estouNesse(hoje, calendario.PRIMEIRO_BIMESTRE().getDatas())) {
+            ret = calendario.PRIMEIRO_BIMESTRE().getDatas();
+        } else if (BimestreTemporal.estouNesse(hoje, calendario.SEGUNDO_BIMESTRE().getDatas())) {
+            ret = calendario.SEGUNDO_BIMESTRE().getDatas();
+        } else if (BimestreTemporal.estouNesse(hoje, calendario.TERCEIRO_BIMESTRE().getDatas())) {
+            ret = calendario.TERCEIRO_BIMESTRE().getDatas();
+        } else if (BimestreTemporal.estouNesse(hoje, calendario.QUARTO_BIMESTRE().getDatas())) {
+            ret = calendario.QUARTO_BIMESTRE().getDatas();
         }
 
         return ret;

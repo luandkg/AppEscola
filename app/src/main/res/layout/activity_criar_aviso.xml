@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".atividades.CriarAvisoActivity">
+    tools:context=".atividades.AvisoCriarActivity">
 
     <TextView
         android:layout_width="match_parent"

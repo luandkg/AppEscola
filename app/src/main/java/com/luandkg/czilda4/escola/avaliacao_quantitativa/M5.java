@@ -212,7 +212,7 @@ public class M5 {
 
     }
 
-    public static Bitmap criarFluxoDeEntrega() {
+    public static Bitmap criarFluxoDeEntrega(ArrayList<Data> datas) {
 
         int w = 400;
         int h = 200;
@@ -229,9 +229,9 @@ public class M5 {
         paint2.setColor(Color.WHITE);
         paint2.setTextSize(200);
 
-        CED1_Calendario calendario = new CED1_Calendario();
+      //  CED1_Calendario calendario = new CED1_Calendario();
 
-        int dias = calendario.getPrimeiro().size();
+        int dias = datas.size();
         int parcela = w / dias;
 
         Armazem armazenar = new Armazem("Escola");
@@ -255,7 +255,7 @@ public class M5 {
 
         int eixo_x = 0;
 
-        for (Data data : calendario.getPrimeiro()) {
+        for (Data data : datas) {
 
             int atividades = AtividadeContador.contar(eAlunos, data.getTempo());
 

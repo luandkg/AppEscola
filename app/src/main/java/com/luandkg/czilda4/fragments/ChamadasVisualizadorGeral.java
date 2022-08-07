@@ -1,5 +1,6 @@
 package com.luandkg.czilda4.fragments;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -24,6 +25,7 @@ import com.luandkg.czilda4.utils.ActivityStarter;
 import com.luandkg.czilda4.libs.tempo.Calendario;
 import com.luandkg.czilda4.libs.tempo.Data;
 import com.luandkg.czilda4.databinding.FragmentChamadasVisualizadorGeralBinding;
+import com.luandkg.czilda4.utils.AndroidTheme;
 import com.luandkg.czilda4.zilda2020.exportadores.FluxoDeAtividades;
 
 import java.util.ArrayList;
@@ -56,6 +58,7 @@ public class ChamadasVisualizadorGeral extends Fragment {
     private Button LAB_QUI;
     private Button LAB_SEX;
 
+    private Context mContexto;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,6 +85,7 @@ public class ChamadasVisualizadorGeral extends Fragment {
         LAB_QUI = mInterface.chamadasBimestreLabQui;
         LAB_SEX = mInterface.chamadasBimestreLabSex;
 
+        mContexto = this.getContext();
 
         CED1_Calendario ESCOLA_CALENDARIO = new CED1_Calendario();
 
@@ -95,30 +99,32 @@ public class ChamadasVisualizadorGeral extends Fragment {
 
         SEGUNDO_BIMESTRE = eBimestre.getDatas();
 
+        CED1_Calendario calendario = new CED1_Calendario();
+
         if (BimestreTemporal.temBimestre(HOJE_DATA, ESCOLA_CALENDARIO)) {
 
-            String bimestre = BimestreTemporal.getBimestreNome(HOJE_DATA);
-            ArrayList<Data> datas = BimestreTemporal.getBimestre(HOJE_DATA);
+            String bimestre = BimestreTemporal.getBimestreNome(HOJE_DATA,calendario);
+            ArrayList<Data> datas = BimestreTemporal.getBimestre(HOJE_DATA,calendario);
 
             mostrar(HOJE_DATA, Calendario.getData() + " - " + bimestre + "º BIMESTRE", datas);
 
-        } else if (CED1_Calendario.isRecesso(Calendario.getDataHoje())) {
+        } else if (calendario.isRecesso(Calendario.getDataHoje())) {
 
             TV_CONTAGEM_TEXTO.setText(Calendario.getData() + " - RECESSO !");
 
-            TV_BIMESTRE_INICIO.setText(Calendario.filtrar_primeira(CED1_Calendario.getRecesso()).getTempoLegivel());
-            TV_BIMESTRE_FIM.setText(Calendario.filtrar_ultima(CED1_Calendario.getRecesso()).getTempoLegivel());
+            TV_BIMESTRE_INICIO.setText(Calendario.filtrar_primeira(calendario.getRecesso()).getTempoLegivel());
+            TV_BIMESTRE_FIM.setText(Calendario.filtrar_ultima(calendario.getRecesso()).getTempoLegivel());
 
-            double acabar = (double) CED1_Calendario.recesso_passou(Calendario.getDataHoje()) / (double) CED1_Calendario.getRecesso().size();
+            double acabar = (double) calendario.recesso_passou(Calendario.getDataHoje()) / (double) calendario.getRecesso().size();
 
 
-            int para_acabar = CED1_Calendario.getRecesso().size() - CED1_Calendario.recesso_passou(Calendario.getDataHoje());
+            int para_acabar = calendario.getRecesso().size() - calendario.recesso_passou(Calendario.getDataHoje());
 
-            IV_CONTAGEM_TEMPO.setImageBitmap(FluxoDeAtividades.onBimestre((int) (acabar * 100.0f), para_acabar));
+            IV_CONTAGEM_TEMPO.setImageBitmap(FluxoDeAtividades.onBimestre((int) (acabar * 100.0f), para_acabar, AndroidTheme.isDark(mContexto)));
 
         }
 
-        int alunos_quantidade =  Escola.getAlunosVisiveis().size();
+        int alunos_quantidade = Escola.getAlunosVisiveis().size();
 
         IV_VISUALIZADOR.setImageBitmap(FluxoDeChamadas.criarFluxoDePresenca(alunos_quantidade, eBimestre, Local.COLECAO_ESTATISTICAS));
 
@@ -141,7 +147,7 @@ public class ChamadasVisualizadorGeral extends Fragment {
         int acabar = BimestreTemporal.getDiasParaAcabar(hoje, datas);
         int progresso = BimestreTemporal.getPorcentagem(hoje, datas);
 
-        IV_CONTAGEM_TEMPO.setImageBitmap(FluxoDeAtividades.onBimestre(progresso, acabar));
+        IV_CONTAGEM_TEMPO.setImageBitmap(FluxoDeAtividades.onBimestre(progresso, acabar,AndroidTheme.isDark(mContexto)));
 
         BTN_SEG.setText("0");
         BTN_TER.setText("0");

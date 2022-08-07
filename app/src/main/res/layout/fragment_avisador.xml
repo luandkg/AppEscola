@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    tools:context=".fragments.AtualizacoesFragment">
+    tools:context=".fragments.ChamadasFragment">
 
     <ListView
         android:id="@+id/avisador_listagem"
@@ -15,11 +15,19 @@
         android:orientation="vertical" />
 
     <Button
-            android:id="@+id/avisador_criar_aviso"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="2dp"
-            android:text="Criar Aviso" />
+        android:id="@+id/avisador_criar_aviso"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:text="CRIAR AVISO" />
 
+
+    <Button
+        android:id="@+id/avisador_arquivados"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="2dp"
+        android:backgroundTint="#ffb300"
+        android:text="ARQUIVADOS" />
 
 </LinearLayout>

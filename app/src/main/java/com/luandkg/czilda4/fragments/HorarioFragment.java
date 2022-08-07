@@ -20,6 +20,7 @@ import com.luandkg.czilda4.escola.tempo.Temporizador;
 import com.luandkg.czilda4.utils.Itenizador;
 import com.luandkg.czilda4.utils.ListaGenerica;
 import com.luandkg.czilda4.libs.tempo.Calendario;
+import com.luandkg.czilda4.utils.RefInt;
 import com.luandkg.czilda4.utils.Widget;
 import com.luandkg.czilda4.utils.PaletaDeCores;
 import com.luandkg.czilda4.escola.organizacao.Professor;
@@ -29,6 +30,8 @@ import com.luandkg.czilda4.escola.organizacao.TurmaItem;
 import com.luandkg.czilda4.databinding.FragmentTurmaBinding;
 
 import java.util.ArrayList;
+
+import kotlin.jvm.internal.Ref;
 
 public class HorarioFragment extends Fragment {
 
@@ -69,7 +72,6 @@ public class HorarioFragment extends Fragment {
         mRodape = (TextView) binding.rodape;
 
         mLista = (ListView) binding.lista;
-
 
 
         mProgresoEscola.setBackgroundColor(Color.TRANSPARENT);
@@ -137,7 +139,7 @@ public class HorarioFragment extends Fragment {
         mTemporizador = new Temporizador();
         mTemporizador.setProgressGrande(0);
 
-        mTemporizador.set(Calendario.getDiaAtual(), 0,false, mProfessor);
+        mTemporizador.set(Calendario.getDiaAtual(), 0, false, mProfessor);
         mTemporizador.podeDesenhar();
 
         mTocadorDeSinalEscolar = new TocadorDeSinalEscolar(this.getContext(), mTemporizador, mFazendo, mProgresoEscola, mProfessor);
@@ -167,75 +169,79 @@ public class HorarioFragment extends Fragment {
         mQuinta.setBackgroundColor(VERMELHO);
         mSexta.setBackgroundColor(VERMELHO);
 
+        String DIA_HOJE = Calendario.getDiaAtual();
+        RefInt TEMPO_AGORA = new RefInt(Calendario.getTempoDoDia());
 
         if (mSelecionado.contentEquals("HOJE")) {
 
             mHoje.setBackgroundColor(VERDE);
 
-            String eHoje = Calendario.getDiaAtual();
 
             String HOJE_DATA = Calendario.getADMComBarras();
 
             if (mProfessor.temReposicao(HOJE_DATA)) {
 
                 Reposicao eReposicao = mProfessor.getReposicao(HOJE_DATA);
-                eHoje = eReposicao.getReferente();
+                DIA_HOJE = eReposicao.getReferente();
 
             }
 
 
-            if (Calendario.isIgual(Calendario.SEGUNDA, eHoje)) {
+            if (Calendario.isIgual(Calendario.SEGUNDA, DIA_HOJE)) {
                 mSegunda.setBackgroundColor(AMARELO);
-            } else if (Calendario.isIgual(Calendario.TERCA, eHoje)) {
+            } else if (Calendario.isIgual(Calendario.TERCA, DIA_HOJE)) {
                 mTerca.setBackgroundColor(AMARELO);
-            } else if (Calendario.isIgual(Calendario.QUARTA, eHoje)) {
+            } else if (Calendario.isIgual(Calendario.QUARTA, DIA_HOJE)) {
                 mQuarta.setBackgroundColor(AMARELO);
-            } else if (Calendario.isIgual(Calendario.QUINTA, eHoje)) {
+            } else if (Calendario.isIgual(Calendario.QUINTA, DIA_HOJE)) {
                 mQuinta.setBackgroundColor(AMARELO);
-            } else if (Calendario.isIgual(Calendario.SEXTA, eHoje)) {
+            } else if (Calendario.isIgual(Calendario.SEXTA, DIA_HOJE)) {
                 mSexta.setBackgroundColor(AMARELO);
             }
 
 
             ArrayList<TurmaItem> horarios = TurmaItem.filtrarTurmas(Calendario.getDiaAtual(), mProfessor.getTurmas());
 
-            mLista.setAdapter(new ListaGenerica(getContext(), horarios.size(), onItem(horarios, mProfessor)));
+            mLista.setAdapter(new ListaGenerica(getContext(), horarios.size(), onItem(horarios, mProfessor, Calendario.getDiaAtual(), DIA_HOJE, TEMPO_AGORA)));
 
 
         } else if (Calendario.isIgual(Calendario.SEGUNDA, mSelecionado)) {
 
-            organizar(mHoje, mSegunda, Calendario.SEGUNDA, VERDE, AMARELO);
+            organizar(mHoje, mSegunda, Calendario.SEGUNDA, DIA_HOJE, VERDE, AMARELO);
 
         } else if (Calendario.isIgual(Calendario.TERCA, mSelecionado)) {
 
-            organizar(mHoje, mTerca, Calendario.TERCA, VERDE, AMARELO);
+            organizar(mHoje, mTerca, Calendario.TERCA, DIA_HOJE, VERDE, AMARELO);
 
         } else if (Calendario.isIgual(Calendario.QUARTA, mSelecionado)) {
 
-            organizar(mHoje, mQuarta, Calendario.QUARTA, VERDE, AMARELO);
+            organizar(mHoje, mQuarta, Calendario.QUARTA, DIA_HOJE, VERDE, AMARELO);
 
         } else if (Calendario.isIgual(Calendario.QUINTA, mSelecionado)) {
 
-            organizar(mHoje, mQuinta, Calendario.QUINTA, VERDE, AMARELO);
+            organizar(mHoje, mQuinta, Calendario.QUINTA, DIA_HOJE, VERDE, AMARELO);
 
         } else if (Calendario.isIgual(Calendario.SEXTA, mSelecionado)) {
 
-            organizar(mHoje, mSexta, Calendario.SEXTA, VERDE, AMARELO);
+            organizar(mHoje, mSexta, Calendario.SEXTA, DIA_HOJE, VERDE, AMARELO);
 
         }
 
 
     }
 
-    public void organizar(Button eHoje, Button eButton, String eDia, int VERDE, int AMARELO) {
+    public void organizar(Button eHoje, Button eButton, String DIA_SELECIONADO, String DIA_HOJE, int VERDE, int AMARELO) {
 
         eButton.setBackgroundColor(VERDE);
 
-        ArrayList<TurmaItem> horarios = TurmaItem.filtrarTurmas(eDia, mProfessor.getTurmas());
 
-        mLista.setAdapter(new ListaGenerica(getContext(), horarios.size(), onItem(horarios, mProfessor)));
+        ArrayList<TurmaItem> horarios = TurmaItem.filtrarTurmas(DIA_SELECIONADO, mProfessor.getTurmas());
 
-        if (Calendario.getDiaAtual().contentEquals(eDia)) {
+        RefInt TEMPO_AGORA = new RefInt(Calendario.getTempoDoDia());
+
+        mLista.setAdapter(new ListaGenerica(getContext(), horarios.size(), onItem(horarios, mProfessor, DIA_SELECIONADO, DIA_HOJE, TEMPO_AGORA)));
+
+        if (Calendario.getDiaAtual().contentEquals(DIA_SELECIONADO)) {
             eHoje.setBackgroundColor(VERDE);
             eButton.setBackgroundColor(AMARELO);
         }
@@ -243,7 +249,7 @@ public class HorarioFragment extends Fragment {
     }
 
 
-    public Itenizador onItem(ArrayList<TurmaItem> eLista, Professor eProfesssor) {
+    public Itenizador onItem(ArrayList<TurmaItem> eLista, Professor eProfesssor, String DIA_SELECIONADO, String DIA_HOJE, RefInt TEMPO_AGORA) {
         return new Itenizador() {
 
             @Override
@@ -299,12 +305,27 @@ public class HorarioFragment extends Fragment {
 
                 if (eProfesssor.getSigla().contentEquals("LUAN")) {
 
+                    mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#4CAF50"));
+
+
+                    if (DIA_SELECIONADO.contentEquals(DIA_HOJE)) {
+                        if (TEMPO_AGORA.get() > eTurmaItem.getFim()) {
+                            mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#F44336"));
+                        }
+                    } else {
+                        if (Calendario.isAntes(DIA_SELECIONADO, DIA_HOJE)) {
+                            mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#F44336"));
+                        } else {
+                            mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#4CAF50"));
+                        }
+                    }
+
                     if (eTurmaItem.getNome().contains("9")) {
-                        mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#4CAF50"));
+                        // mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#4CAF50"));
                     } else if (eTurmaItem.getNome().contains("8")) {
-                        mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#F44336"));
+                        //   mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#F44336"));
                     } else if (eTurmaItem.getNome().contains("7")) {
-                        mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#FDD835"));
+                        //  mTurmaItemStruct.status.setBackgroundColor(Color.parseColor("#FDD835"));
                     }
 
                 } else if (eProfesssor.getSigla().contentEquals("GG")) {

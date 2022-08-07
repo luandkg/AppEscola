@@ -66,6 +66,45 @@ public class Hoje {
         return turmas_realizadas;
     }
 
+    public static boolean  estava_presente(String eHoje,String alunoID) {
+
+      boolean ret = false;
+
+        String chamada_arquivo = Local.LOCAL_REALIZAR_CHAMADA + "/" + eHoje + ".dkg";
+
+        DKG documento_chamadas = new DKG();
+
+        //    System.out.println(chamada_arquivo);
+
+        if (FS.arquivoExiste(chamada_arquivo)) {
+            documento_chamadas.abrir(FS.getArquivoLocal(chamada_arquivo));
+
+            DKGObjeto eChamada = documento_chamadas.unicoObjeto("Chamada");
+
+          //    System.out.println(documento_chamadas.toString());
+
+            for (DKGObjeto chamada : eChamada.getObjetos()) {
+
+                String turma = chamada.identifique("Turma").getValor();
+                String v_alunoid = chamada.identifique("ID").getValor();
+                String v_status = chamada.identifique("Status").getValor();
+
+                if (v_alunoid.contentEquals(alunoID)){
+                    if (v_status.contentEquals("PRESENTE")){
+                        ret=true;
+                    }
+                    break;
+                }
+
+            }
+
+
+        }
+
+        return ret;
+    }
+
+
     public static ArrayList<TurmaComHorario> getTurmasRealizadasComHorario(String eHoje) {
 
         ArrayList<String> turmas_realizadas = new ArrayList<String>();

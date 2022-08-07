@@ -38,27 +38,24 @@ public class Frequenciometro {
 
         Local.organizarPastas();
 
-        DKG eArquivoChamadas = SigmaCollection.CREATE_COLLECTION("CHAMADAS");
+        DKG CHAMADAS_COLECAO = SigmaCollection.CREATE_COLLECTION("CHAMADAS");
 
-        for (File arquivo : FS.listarArquivos(Local.LOCAL_REALIZAR_CHAMADA)) {
+        for (File chamada_do_dia : FS.listarArquivos(Local.LOCAL_REALIZAR_CHAMADA)) {
 
-            DKG eDocumento = DKG.GET(arquivo.getAbsolutePath());
+            DKG eDocumento = DKG.GET(chamada_do_dia.getAbsolutePath());
 
-            DKGObjeto chamada_dia = eArquivoChamadas.unicoObjeto("CHAMADAS").criarObjeto("CHAMADA");
+            DKGObjeto chamada_dia = CHAMADAS_COLECAO.unicoObjeto("CHAMADAS").criarObjeto("CHAMADA");
 
-            chamada_dia.identifique("Data", arquivo.getName());
+            chamada_dia.identifique("Data", chamada_do_dia.getName());
             chamada_dia.getObjetos().addAll(eDocumento.unicoObjeto("Chamada").getObjetos());
 
         }
 
-       // eArquivoChamadas.salvar(FS.getArquivoLocal(Local.LOCAL_CACHE + "/" + Local.ARQUIVO_CHAMADAS));
 
-        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_CHAMADAS,eArquivoChamadas);
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_CHAMADAS, CHAMADAS_COLECAO);
 
         System.out.println("Salvar chamadas completa !");
-       // System.out.println("Arquivo :: " + Local.LOCAL_CACHE + "/" + Local.ARQUIVO_CHAMADAS);
 
-     //   SigmaCollection.organizar(Local.COLECAO_CHAMADAS);
 
     }
 
@@ -143,8 +140,8 @@ public class Frequenciometro {
 
         }
 
-      SigmaCollection.WRITE_COLLECTION(Local.COLECAO_FREQUENCIAS,eArquivoChamadas);
-        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_ESTATISTICAS,eArquivoEstatisticas);
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_FREQUENCIAS, eArquivoChamadas);
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_ESTATISTICAS, eArquivoEstatisticas);
 
 
         System.out.println(eArquivoEstatisticas.toString());

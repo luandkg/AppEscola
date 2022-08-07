@@ -4,6 +4,7 @@ import com.luandkg.czilda4.escola.alunos.AlunoChamadas;
 import com.luandkg.czilda4.escola.chamadas.ArquivarFrequencia;
 import com.luandkg.czilda4.escola.chamadas.TurmaChamadas;
 import com.luandkg.czilda4.escola.organizacao.Professor;
+import com.luandkg.czilda4.escola.tempo.Bimestre;
 
 import java.util.ArrayList;
 
@@ -25,10 +26,10 @@ public class CarregadorDeFrequencia {
         return ret;
     }
 
-    public static ArrayList<TurmaChamadas> carregar(Professor eProfessor) {
+    public static ArrayList<TurmaChamadas> carregar(Professor eProfessor, Bimestre eBimestre) {
 
         if (!carregado) {
-            turmas = ArquivarFrequencia.carregar(eProfessor);
+            turmas = ArquivarFrequencia.carregar(eProfessor,eBimestre);
             carregado = true;
         }
 

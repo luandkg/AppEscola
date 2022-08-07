@@ -19,7 +19,7 @@ import com.luandkg.czilda4.escola.alunos.Aluno;
 import com.luandkg.czilda4.escola.chamadas.Chamada;
 import com.luandkg.czilda4.escola.utils.ContadorSN;
 import com.luandkg.czilda4.escola.chamadas.Frequenciometro;
-import com.luandkg.czilda4.fragments.AtualizacoesFragment;
+import com.luandkg.czilda4.fragments.ChamadasFragment;
 import com.luandkg.czilda4.escola.atualizador.Atualizador;
 import com.luandkg.czilda4.escola.alunos.OrdenarAlunos;
 import com.luandkg.czilda4.R;
@@ -110,7 +110,7 @@ public class RealizarChamada extends AppCompatActivity {
 
         Toast.makeText(getBaseContext(), "Salvando chamada !", Toast.LENGTH_SHORT).show();
 
-        AtualizacoesFragment.RECARREGAR_LISTA.fazer();
+        ChamadasFragment.RECARREGAR_LISTA.fazer();
 
     }
 

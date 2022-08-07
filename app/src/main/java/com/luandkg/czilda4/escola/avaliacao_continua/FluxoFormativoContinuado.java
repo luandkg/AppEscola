@@ -615,6 +615,8 @@ public class FluxoFormativoContinuado {
         paint2.setTextSize(200);
 
 
+        int eixo_x = 0;
+
         int entre_semanas = 5;
 
         int coluna_largura = (w - ((eBimestre.getSemanas().size() + 1) * entre_semanas)) / quais_datas.size();
@@ -629,15 +631,16 @@ public class FluxoFormativoContinuado {
 
         int coluna_largura_real = coluna_largura - 1;
 
+
         int semana_contador = 1;
 
-        int eixo_x = afastar;
-
-        for (SemanaContinua sc : eBimestre.getSemanas()) {
+        for (SemanaContinua eSemana : eBimestre.getSemanas()) {
 
             eixo_x = afastar + (semana_contador * entre_semanas) + ((semana_contador - 1) * 7 * coluna_largura);
+            semana_contador += 1;
 
-            for (Data data : sc.getDatas()) {
+
+            for (Data data : eSemana.getDatas()) {
 
                 for (SemanaContinuaValores eSemanaContinuaValores : mSemanas) {
 
@@ -662,7 +665,6 @@ public class FluxoFormativoContinuado {
 
             }
 
-            semana_contador += 1;
 
         }
 
@@ -1053,6 +1055,65 @@ public class FluxoFormativoContinuado {
 
             float angulo_tamanho = Matematica.getAnguloInt(iporcentagem);
             canvas.drawArc(new RectF(width - 200, height - 200, width + 200, height + 200), mStartAngle, angulo_tamanho, false, desenhar_fino);
+        }
+
+
+        // MODO DE ATIVIDADE
+
+        int c_um = tres;
+        int c_dois = dois;
+        int c_tres = um;
+
+        boolean tem_classificao = false;
+
+        if (um + dois + tres > 0) {
+            tem_classificao = true;
+        }
+
+        if (tem_classificao) {
+
+            String classificao = "Z";
+            String classifica_cor = "#b71c1c";
+
+            if (c_um > (c_dois + c_tres)) {
+                classificao = "A+";
+                classifica_cor = "#4caf50";
+            }
+
+            if (c_um == (c_dois + c_tres)) {
+                classificao = "A";
+                classifica_cor = "#4caf50";
+            }
+
+            if (c_dois > (c_um + c_tres)) {
+                classificao = "B";
+                classifica_cor = "#f57f17";
+            }
+
+            if (c_dois == (c_um + c_tres)) {
+                classificao = "B+";
+                classifica_cor = "#f57f17";
+            }
+
+            if (c_tres > (c_um + c_dois)) {
+                classificao = "C";
+                classifica_cor = "#e53935";
+            }
+
+            if (c_tres == (c_um + c_dois)) {
+                classificao = "C+";
+                classifica_cor = "#e53935";
+            }
+
+            Paint paint2 = new Paint();
+            paint2.setColor(Color.parseColor(classifica_cor));
+            paint2.setTextSize(120);
+
+            Rect bounds = new Rect();
+            paint2.getTextBounds(String.valueOf(classificao), 0, String.valueOf(classificao).length(), bounds);
+            int tamanho = bounds.width();
+
+            canvas.drawText(String.valueOf(classificao), (w / 2) - (tamanho / 2), (h / 2) + 40, paint2);
         }
 
 

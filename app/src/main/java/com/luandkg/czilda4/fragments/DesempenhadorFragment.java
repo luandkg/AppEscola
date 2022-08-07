@@ -97,17 +97,27 @@ public class DesempenhadorFragment extends Fragment {
             DesempenhoIO.guardar(Local.COLECAO_DESEMPENHOS, semana_atual_data, alunos_continuos);
         }
 
-        DesempenhoReferencia mSEM_Antes = DesempenhoIO.getDesempenho_Sem(Local.COLECAO_DESEMPENHOS, semana_anterior_data);
-        DesempenhoReferencia mSEM_Agora = DesempenhoIO.getDesempenho_Sem(Local.COLECAO_DESEMPENHOS, semana_atual_data);
+        if (semana_anterior_data.length() > 0) {
+
+            DesempenhoReferencia mSEM_Antes = DesempenhoIO.getDesempenho_Sem(Local.COLECAO_DESEMPENHOS, semana_anterior_data);
+            DesempenhoReferencia mSEM_Agora = DesempenhoIO.getDesempenho_Sem(Local.COLECAO_DESEMPENHOS, semana_atual_data);
 
 
-        DesempenhoReferencia mCOM_Antes = DesempenhoIO.getDesempenho_Com(Local.COLECAO_DESEMPENHOS, semana_anterior_data);
-        DesempenhoReferencia mCOM_Agora = DesempenhoIO.getDesempenho_Com(Local.COLECAO_DESEMPENHOS, semana_atual_data);
+            DesempenhoReferencia mCOM_Antes = DesempenhoIO.getDesempenho_Com(Local.COLECAO_DESEMPENHOS, semana_anterior_data);
+            DesempenhoReferencia mCOM_Agora = DesempenhoIO.getDesempenho_Com(Local.COLECAO_DESEMPENHOS, semana_atual_data);
+
+            IV_PRE.setImageBitmap(DesempenhoGrafico.onMedias(alunos_continuos, mSEM_Antes, mSEM_Agora, false));
+            IV_POS.setImageBitmap(DesempenhoGrafico.onMedias(alunos_continuos, mCOM_Antes, mCOM_Agora, true));
 
 
+        } else {
 
-        IV_PRE.setImageBitmap(DesempenhoGrafico.onMedias(alunos_continuos, mSEM_Antes, mSEM_Agora, false));
-        IV_POS.setImageBitmap(DesempenhoGrafico.onMedias(alunos_continuos, mCOM_Antes, mCOM_Agora, true));
+            IV_PRE.setImageBitmap(DesempenhoGrafico.onMedias(alunos_continuos, false));
+            IV_POS.setImageBitmap(DesempenhoGrafico.onMedias(alunos_continuos, true));
+
+
+        }
+
 
         Mensoes mensoes = Mensionador.contarMensoes(alunos_continuos);
 

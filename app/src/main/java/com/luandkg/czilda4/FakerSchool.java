@@ -23,21 +23,21 @@ public class FakerSchool {
         DKG eDKGAlunos = new DKG();
         DKGObjeto eAlunos = eDKGAlunos.unicoObjeto("Alunos");
 
-        criarAluno(eAlunos, "1001", "Luan Alves Freitas", "9A");
-        criarAluno(eAlunos, "1002", "Ana Alves Freitas", "9A");
-        criarAluno(eAlunos, "1003", "Carlos Alves Freitas", "9A");
+        criarAluno(eAlunos, "1001", "Eduardo Xiz Connor", "9A");
+        criarAluno(eAlunos, "1002", "Sarah Connor Lincor", "9A");
+        criarAluno(eAlunos, "1003", "Ruevaldo Sariel Abandonado", "9A");
         criarAluno(eAlunos, "1004", "Hudofrito de Ovos", "9A");
         criarAluno(eAlunos, "1005", "Rodolfinho Camargo", "9A");
         criarAluno(eAlunos, "1006", "Alexon de Souza", "9A");
         criarAluno(eAlunos, "1007", "Ricardinho Fuleiro", "9A");
         criarAlunoVivencia(eAlunos, "1009", "Pauleiro Korzz", "9A", "8C");
         criarAlunoVivencia(eAlunos, "1010", "Vulqueto Mion", "9A", "8A");
-        criarAluno(eAlunos, "1011", "Flaukal Aargos", "9A");
+        criarAluno(eAlunos, "1011", "Flakkal Aargos", "9A");
 
         criarAluno(eAlunos, "2001", "Amanda Fuleiro", "9B");
         criarAluno(eAlunos, "2002", "Lucas Gritador", "9B");
         criarAluno(eAlunos, "2003", "Ricardinho Xato", "9B");
-        criarAluno(eAlunos, "2004", "Grosso Marcos", "9B");
+        criarAluno(eAlunos, "2004", "Gordinho Marcos", "9B");
         criarAlunoVivencia(eAlunos, "2005", "Marquinhos Shaun", "9B", "8E");
         criarAlunoVivencia(eAlunos, "2006", "Lukkinhas Monz", "9B", "8G");
 
@@ -54,53 +54,136 @@ public class FakerSchool {
         criarAluno(eAlunos, "4004", "Cabritinho Quin", "9D");
         criarAluno(eAlunos, "4005", "Bernardo Xorgs", "9D");
 
-        criarAluno(eAlunos, "9001", "Vinn Samuca", "9G");
-        criarAluno(eAlunos, "9002", "Xuzz Samuca", "9G");
-        criarAluno(eAlunos, "9003", "Algom Lerdus", "9G");
+        criarAluno(eAlunos, "5001", "Pedrinho Briengo", "9E");
+        criarAluno(eAlunos, "5002", "Alfredinho Caue", "9E");
+
+        criarAluno(eAlunos, "9001", "Sabrina Samuca", "9G");
+        criarAluno(eAlunos, "9002", "Wesley Samuca", "9G");
+        criarAluno(eAlunos, "9003", "Alfredo Lerdus", "9G");
 
         SigmaCollection.WRITE_COLLECTION(Local.COLECAO_ALUNOS, eDKGAlunos);
         //  eDKGAlunos.salvar(FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
 
-        criarAtividade("2022_04_22");
-        criarAtividade("2022_04_24");
-        criarAtividade("2022_04_26");
-        criarAtividade("2022_04_28");
-        criarAtividade("2022_04_30");
+        criarAtividade("2022_07_22");
+        criarAtividade("2022_07_24");
+        criarAtividade("2022_07_26");
+        criarAtividade("2022_07_28");
+        criarAtividade("2022_07_30");
 
-        criarAtividade("2022_05_05");
+        criarAtividade("2022_08_05");
+        criarAtividade("2022_08_12");
+        criarAtividade("2022_08_20");
+        criarAtividade("2022_08_22");
+
+        criarAtividade("2022_08_24");
+        criarAtividade("2022_08_26");
+        criarAtividade("2022_08_28");
+        criarAtividade("2022_08_30");
+
+        criarAtividade("2022_09_03");
+        criarAtividade("2022_09_05");
+        criarAtividade("2022_09_08");
+        criarAtividade("2022_09_10");
+
+        criarAtividade("2022_09_12");
+        criarAtividade("2022_09_14");
+        criarAtividade("2022_09_16");
+        criarAtividade("2022_09_18");
+
+        criarAtividade("2022_09_20");
+        criarAtividade("2022_09_21");
+        criarAtividade("2022_09_22");
+        criarAtividade("2022_09_23");
+        criarAtividade("2022_09_24");
+
+        criarAtividade("2022_09_30");
+        criarAtividade("2022_09_03");
+        criarAtividade("2022_09_08");
+        criarAtividade("2022_09_10");
+
+        criarAtividade(Calendario.getADMComTracoInferior());
+
+        criarRecuperacao(3, "2022_08_22", "2022_08_24", "2022_08_26");
+
+    }
+
+    public static void init_segundo() {
+
+        DKG eDKGAlunos = new DKG();
+        DKGObjeto eAlunos = eDKGAlunos.unicoObjeto("Alunos");
+
+        criarAluno(eAlunos, "1001", "Eduardo Xiz Connor", "9A");
+        criarAluno(eAlunos, "1002", "Sarah Connor Lincor", "9A");
+        criarAluno(eAlunos, "1003", "Ruevaldo Sariel Abandonado", "9A");
+        criarAluno(eAlunos, "1004", "Hudofrito de Ovos", "9A");
+        criarAluno(eAlunos, "1005", "Rodolfinho Camargo", "9A");
+        criarAluno(eAlunos, "1006", "Alexon de Souza", "9A");
+        criarAluno(eAlunos, "1007", "Ricardinho Fuleiro", "9A");
+        criarAlunoVivencia(eAlunos, "1009", "Pauleiro Korzz", "9A", "8C");
+        criarAlunoVivencia(eAlunos, "1010", "Vulqueto Mion", "9A", "8A");
+        criarAluno(eAlunos, "1011", "Flakkal Aargos", "9A");
+
+        criarAluno(eAlunos, "2001", "Amanda Fuleiro", "9B");
+        criarAluno(eAlunos, "2002", "Lucas Gritador", "9B");
+        criarAluno(eAlunos, "2003", "Ricardinho Xato", "9B");
+        criarAluno(eAlunos, "2004", "Gordinho Marcos", "9B");
+        criarAlunoVivencia(eAlunos, "2005", "Marquinhos Shaun", "9B", "8E");
+        criarAlunoVivencia(eAlunos, "2006", "Lukkinhas Monz", "9B", "8G");
+
+        criarAluno(eAlunos, "3001", "Xaman Evange", "9C");
+        criarAluno(eAlunos, "3002", "Brutao Xonnas", "9C");
+        criarAluno(eAlunos, "3003", "Italo Samuca", "9C");
+        criarAluno(eAlunos, "3004", "Marquinhos Vin", "9C");
+        criarAluno(eAlunos, "3005", "Bruninho Ollarere", "9C");
+        criarAluno(eAlunos, "3006", "Xandao Nacz", "9C");
+
+        criarAluno(eAlunos, "4001", "Maikao Brunn", "9D");
+        criarAluno(eAlunos, "4002", "Geonkz Forgz", "9D");
+        criarAluno(eAlunos, "4003", "Zallor Aun", "9D");
+        criarAluno(eAlunos, "4004", "Cabritinho Quin", "9D");
+        criarAluno(eAlunos, "4005", "Bernardo Xorgs", "9D");
+
+        criarAluno(eAlunos, "5001", "Pedrinho Briengo", "9E");
+        criarAluno(eAlunos, "5002", "Alfredinho Caue", "9E");
+
+        criarAluno(eAlunos, "9001", "Sabrina Samuca", "9G");
+        criarAluno(eAlunos, "9002", "Wesley Samuca", "9G");
+        criarAluno(eAlunos, "9003", "Alfredo Lerdus", "9G");
+
+        SigmaCollection.WRITE_COLLECTION(Local.COLECAO_ALUNOS, eDKGAlunos);
+        //  eDKGAlunos.salvar(FS.getArquivoLocal(Local.LOCAL + "/" + Local.ArquivoAlunos));
+
         criarAtividade("2022_05_12");
+        criarAtividade("2022_05_14");
+        criarAtividade("2022_05_16");
+        criarAtividade("2022_05_18");
         criarAtividade("2022_05_20");
-        criarAtividade("2022_05_22");
 
+        criarAtividade("2022_05_22");
         criarAtividade("2022_05_24");
         criarAtividade("2022_05_26");
         criarAtividade("2022_05_28");
         criarAtividade("2022_05_30");
 
-        criarAtividade("2022_06_03");
         criarAtividade("2022_06_05");
-        criarAtividade("2022_06_08");
-        criarAtividade("2022_06_10");
-
         criarAtividade("2022_06_12");
-        criarAtividade("2022_06_14");
-        criarAtividade("2022_06_16");
-        criarAtividade("2022_06_18");
-
         criarAtividade("2022_06_20");
-        criarAtividade("2022_06_21");
         criarAtividade("2022_06_22");
-        criarAtividade("2022_06_23");
-        criarAtividade("2022_06_24");
 
+        criarAtividade("2022_06_24");
+        criarAtividade("2022_06_26");
+        criarAtividade("2022_06_28");
         criarAtividade("2022_06_30");
+
         criarAtividade("2022_07_03");
+        criarAtividade("2022_07_05");
         criarAtividade("2022_07_08");
         criarAtividade("2022_07_10");
 
+
         criarAtividade(Calendario.getADMComTracoInferior());
 
-        criarRecuperacao(2, "2022_06_22", "2022_06_24", "2022_06_26");
+        criarRecuperacao(2, "2022_06_22", "2022_06_24", "2022_07_02");
 
     }
 
@@ -198,6 +281,9 @@ public class FakerSchool {
                 em_data = eData3;
             }
 
+            v=95;
+
+
             aluno.setNota(AVALIAR, "0", em_data);
 
             if (v >= 75) {
@@ -231,6 +317,18 @@ public class FakerSchool {
         Chamada.salvarChamadaNoDia(eData1, chamada_alunos);
         Chamada.salvarChamadaNoDia(eData2, chamada_alunos);
         Chamada.salvarChamadaNoDia(eData3, chamada_alunos);
+
+
+        System.out.println("===================================================== GUARDAR RECUOPERACAO");
+
+        String mArquivoRecuperacao = Local.ARQUIVO_RECUPERACAO(2);
+        final String RECUPERACAO = "RECUPERACAO";
+
+        ArrayList<AlunoComNota> rAlunos = OrdenarAlunos.ordendarComNotas(Escola.filtarVisiveis(Escola.carregarAlunosComNota()));
+
+
+        Atividade.organizarNota(FS.getArquivoLocal(mArquivoRecuperacao), RECUPERACAO, rAlunos);
+
 
     }
 

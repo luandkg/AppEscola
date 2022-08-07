@@ -53,7 +53,7 @@ public class Local {
     }
 
     public static String ARQUIVO_RECUPERACAO(int eBimestre) {
-        return LOCAL_RECUPERACOES + "/RECUPERACAO_0" + eBimestre + ".dkg";
+          return LOCAL_RECUPERACOES + "/RECUPERACAO_0" + eBimestre + ".dkg";
     }
 
     public static String CACHE_ARQUIVO(String eArquivo) {

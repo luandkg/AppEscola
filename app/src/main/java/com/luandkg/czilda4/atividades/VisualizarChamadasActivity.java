@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.luandkg.czilda4.R;
 import com.luandkg.czilda4.escola.chamadas.CarregadorDeFrequencia;
+import com.luandkg.czilda4.escola.tempo.BimestreCorrente;
 import com.luandkg.czilda4.escola.utils.Emblemador;
 import com.luandkg.czilda4.escola.chamadas.TurmaChamadas;
 import com.luandkg.czilda4.escola.professores.Luan;
@@ -34,7 +35,7 @@ public class VisualizarChamadasActivity extends AppCompatActivity {
 
         LISTA_DE_CHAMADAS= (ListView) findViewById(R.id.visualizar_chamadas_lista);
 
-        mChamadas = CarregadorDeFrequencia.carregar(Luan.getLuan());
+        mChamadas = CarregadorDeFrequencia.carregar(Luan.getLuan(), BimestreCorrente.GET());
 
         LISTA_DE_CHAMADAS.setAdapter(new ListaGenerica(getBaseContext(), mChamadas.size(), onItem(mChamadas)));
 

@@ -20,6 +20,9 @@ public class Calendario {
     public static String SABADO = "SABADO";
     public static String DOMINGO = "DOMINGO";
 
+    public static boolean isAntes(String a,String b){
+        return false;
+    }
     public static String getDiaAtual() {
 
         Calendar cal = Calendar.getInstance();
